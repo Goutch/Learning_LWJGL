@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3249c933-1bf4-44c2-9f19-a1d8f0376b0c" name="Default Changelist" comment="" />
+    <list default="true" id="3249c933-1bf4-44c2-9f19-a1d8f0376b0c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/DisplayManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/DisplayManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/RenderListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/geometry/Geometry.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/geometry/Geometry.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/geometry/Quad.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/geometry/Quad.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/geometry/Triangle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/geometry/Triangle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/graphics/DisplayManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/graphics/DisplayManager.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +26,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/LWJGL_Engine" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1QvxWCzTVj1olFoWm0JXjpdCm9W" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -91,6 +100,7 @@
       <workItem from="1568664904983" duration="5525000" />
       <workItem from="1568670558022" duration="6143000" />
       <workItem from="1568724001699" duration="1855000" />
+      <workItem from="1568763935782" duration="1224000" />
     </task>
     <servers />
   </component>
@@ -102,7 +112,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

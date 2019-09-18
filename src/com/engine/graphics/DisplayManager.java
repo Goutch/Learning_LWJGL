@@ -11,7 +11,7 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.GL_DEPTH_BUFFER_BIT;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
-public class DisplayManager {
+public class DisplayManager{
     private long window;
 
     public DisplayManager(int width, int height) {
@@ -24,10 +24,6 @@ public class DisplayManager {
         window = glfwCreateWindow(width, height, "LWJGL", NULL, NULL);
         glfwMakeContextCurrent(window);
         GL.createCapabilities();
-
-        glfwSetWindowSizeCallback(window,(long window,int w, int h)-> {
-
-        });
 
         glfwShowWindow(window);
 
