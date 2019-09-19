@@ -42,6 +42,10 @@ public class GameLoop {
     }
     private static void getInputs(){
         display.getInputs();
+        if(Input.IsKeyPressed(GLFW.GLFW_KEY_ESCAPE))
+        {
+            display.close();
+        }
     }
     private static void update(float delta) {
         display.update();
