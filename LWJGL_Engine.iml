@@ -7,6 +7,18 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="lwjgl-release-3.2" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/lib/LWJGL" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/lib/LWJGL" />
+        </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/lib/LWJGL" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/lib/LWJGL" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
   </component>
 </module>

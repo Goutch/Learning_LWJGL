@@ -2,14 +2,67 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3249c933-1bf4-44c2-9f19-a1d8f0376b0c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/engine/core/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/engine/inputs/Input.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/engine/util/Vector3f.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lwjgl_release_3_2.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/DisplayManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/DisplayManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/RenderListener.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/geometry/Geometry.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/geometry/Geometry.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/geometry/Quad.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/geometry/Quad.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/geometry/Triangle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/geometry/Triangle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/graphics/DisplayManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/graphics/DisplayManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LWJGL_Engine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/LWJGL_Engine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/assimp_license.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/build.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/dyncall_license.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/glfw_license.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/khronos_license.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-assimp-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-assimp-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-assimp-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-assimp.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-glfw-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-glfw-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-glfw-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-glfw.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-openal-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-openal-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-openal-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-openal.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-opengl-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-opengl-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-opengl-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-opengl.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-release-minimal-opengl-zip.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-stb-javadoc.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-stb-natives-windows.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-stb-sources.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl-stb.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/lwjgl.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/lwjgl-release-3.2.3/openal_soft_license.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/events/EventManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/events/RenderListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/events/UpdateListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/Camera.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/Color.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/DisplayManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/geometry/Geometry.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/geometry/Quad.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/graphics/geometry/Triangle.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/core/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/core/GameLoop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/events/EventManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/events/RenderListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/events/UpdateListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/graphics/Camera.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/graphics/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/util/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/graphics/DisplayManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/Display.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/graphics/geometry/Geometry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/Geometry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/graphics/geometry/Quad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/Quad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/graphics/geometry/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/Triangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,18 +86,18 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/LWJGL" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="com.engine.graphics" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\User\IdeaProjects\LWJGL_Engine\lib" />
       <recent name="C:\Users\User\IdeaProjects\LWJGL_Engine\lib\jar" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.engine.graphics" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -101,6 +154,8 @@
       <workItem from="1568670558022" duration="6143000" />
       <workItem from="1568724001699" duration="1855000" />
       <workItem from="1568763935782" duration="1224000" />
+      <workItem from="1568912483149" duration="1271000" />
+      <workItem from="1568914289573" duration="8749000" />
     </task>
     <servers />
   </component>

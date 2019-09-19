@@ -1,59 +1,69 @@
 package com.engine.core;
 
-import com.engine.events.EventManager;
-import com.engine.util.TimeHelper;
+import com.engine.inputs.Input;
+import com.engine.rendering.Display;
+import org.lwjgl.glfw.GLFW;
+
+import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 
 public class GameLoop {
-        public static Boolean running = false;
-        private static final int TARGET_FPS = 60;
-        private static final boolean SHOW_FPS=true;
-        private static final int TARGET_TIME_PER_FRAME = TimeHelper.NANO_SECOND / TARGET_FPS;
-        private static final int MAX_UPDATES = 5;
+    private static boolean running = false;
+    private static Display display;
+    private final static boolean PRINT_FPS = true;
+    private static long lastFramePrint = 0;
+    private static int frames = 0;
 
-        public static void start() {
-            Thread thread = new Thread() {
-                public void run() {
-                    running = true;
-                    long lastUpdateTime = System.nanoTime();
-                    long lastFpsCheck=System.nanoTime();
-                    int fps=0;
-                    int updates = 0;
-                    while (running) {
-                        long currentTime = System.nanoTime();
-                        updates = 0;
-                        long delta=currentTime - lastUpdateTime;
-                        while (delta >= TARGET_TIME_PER_FRAME) {
-                            lastUpdateTime = System.nanoTime();
-                            EventManager.onUpdate(TimeHelper.nanoSecondToSecond(delta));
-                            delta=currentTime - lastUpdateTime;
-                            updates++;
-                            if (updates > MAX_UPDATES) break;
-                        }
+    public static void start() {
+        if (running)
+            return;
+        running = true;
+        Thread thread = new Thread() {
+            public void run() {
 
-                        EventManager.onRender();
-                        if(SHOW_FPS)
-                        {
-                            fps++;
-                            if (System.nanoTime()>=lastFpsCheck+TimeHelper.NANO_SECOND)
-                            {
-                                System.out.println(fps);
-                                fps=0;
-                                lastFpsCheck=System.nanoTime();
-                            }
-                        }
-
-                        long timeTaken = System.nanoTime() - currentTime;
-                        if (timeTaken < TARGET_TIME_PER_FRAME) {
-                            try {
-                                sleep((TARGET_TIME_PER_FRAME - timeTaken) / 1000000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
+                init();
+                while (!glfwWindowShouldClose(display.getWindow())) {
+                    getInputs();
+                    update(0f);
+                    render();
+                    if (PRINT_FPS) {
+                        printFPS();
                     }
                 }
-            };
-            thread.setName("GameLoop");
-            thread.start();
+                dispose();
+            }
+        };
+        thread.setName("GameLoop");
+        thread.start();
     }
+
+    private static void init() {
+        display = new Display(600, 400, "title");
+        Input input=new Input(display.getWindow());
+    }
+    private static void getInputs(){
+        display.getInputs();
+    }
+    private static void update(float delta) {
+        display.update();
+    }
+    private static void printFPS()
+    {
+        frames++;
+        if (lastFramePrint < System.currentTimeMillis() - 1000) {
+            lastFramePrint = System.currentTimeMillis();
+            System.out.println(frames);
+            frames = 0;
+        }
+    }
+    private static void render() {
+        display.render();
+    }
+    private static void dispose(){
+        GLFW.glfwDestroyWindow(display.getWindow());
+        //free callbacks
+        GLFW.glfwTerminate();
+
+    }
+
+
 }
