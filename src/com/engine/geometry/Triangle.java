@@ -2,13 +2,14 @@ package com.engine.geometry;
 
 import com.engine.util.Color;
 import com.engine.util.Vector2f;
+import com.engine.util.Vector3f;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.glFlush;
 
 public class Triangle extends Geometry {
     protected Vector2f size;
-    public Triangle(Vector2f position, Vector2f size, Color color)
+    public Triangle(Vector3f position, Vector2f size, Color color)
     {
         super(position,color);
         this.size=size;

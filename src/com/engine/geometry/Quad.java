@@ -3,6 +3,7 @@ package com.engine.geometry;
 import com.engine.util.Color;
 
 import com.engine.util.Vector2f;
+import com.engine.util.Vector3f;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.glFlush;
@@ -10,7 +11,7 @@ import static org.lwjgl.opengl.GL11.glFlush;
 public class Quad extends Geometry {
 
     Vector2f size;
-    public Quad(Vector2f position, Vector2f size, Color color)
+    public Quad(Vector3f position, Vector2f size, Color color)
     {
         super(position,color);
         this.size=size;
