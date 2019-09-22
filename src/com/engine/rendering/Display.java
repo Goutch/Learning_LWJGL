@@ -13,6 +13,7 @@ import org.lwjgl.system.MemoryUtil;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL30.*;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class Display implements DisposeListener {
@@ -23,6 +24,8 @@ public class Display implements DisposeListener {
     private long window;
     private int width;
     private int height;
+
+    private int vertexArrayObject;
 
     public Display(int width, int height,String title) {
         EventManager.subscribeDispose(this);
@@ -35,6 +38,8 @@ public class Display implements DisposeListener {
         if(!GLFW.glfwInit())
             throw new IllegalStateException("Unable to initialize GLFW");
 
+        glfwDefaultWindowHints();
+
         window = glfwCreateWindow(width, height, title, NULL, NULL);
         if (window == NULL) {
             glfwTerminate();
@@ -43,7 +48,6 @@ public class Display implements DisposeListener {
         glfwSetErrorCallback(errorCallback);
         glfwMakeContextCurrent(window);
         GL.createCapabilities();
-
 
         GLFW.glfwSetWindowSizeCallback(window,(window,w,h)->{
             width=w;
@@ -71,8 +75,10 @@ public class Display implements DisposeListener {
 
     }
     public void render(){
-        glfwSwapBuffers(window);
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
+    }
+    public void swapBuffers(){
+        glfwSwapBuffers(window);
     }
 
     public void close()
@@ -91,10 +97,10 @@ public class Display implements DisposeListener {
 
     @Override
     public void onDispose() {
+        glDeleteVertexArrays(vertexArrayObject);
         errorCallback.free();
         windowResizeCallback.free();
         GLFW.glfwDestroyWindow(window);
-        //free callbacks
         GLFW.glfwTerminate();
     }
 }

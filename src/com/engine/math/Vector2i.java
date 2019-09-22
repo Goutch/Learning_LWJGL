@@ -1,4 +1,4 @@
-package com.engine.util;
+package com.engine.math;
 
 
 public class Vector2i {

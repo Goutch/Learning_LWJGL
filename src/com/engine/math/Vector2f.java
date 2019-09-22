@@ -1,6 +1,8 @@
-package com.engine.util;
+package com.engine.math;
 
-public class Vector3f {
+
+
+public class Vector2f {
     public static final Vector2f ONE = new Vector2f(1, 1);
     public static final Vector2f ZERO = new Vector2f(0, 0);
     public static final Vector2f RIGHT = new Vector2f(1, 0);
@@ -8,31 +10,35 @@ public class Vector3f {
     public static final Vector2f UP = new Vector2f(0, 1);
     public static final Vector2f DOWN = new Vector2f(0, -1);
 
-    public float x = 0, y = 0, z = 0;
+    public float x = 0, y = 0;
 
-    public Vector3f(float x, float y, float z) {
+    public Vector2f(float x, float y) {
         this.x = x;
         this.y = y;
-        this.z = z;
-    }
-
-    public Vector3f() {
     }
 
     public void normalize() {
 
-        float sum = x + y + z;
-        if (sum != 0) {
+        float sum = x + y;
+        if(sum!=0)
+        {
             x /= sum;
             y /= sum;
-            z /= sum;
         }
+
     }
 
 
-    public void add(Vector3f other) {
+    public void add(Vector2f other) {
         this.x += other.x;
         this.y += other.y;
-        this.z += other.z;
+    }
+    public void multiply(float ammount){
+        this.x *= ammount;
+        this.y *= ammount;
+    }
+    public void multiply(Vector3f other){
+        this.x *= other.x;
+        this.y *= other.y;
     }
 }
