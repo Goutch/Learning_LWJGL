@@ -1,13 +1,20 @@
 package com.engine.core;
 
 import com.engine.events.EventManager;
+import com.engine.geometry.Triangle;
 import com.engine.inputs.Input;
+import com.engine.math.Vector2f;
+import com.engine.math.Vector3f;
 import com.engine.rendering.Display;
+import com.engine.rendering.Renderer;
+import com.engine.util.Color;
 import org.lwjgl.glfw.GLFW;
+
 
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 
 public class GameLoop {
+    private static Thread gameLoopThread;
     private static boolean running = false;
     private static Display display;
     private final static boolean PRINT_FPS = true;
@@ -16,29 +23,40 @@ public class GameLoop {
     private static int frames = 0;
 
     public static void start() {
-        if (running)
-            return;
-        running = true;
+       // gameLoopThread = new Thread() {
+            //public void run() {
+                if (running)
+                    return;
 
-        init();
-        long lastFrameTime = System.currentTimeMillis();
-        long currentTime;
-        while (!glfwWindowShouldClose(display.getWindow())) {
-            currentTime = System.currentTimeMillis();
-            getInputs();
-            update((float)(currentTime - lastFrameTime)/1000f);
-            render();
-            if (PRINT_FPS) {
-                printFPS();
-            }
-            lastFrameTime = currentTime;
-        }
-        dispose();
+                running = true;
+
+                init();
+
+                long current=System.currentTimeMillis();
+                long previous=System.currentTimeMillis();
+                while (!glfwWindowShouldClose(display.getWindow())) {
+                    previous=current;
+                    current=System.currentTimeMillis();
+                    getInputs();
+                    if (GameOptions.PRINT_FPS) {
+                        printFPS();
+                    }
+                    update((float)(current-previous)/1000);
+                    render();
+
+                }
+                dispose();
+            //}
+       // };
+        //gameLoopThread.setName("GameLoop");
+       // gameLoopThread.start();
     }
 
     private static void init() {
         display = new Display(GameOptions.WINDOW_START_WIDTH, GameOptions.WINDOW_START_HEIGHT, GameOptions.TITLE);
-        Input input = new Input(display.getWindow());
+        new Input(display.getWindow());
+        Renderer.init();
+        Triangle t =new Triangle( new Vector3f(),0, new Vector2f(1,1), Color.RED);
     }
 
     private static void getInputs() {
@@ -49,7 +67,6 @@ public class GameLoop {
     }
 
     private static void update(float delta) {
-        display.update();
         EventManager.onUpdate(delta);
     }
 
@@ -63,14 +80,15 @@ public class GameLoop {
     }
 
     private static void render() {
-        display.render();
+        Renderer.clear();
+
         EventManager.onRender();
+
         display.swapBuffers();
+
     }
 
     private static void dispose() {
         EventManager.onDispose();
     }
-
-
 }

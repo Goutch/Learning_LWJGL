@@ -1,5 +1,6 @@
 package com.engine.rendering;
 
+import com.engine.core.GameOptions;
 import com.engine.events.DisposeListener;
 import com.engine.events.EventManager;
 import com.engine.util.Color;
@@ -9,7 +10,7 @@ import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.glfw.GLFWWindowSizeCallback;
 import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.system.MemoryUtil;
+
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
@@ -25,7 +26,6 @@ public class Display implements DisposeListener {
     private int width;
     private int height;
 
-    private int vertexArrayObject;
 
     public Display(int width, int height,String title) {
         EventManager.subscribeDispose(this);
@@ -49,6 +49,11 @@ public class Display implements DisposeListener {
         glfwMakeContextCurrent(window);
         GL.createCapabilities();
 
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+
         GLFW.glfwSetWindowSizeCallback(window,(window,w,h)->{
             width=w;
             height=h;
@@ -56,10 +61,14 @@ public class Display implements DisposeListener {
             EventManager.onWindowResize(w,h);
         });
 
-        GL11.glClearColor(BACKGROUND_COLOR.r,BACKGROUND_COLOR.b,BACKGROUND_COLOR.g,BACKGROUND_COLOR.a);
+        GL11.glClearColor(GameOptions.CLEAR_COLOR.r,GameOptions.CLEAR_COLOR.b,GameOptions.CLEAR_COLOR.g,GameOptions.CLEAR_COLOR.a);
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 
-        glfwSwapInterval(1);
+        if(GameOptions.VSYNC)
+        {
+            glfwSwapInterval(1);
+        }
+
         glfwShowWindow(window);
     }
     private void centerWindow(){
@@ -71,12 +80,7 @@ public class Display implements DisposeListener {
         //getInputs
         glfwPollEvents();
     }
-    public void update(){
 
-    }
-    public void render(){
-        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
-    }
     public void swapBuffers(){
         glfwSwapBuffers(window);
     }
@@ -97,7 +101,7 @@ public class Display implements DisposeListener {
 
     @Override
     public void onDispose() {
-        glDeleteVertexArrays(vertexArrayObject);
+
         errorCallback.free();
         windowResizeCallback.free();
         GLFW.glfwDestroyWindow(window);

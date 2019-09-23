@@ -1,21 +1,24 @@
 package com.engine.core;
 
-import com.engine.geometry.Quad;
-import com.engine.geometry.Triangle;
-import com.engine.util.Color;
-import com.engine.math.Vector2f;
-import com.engine.math.Vector3f;
-
 public class Game {
+    public Game(int startWidth,int startHeight,boolean vsync,boolean fullScreen,String title)
+    {
+        GameOptions.WINDOW_START_WIDTH=startWidth;
+        GameOptions.WINDOW_START_HEIGHT=startHeight;
+        GameOptions.VSYNC=vsync;
+        GameOptions.FULLSCREEN=fullScreen;
+        GameOptions.TITLE=title;
+
+    }
     public Game()
     {
-        Triangle t =new Triangle(new Vector3f(-1f,0,0),0,new Vector2f(1,1), Color.RED);
+
     }
 
     public void start()
     {
-        GameLoop.start();
 
+        GameLoop.start();
     }
 
 }
