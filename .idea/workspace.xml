@@ -2,26 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3249c933-1bf4-44c2-9f19-a1d8f0376b0c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/engine/events/InitListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/engine/rendering/Renderer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/engine/rendering/shader/ShaderProgram.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/shaders/fragment.fs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/shaders/vertex.vs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/engine/geometry/Loader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/engine/rendering/shader/StaticShader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/HelloWorld.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/Game.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameOptions.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/events/EventManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/events/EventManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Triangle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Triangle.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Quad.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Triangle.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Display.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Display.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/shader/Shader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Renderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Renderer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/shader/ShaderProgram.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/shader/ShaderProgram.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/util/TimeHelper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/HelloWorld.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/engine/core/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/core/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/engine/core/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/core/GameLoop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/engine/core/GameOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/core/GameOptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/events/EventManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/events/EventManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/Mesh.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/Triangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/Geometry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/Geometry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/Quad.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/Triangle.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/Display.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/Renderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shader/ShaderProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shader/ShaderProgram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/util/TimeHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -124,6 +130,8 @@
       <workItem from="1569003372227" duration="6674000" />
       <workItem from="1569109009603" duration="6502000" />
       <workItem from="1569183926613" duration="11112000" />
+      <workItem from="1569266113511" duration="6770000" />
+      <workItem from="1569276012762" duration="520000" />
     </task>
     <servers />
   </component>
@@ -142,5 +150,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/engine/rendering/shader/ShaderProgram.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -1,13 +1,12 @@
 package com.engine.core;
 
 import com.engine.events.EventManager;
-import com.engine.geometry.Triangle;
+import com.engine.geometry.Loader;
+import com.engine.geometry.Geometry;
 import com.engine.inputs.Input;
-import com.engine.math.Vector2f;
-import com.engine.math.Vector3f;
 import com.engine.rendering.Display;
 import com.engine.rendering.Renderer;
-import com.engine.util.Color;
+import com.engine.rendering.shader.StaticShader;
 import org.lwjgl.glfw.GLFW;
 
 
@@ -56,7 +55,7 @@ public class GameLoop {
         display = new Display(GameOptions.WINDOW_START_WIDTH, GameOptions.WINDOW_START_HEIGHT, GameOptions.TITLE);
         new Input(display.getWindow());
         Renderer.init();
-        Triangle t =new Triangle( new Vector3f(),0, new Vector2f(1,1), Color.RED);
+        Geometry model=new Geometry(Geometry.Quad.VERTECES,Geometry.Quad.INDEXES,new StaticShader());
     }
 
     private static void getInputs() {
@@ -89,6 +88,7 @@ public class GameLoop {
     }
 
     private static void dispose() {
+        Loader.Dispose();
         EventManager.onDispose();
     }
 }

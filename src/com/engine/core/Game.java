@@ -17,7 +17,6 @@ public class Game {
 
     public void start()
     {
-
         GameLoop.start();
     }
 
