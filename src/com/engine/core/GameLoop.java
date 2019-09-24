@@ -22,9 +22,9 @@ public class GameLoop {
     private static int frames = 0;
 
     public static void start(GameLogic gameLogicListener) {
-        gameLogic=gameLogicListener;
-       // gameLoopThread = new Thread() {
-            //public void run() {
+        gameLogic = gameLogicListener;
+        gameLoopThread = new Thread() {
+            public void run() {
                 if (running)
                     return;
 
@@ -32,24 +32,24 @@ public class GameLoop {
 
                 init();
 
-                long current=System.currentTimeMillis();
-                long previous=System.currentTimeMillis();
+                long current = System.currentTimeMillis();
+                long previous = System.currentTimeMillis();
                 while (!glfwWindowShouldClose(display.getWindow())) {
-                    previous=current;
-                    current=System.currentTimeMillis();
+                    previous = current;
+                    current = System.currentTimeMillis();
                     getInputs();
                     if (GameOptions.PRINT_FPS) {
                         printFPS();
                     }
-                    update((float)(current-previous)/1000);
+                    update((float) (current - previous) / 1000);
                     render();
 
                 }
                 dispose();
-            //}
-       // };
-        //gameLoopThread.setName("GameLoop");
-       // gameLoopThread.start();
+            }
+        };
+        gameLoopThread.setName("GameLoop");
+        gameLoopThread.start();
     }
 
     private static void init() {

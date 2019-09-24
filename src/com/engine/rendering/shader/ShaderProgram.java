@@ -49,6 +49,7 @@ public abstract class ShaderProgram implements DisposeListener {
         GL20.glBindAttribLocation(programID,attribute,variableName);
     }
     protected abstract void bindAttributes();
+
     private static int loadShader(String file,int type){
         StringBuilder shaderSource = new StringBuilder();
         try{
