@@ -8,7 +8,7 @@ public class DummyGame implements GameLogic {
     Geometry g;
     @Override
     public void init() {
-        g=new Geometry(Geometry.Quad.VERTICES,Geometry.Quad.INDEXES, Shaders.STATIC_SHADER);
+        g=new Geometry(Geometry.Quad.VERTICES,Geometry.Quad.INDEXES, Shaders.COLOR_SHADER);
     }
 
     @Override

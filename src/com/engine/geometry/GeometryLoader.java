@@ -5,7 +5,12 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
+import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureLoader;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import java.util.LinkedList;
@@ -17,6 +22,7 @@ public class GeometryLoader {
 
     private static LinkedList<Integer> vaos=new LinkedList<Integer>();
     private static LinkedList<Integer> vbos=new LinkedList<Integer>();
+    private static LinkedList<Integer> textures=new LinkedList<Integer>();
     public static int loadToVAO(float[] positions,int[] indexes){
         int vaoID=createVAO();
         bindIndexesBuffer(indexes);
@@ -24,7 +30,25 @@ public class GeometryLoader {
         unbindVOA();
         return vaoID;
     }
+    public static int loadTexture(String path,String format)
+    {
+        Texture texture=null;
+        int textureID=0;
+        try {
+            texture= TextureLoader.getTexture(format,new FileInputStream(path));
+            textureID=texture.getTextureID();
+            textures.add(textureID);
 
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return textureID;
+    }
     private static void bindIndexesBuffer(int[] indexes){
         int vbo=GL15.glGenBuffers();
         vbos.add(vbo);
@@ -72,6 +96,10 @@ public class GeometryLoader {
 
 
     public static void dispose() {
+        for (int t:textures)
+        {
+            glDeleteTextures(t);
+        }
         for (int vao:vaos)
         {
             glDeleteVertexArrays(vao);

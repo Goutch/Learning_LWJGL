@@ -2,46 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3249c933-1bf4-44c2-9f19-a1d8f0376b0c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/engine/core/GameLogic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/test/DummyGame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/engine/geometry/GeometryTexture.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/engine/geometry/TexturedGeometry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/engine/rendering/shader/ColorShader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hs_err_pid8936.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/Game.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry$Quad.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry$Quad.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry$Triangle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry$Triangle.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Loader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/inputs/Input$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/inputs/Input$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/inputs/Input$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/inputs/Input$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/inputs/Input$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/inputs/Input$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/inputs/Input.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/inputs/Input.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Display.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Display.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Renderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Renderer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/shader/Shader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/shader/StaticShader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/shader/StaticShader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/shader/fragmentShader.glsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/shader/vertexShader.glsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/res/shaders/fragment.fs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/res/shaders/vertex.vs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/core/Game.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/core/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/core/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/events/DisposeListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/events/DisposeListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/events/EventManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/events/EventManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/Geometry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/Geometry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/GeometryLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/inputs/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/inputs/Input.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/Display.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/Renderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shader/Shader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shader/Shaders.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shader/ShaderProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shader/ShaderProgram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shader/StaticShader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shader/StaticShader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shader/fragmentShader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/shaders/staticFragment.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shader/vertexShader.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/shaders/staticVertex.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/shaders/fragment.fs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/shaders/vertex.vs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LWJGL_Engine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/LWJGL_Engine.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/GeometryLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/GeometryLoader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/shader/Shaders.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/shader/Shaders.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/DummyGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/DummyGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/GeometryLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/GeometryLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shader/Shaders.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shader/Shaders.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/test/DummyGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/DummyGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/shaders/trigoFragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/shaders/trigoFragment.glsl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -52,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -65,7 +37,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/com/engine/math" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/slick-util.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -146,7 +118,8 @@
       <workItem from="1569109009603" duration="6502000" />
       <workItem from="1569183926613" duration="11112000" />
       <workItem from="1569266113511" duration="6770000" />
-      <workItem from="1569276012762" duration="4736000" />
+      <workItem from="1569276012762" duration="5954000" />
+      <workItem from="1569328756882" duration="1117000" />
     </task>
     <servers />
   </component>
