@@ -35,7 +35,7 @@ public abstract class ShaderProgram implements DisposeListener {
         GL20.glUseProgram(0);
     }
     @Override
-    public void onDispose()
+    public void dispose()
     {
         stop();
         GL20.glDetachShader(programID,vertexShaderID);

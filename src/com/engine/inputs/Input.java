@@ -7,7 +7,7 @@ import org.lwjgl.glfw.GLFWCursorPosCallback;
 import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWMouseButtonCallback;
 
-public class Input implements DisposeListener {
+public class Input{
     private static boolean[] isKeyPressed = new boolean[GLFW.GLFW_KEY_LAST];
     private static boolean[] isMouseButtonPressed = new boolean[GLFW.GLFW_MOUSE_BUTTON_LAST];
     private static double mouseX;
@@ -17,8 +17,8 @@ public class Input implements DisposeListener {
     private static GLFWKeyCallback keyCallback;
     private static GLFWMouseButtonCallback mouseButtonCallback;
 
-    public Input(long window) {
-        EventManager.subscribeDispose(this);
+    public static void init(long window) {
+
         keyCallback = new GLFWKeyCallback() {
             @Override
             public void invoke(long window, int key, int scancode, int action, int mods) {
@@ -59,8 +59,7 @@ public class Input implements DisposeListener {
         return mouseY;
     }
 
-    @Override
-    public void onDispose() {
+    public static void dispose() {
         cursorCallback.free();
         keyCallback.free();
         mouseButtonCallback.free();

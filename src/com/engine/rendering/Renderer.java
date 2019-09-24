@@ -2,8 +2,6 @@ package com.engine.rendering;
 
 
 import com.engine.geometry.Geometry;
-import com.engine.rendering.shader.Shader;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;

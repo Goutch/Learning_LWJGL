@@ -36,7 +36,7 @@ public class EventManager {
     public static void onRender() { for (RenderListener l : renderListeners) { l.render(); } }
     public static void onUpdate(float deltaTime) { for (UpdateListener l : updateListeners) { l.update(deltaTime); }}
     public static void onWindowResize(int width,int height) { for (WindowResizeListener l : windowResizeListeners) { l.onWindowResize(width,height); }}
-    public static void onDispose(){for (DisposeListener l : disposeListeners) { l.onDispose(); }}
+    public static void onDispose(){for (DisposeListener l : disposeListeners) { l.dispose(); }}
     public static void reset()
     {
         initListeners.clear();

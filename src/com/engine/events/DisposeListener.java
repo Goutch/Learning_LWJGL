@@ -1,5 +1,5 @@
 package com.engine.events;
 
 public interface DisposeListener {
-    void onDispose();
+    void dispose();
 }

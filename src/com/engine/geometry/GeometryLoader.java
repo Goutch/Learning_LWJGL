@@ -13,7 +13,7 @@ import java.util.LinkedList;
 import static org.lwjgl.opengl.GL15.*;
 import static org.lwjgl.opengl.GL30.glDeleteVertexArrays;
 
-public class Loader {
+public class GeometryLoader {
 
     private static LinkedList<Integer> vaos=new LinkedList<Integer>();
     private static LinkedList<Integer> vbos=new LinkedList<Integer>();
@@ -71,7 +71,7 @@ public class Loader {
     }
 
 
-    public static void Dispose() {
+    public static void dispose() {
         for (int vao:vaos)
         {
             glDeleteVertexArrays(vao);

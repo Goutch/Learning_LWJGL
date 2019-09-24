@@ -14,13 +14,12 @@ import org.lwjgl.opengl.GL11;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL30.*;
+
 import static org.lwjgl.system.MemoryUtil.NULL;
 
-public class Display implements DisposeListener {
+public class Display {
     private GLFWErrorCallback errorCallback = GLFWErrorCallback.createPrint(System.err);
     private GLFWWindowSizeCallback windowResizeCallback;
-    private boolean PRINT_FPS=false;
     private final Color BACKGROUND_COLOR=Color.WHITE;
     private long window;
     private int width;
@@ -28,7 +27,7 @@ public class Display implements DisposeListener {
 
 
     public Display(int width, int height,String title) {
-        EventManager.subscribeDispose(this);
+
         this.width=width;
         this.height=height;
         createWindow(title);
@@ -94,8 +93,7 @@ public class Display implements DisposeListener {
 
     }
 
-    @Override
-    public void onDispose() {
+    public void dispose() {
 
         errorCallback.free();
         windowResizeCallback.free();

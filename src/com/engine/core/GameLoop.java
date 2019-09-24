@@ -1,7 +1,7 @@
 package com.engine.core;
 
 import com.engine.events.EventManager;
-import com.engine.geometry.Loader;
+import com.engine.geometry.GeometryLoader;
 import com.engine.geometry.Geometry;
 import com.engine.inputs.Input;
 import com.engine.rendering.Display;
@@ -18,10 +18,11 @@ public class GameLoop {
     private static Display display;
     private final static boolean PRINT_FPS = true;
     private static long lastFramePrint = 0;
-
+    private static GameLogic gameLogic;
     private static int frames = 0;
 
-    public static void start() {
+    public static void start(GameLogic gameLogicListener) {
+        gameLogic=gameLogicListener;
        // gameLoopThread = new Thread() {
             //public void run() {
                 if (running)
@@ -53,9 +54,10 @@ public class GameLoop {
 
     private static void init() {
         display = new Display(GameOptions.WINDOW_START_WIDTH, GameOptions.WINDOW_START_HEIGHT, GameOptions.TITLE);
-        new Input(display.getWindow());
+        Input.init(display.getWindow());
         Renderer.init();
-        Geometry model=new Geometry(Geometry.Quad.VERTECES,Geometry.Quad.INDEXES,new StaticShader());
+        gameLogic.init();
+        EventManager.onInit();
     }
 
     private static void getInputs() {
@@ -66,6 +68,7 @@ public class GameLoop {
     }
 
     private static void update(float delta) {
+        gameLogic.update(delta);
         EventManager.onUpdate(delta);
     }
 
@@ -80,15 +83,16 @@ public class GameLoop {
 
     private static void render() {
         Renderer.clear();
-
+        gameLogic.render();
         EventManager.onRender();
-
         display.swapBuffers();
-
     }
 
     private static void dispose() {
-        Loader.Dispose();
+        gameLogic.dispose();
         EventManager.onDispose();
+        Input.dispose();
+        GeometryLoader.dispose();
+
     }
 }
