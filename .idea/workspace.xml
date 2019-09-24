@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3249c933-1bf4-44c2-9f19-a1d8f0376b0c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/engine/geometry/GeometryTexture.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/engine/geometry/TexturedGeometry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/engine/rendering/shader/ColorShader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LWJGL_Engine.iml" beforeDir="false" afterPath="$PROJECT_DIR$/LWJGL_Engine.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/GeometryLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/GeometryLoader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/shader/Shaders.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/shader/Shaders.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/DummyGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/DummyGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/GeometryLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/GeometryLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shader/Shaders.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shader/Shaders.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/test/DummyGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/DummyGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/shaders/trigoFragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/shaders/trigoFragment.glsl" afterDir="false" />
-    </list>
+    <list default="true" id="3249c933-1bf4-44c2-9f19-a1d8f0376b0c" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,6 +107,7 @@
       <workItem from="1569266113511" duration="6770000" />
       <workItem from="1569276012762" duration="5954000" />
       <workItem from="1569328756882" duration="1117000" />
+      <workItem from="1569332195666" duration="138000" />
     </task>
     <servers />
   </component>
