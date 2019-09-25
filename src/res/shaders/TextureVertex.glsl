@@ -1,10 +1,10 @@
 #version 400 core
 
 in vec3 vertexPosition;
-out vec4 vertexColor;
-void main()
-{
+in vec2 textureCoord;
+out vec2 uv;
 
-    vertexColor=vec4(vertexPosition.xyz, 1.);
+void main(){
+    uv=textureCoord;
     gl_Position=vec4(vertexPosition.xyz,1.);
 }

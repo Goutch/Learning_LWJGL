@@ -14,6 +14,7 @@ public abstract class ShaderProgram implements DisposeListener {
     private int programID;
     private int vertexShaderID;
     private int fragmentShaderID;
+    private int atributeCount=0;
     public ShaderProgram(String vertexFile,String fragmentFile)
     {
         EventManager.subscribeDispose(this);
@@ -47,9 +48,13 @@ public abstract class ShaderProgram implements DisposeListener {
     protected void bindAttribute(int attribute,String variableName)
     {
         GL20.glBindAttribLocation(programID,attribute,variableName);
+        atributeCount++;
     }
     protected abstract void bindAttributes();
-
+    public int getAtributeCount()
+    {
+        return atributeCount;
+    }
     private static int loadShader(String file,int type){
         StringBuilder shaderSource = new StringBuilder();
         try{

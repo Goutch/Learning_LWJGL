@@ -20,7 +20,6 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 public class Display {
     private GLFWErrorCallback errorCallback = GLFWErrorCallback.createPrint(System.err);
     private GLFWWindowSizeCallback windowResizeCallback;
-    private final Color BACKGROUND_COLOR=Color.WHITE;
     private long window;
     private int width;
     private int height;

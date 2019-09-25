@@ -2,11 +2,9 @@ package com.engine.core;
 
 import com.engine.events.EventManager;
 import com.engine.geometry.GeometryLoader;
-import com.engine.geometry.Geometry;
 import com.engine.inputs.Input;
 import com.engine.rendering.Display;
 import com.engine.rendering.Renderer;
-import com.engine.rendering.shader.StaticShader;
 import org.lwjgl.glfw.GLFW;
 
 
