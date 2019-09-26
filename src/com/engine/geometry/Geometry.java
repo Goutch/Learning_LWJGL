@@ -4,19 +4,25 @@ package com.engine.geometry;
 import com.engine.events.RenderListener;
 import com.engine.rendering.Renderer;
 import com.engine.rendering.shader.ShaderProgram;
+import com.engine.rendering.shader.StaticShader;
+import com.engine.rendering.shader.TextureShader;
+import com.engine.rendering.shader.VertexColorShader;
 import com.engine.util.Color;
+import com.engine.util.Texture;
 
-public class Geometry implements RenderListener{
-    protected ShaderProgram shader;
+public class Geometry{
+    protected StaticShader shader;
     protected int vaoID;
     protected int vertexCount;
-    public Geometry(float[] vertices, int[] indexes, ShaderProgram shader)
+    protected float[] uvs;
+    protected Texture texture=null;
+    public Geometry(float[] vertices, int[] indexes, StaticShader shader)
     {
         this.vaoID= GeometryLoader.loadToVAO(vertices,indexes);
         this.shader=shader;
         this.vertexCount=vertices.length;
     }
-    public Geometry(float[] vertices, int[] indexes,Color[] colors, ShaderProgram shader)
+    public Geometry(float[] vertices, int[] indexes,Color[] colors, VertexColorShader shader)
     {
         float[] vertexColors=new float[colors.length*3];
         for (int i=0;i<colors.length;i++)
@@ -29,7 +35,26 @@ public class Geometry implements RenderListener{
         this.shader=shader;
         this.vertexCount=vertices.length;
     }
-    protected Geometry(){}
+    public Geometry(float[] vertices, int[] indexes, float[] uvs,Texture texture,  TextureShader shader)
+    {
+        this.vaoID= GeometryLoader.loadToVAO(vertices,indexes,uvs);
+        this.shader=shader;
+        this.vertexCount=vertices.length;
+        this.texture=texture;
+        this.uvs=uvs;
+    }
+
+    public void bindTexture()
+    {
+        if(texture!=null)
+            texture.bind();
+    }
+    public void unBindTexture()
+    {
+        if(texture!=null)
+            texture.unbind();
+    }
+
     public int getVaoID() {
         return vaoID;
     }
@@ -37,12 +62,8 @@ public class Geometry implements RenderListener{
     public int getVertexCount() {
         return vertexCount;
     }
-    @Override
-    public void render() {
-        shader.start();
-        Renderer.render(this,shader.getAtributeCount());
-        shader.stop();
-    }
+
+    public StaticShader getShader(){return shader;}
 
     public static class Triangle {
         public static final float[] VERTICES = {

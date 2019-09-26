@@ -2,12 +2,16 @@ package com.engine.rendering.shader;
 
 import com.engine.events.DisposeListener;
 import com.engine.events.EventManager;
+import org.joml.Matrix4f;
+import org.joml.Vector3f;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.FloatBuffer;
 
 public abstract class ShaderProgram implements DisposeListener {
 
@@ -15,6 +19,8 @@ public abstract class ShaderProgram implements DisposeListener {
     private int vertexShaderID;
     private int fragmentShaderID;
     private int atributeCount=0;
+
+    private static FloatBuffer matrixBuffer= BufferUtils.createFloatBuffer(16);
     public ShaderProgram(String vertexFile,String fragmentFile)
     {
         EventManager.subscribeDispose(this);
@@ -23,9 +29,10 @@ public abstract class ShaderProgram implements DisposeListener {
         programID=GL20.glCreateProgram();
         GL20.glAttachShader(programID,vertexShaderID);
         GL20.glAttachShader(programID,fragmentShaderID);
+        bindAttributes();
         GL20.glLinkProgram(programID);
         GL20.glValidateProgram(programID);
-        bindAttributes();
+        getAllUniformLocations();
     }
     public void start()
     {
@@ -50,7 +57,36 @@ public abstract class ShaderProgram implements DisposeListener {
         GL20.glBindAttribLocation(programID,attribute,variableName);
         atributeCount++;
     }
+
     protected abstract void bindAttributes();
+
+    protected void loadFloatUniform(int location,float value)
+    {
+        GL20.glUniform1f(location,value);
+    }
+    protected void loadVectorUniform(int location, Vector3f vector)
+    {
+        GL20.glUniform3f(location,vector.x,vector.y,vector.z);
+    }
+    protected void loadBooleanUniform(int location, boolean value)
+    {
+        GL20.glUniform1f(location, (value) ? 1 : 0);
+    }
+    protected void loadIntUniform(int location,int value)
+    {
+        GL20.glUniform1i(location,value);
+    }
+    protected void loadMatrix(int location, Matrix4f matrix)
+    {
+        GL20.glUniformMatrix4fv(location, false, matrix.get(matrixBuffer));
+    }
+    protected int getUniformLocation(String uniformName)
+    {
+        return  GL20.glGetUniformLocation(programID,uniformName);
+    }
+
+    protected abstract void getAllUniformLocations();
+
     public int getAtributeCount()
     {
         return atributeCount;

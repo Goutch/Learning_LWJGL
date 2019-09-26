@@ -3,8 +3,8 @@
 in vec3 vertexPosition;
 in vec2 textureCoord;
 out vec2 uv;
-
+uniform mat4 transformMatrix;
 void main(){
     uv=textureCoord;
-    gl_Position=vec4(vertexPosition.xyz,1.);
+    gl_Position=transformMatrix*vec4(vertexPosition.xyz,1.);
 }

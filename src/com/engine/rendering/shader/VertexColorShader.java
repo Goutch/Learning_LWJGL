@@ -1,6 +1,6 @@
 package com.engine.rendering.shader;
 
-public class VertexColorShader extends ShaderProgram {
+public class VertexColorShader extends StaticShader {
 
     private static final String VERTEX_FILE="src/res/shaders/VertexColorVertex.glsl";
     private static final String FRAMGMENT_FILE="src/res/shaders/VertexColorFragment.glsl";

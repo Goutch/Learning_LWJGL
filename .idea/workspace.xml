@@ -2,50 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5186e4fe-f434-4ecb-ab20-90d6f3767f00" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/com/engine/rendering/shader/VertexColorShader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/engine/util/Texture.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/shaders/StaticFragment.glsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/shaders/StaticVertex.glsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/shaders/TextureFragment.glsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/shaders/TextureVertex.glsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/shaders/VertexColorFragment.glsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/res/shaders/VertexColorVertex.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/engine/entities/GameEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/engine/entities/Transform.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/slick-util.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry$Quad.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry$Quad.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry$Triangle.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry$Triangle.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/GeometryLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/GeometryLoader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/GeometryTexture.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/TexturedGeometry.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/TexturedGeometry.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Display.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Display.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/TexturedGeometry.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/math/Vector2f.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/math/Vector2i.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/math/Vector3f.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Renderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Renderer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/shader/ColorShader.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/shader/ShaderProgram.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/shader/ShaderProgram.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/shader/Shaders.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/shader/Shaders.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/shader/StaticShader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/shader/StaticShader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/util/Color.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/util/Color.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/DummyGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/DummyGame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/res/shaders/staticFragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/res/shaders/staticFragment.glsl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/res/shaders/staticVertex.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/res/shaders/staticVertex.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/res/shaders/trigoFragment.glsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/core/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/core/GameLoop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/core/GameEntity.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/Geometry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/Geometry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/GeometryLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/GeometryLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/GeometryTexture.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/TexturedGeometry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/TexturedGeometry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/Display.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/TexturedGeometry.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/math/Vector2f.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/math/Vector2i.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/math/Vector3f.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/Renderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shader/ColorShader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shader/TextureShader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shader/ShaderProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shader/ShaderProgram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shader/Shaders.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shader/Shaders.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shader/StaticShader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shader/StaticShader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/util/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/util/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shader/TextureShader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shader/TextureShader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shader/VertexColorShader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shader/VertexColorShader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/test/DummyGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/DummyGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/shaders/staticFragment.glsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/shaders/staticVertex.glsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/res/shaders/trigoFragment.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/shaders/StaticFragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/shaders/StaticFragment.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/shaders/StaticVertex.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/shaders/StaticVertex.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/shaders/TextureVertex.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/shaders/TextureVertex.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/shaders/VertexColorVertex.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/shaders/VertexColorVertex.glsl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,7 +56,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/slick-util.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/joml-1.9.17.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -76,6 +64,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Documents\GitHub\LWJGL_Engine\lib" />
+      <recent name="C:\Users\User\Documents\GitHub\LWJGL_Engine\lib\LWJGL" />
       <recent name="C:\Users\User\Documents\GitHub\LWJGL_Engine\res\textures" />
     </key>
   </component>
@@ -124,7 +114,9 @@
       <workItem from="1569332724477" duration="35000" />
       <workItem from="1569332779001" duration="1316000" />
       <workItem from="1569334204748" duration="530000" />
-      <workItem from="1569370040055" duration="11784000" />
+      <workItem from="1569370040055" duration="11920000" />
+      <workItem from="1569455675862" duration="1187000" />
+      <workItem from="1569519922834" duration="7284000" />
     </task>
     <servers />
   </component>
