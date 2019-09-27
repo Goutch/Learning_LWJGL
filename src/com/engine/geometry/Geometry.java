@@ -24,11 +24,10 @@ public class Geometry {
         };
         public static final float[] UVS={
 
-                1f,0f,
-                1f,1f,
+                0f,0f,
                 0f,1f,
-                0f,0f
-
+                1f,1f,
+                1f,0f,
         };
     }
 }

@@ -3,15 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5186e4fe-f434-4ecb-ab20-90d6f3767f00" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Display.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Display.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry$Quad.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry$Quad.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/DummyGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/DummyGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/core/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/core/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/Mesh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/Mesh.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/MeshLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/MeshLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/inputs/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/inputs/Input.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/Display.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/util/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/util/Texture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entities/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/Geometry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/Geometry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/test/DummyGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/DummyGame.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -96,7 +91,7 @@
       <workItem from="1569370040055" duration="11920000" />
       <workItem from="1569455675862" duration="1187000" />
       <workItem from="1569519922834" duration="7284000" />
-      <workItem from="1569593746484" duration="7689000" />
+      <workItem from="1569593746484" duration="9090000" />
     </task>
     <servers />
   </component>

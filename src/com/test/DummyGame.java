@@ -24,7 +24,7 @@ public class DummyGame implements GameLogic {
         colors[1]=Color.BLUE;
         colors[2]=Color.GREEN;
         colors[3]=Color.WHITE;
-        sprite=new Mesh(Geometry.Quad.VERTICES,Geometry.Quad.INDEXES,Geometry.Quad.UVS,new Texture("res/textures/smiley.png"),Shaders.TEXTURE_SHADER);
+        sprite=new Mesh(Geometry.Quad.VERTICES,Geometry.Quad.INDEXES,Geometry.Quad.UVS,new Texture("res/textures/Untitled.png"),Shaders.TEXTURE_SHADER);
         e=new Entity(sprite,new Vector3f(0,0,0),new Vector3f(0,0,0),1f);
     }
 
