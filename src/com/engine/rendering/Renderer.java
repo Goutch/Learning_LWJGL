@@ -1,11 +1,10 @@
 package com.engine.rendering;
 
 
-import com.engine.entities.GameEntity;
-import com.engine.geometry.Geometry;
+import com.engine.entities.Entity;
+import com.engine.geometry.Mesh;
+import com.engine.rendering.shader.BaseShader;
 import com.engine.rendering.shader.ShaderProgram;
-import com.engine.entities.Transform;
-import com.engine.rendering.shader.StaticShader;
 import org.joml.Matrix4f;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
@@ -18,20 +17,18 @@ public class Renderer {
 
 
     };
-    public static void render(GameEntity entity)
+    public static void render(Entity entity)
     {
-        Geometry geometry=entity.getGeometry();
-        StaticShader shader=geometry.getShader();
-        shader.start();
-        geometry.bindTexture();
-        GL30.glBindVertexArray(geometry.getVaoID());
+        Mesh mesh=entity.getMesh();
+        ShaderProgram shader=mesh.getShader();
+        shader.start(entity);
+        mesh.bindTexture();
+        GL30.glBindVertexArray(mesh.getVaoID());
         for (int i=0;i<shader.getAtributeCount();i++) { GL20.glEnableVertexAttribArray(i); }
-        Matrix4f transformMatrix= entity.transform.toTranformMatrix();
-        shader.loadTransformationMatrix(transformMatrix);
-        GL11.glDrawElements(GL11.GL_TRIANGLES,geometry.getVertexCount(),GL11.GL_UNSIGNED_INT,0);
+        GL11.glDrawElements(GL11.GL_TRIANGLES,mesh.getVertexCount(),GL11.GL_UNSIGNED_INT,0);
         for (int i=0;i<shader.getAtributeCount();i++) { GL20.glDisableVertexAttribArray(i); }
         GL30.glBindVertexArray(0);
-        geometry.unBindTexture();
+        mesh.unBindTexture();
         shader.stop();
     }
 

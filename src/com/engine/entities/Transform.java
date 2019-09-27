@@ -29,7 +29,7 @@ public class Transform {
         matrix.rotate((float) Math.toRadians(rotation.x),RIGHT);
         matrix.rotate((float) Math.toRadians(rotation.y),UP);
         matrix.rotate((float) Math.toRadians(rotation.z),FOWARD);
-        matrix.scale(ONE.mul(scale));
+        matrix.scale(scale);
         return matrix;
     }
 }

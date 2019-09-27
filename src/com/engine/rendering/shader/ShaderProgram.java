@@ -1,5 +1,6 @@
 package com.engine.rendering.shader;
 
+import com.engine.entities.Entity;
 import com.engine.events.DisposeListener;
 import com.engine.events.EventManager;
 import org.joml.Matrix4f;
@@ -34,7 +35,7 @@ public abstract class ShaderProgram implements DisposeListener {
         GL20.glValidateProgram(programID);
         getAllUniformLocations();
     }
-    public void start()
+    public void start(Entity entity)
     {
         GL20.glUseProgram(programID);
     }

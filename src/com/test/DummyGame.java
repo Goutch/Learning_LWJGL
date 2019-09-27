@@ -1,18 +1,18 @@
 package com.test;
 
 import com.engine.core.GameLogic;
-import com.engine.entities.GameEntity;
+import com.engine.entities.Entity;
 import com.engine.geometry.Geometry;
+import com.engine.geometry.Mesh;
 import com.engine.rendering.shader.Shaders;
 import com.engine.util.Color;
-import com.engine.util.Texture;
 import org.joml.Vector3f;
 
 
 public class DummyGame implements GameLogic {
-    Geometry g;
-    Geometry cg;
-    GameEntity e;
+    Mesh g;
+    Mesh cg;
+    Entity e;
     @Override
     public void init() {
         //tg=new TexturedGeometry(new Texture("res/textures/smiley.png"),Geometry.Quad.VERTICES,Geometry.Quad.INDEXES,Geometry.Quad.UVS,Shaders.TEXTURE_SHADER);
@@ -23,23 +23,18 @@ public class DummyGame implements GameLogic {
         colors[1]=Color.BLUE;
         colors[2]=Color.GREEN;
         colors[3]=Color.WHITE;
-        cg=new Geometry(Geometry.Quad.VERTICES,Geometry.Quad.INDEXES,Shaders.STATIC_SHADER);
-        e=new GameEntity(cg,new Vector3f(-1,0,0),new Vector3f(0,0,0),1f);
+        cg=new Mesh(Geometry.Quad.VERTICES, Geometry.Quad.INDEXES,Shaders.TIME_SHADER);
+        e=new Entity(cg,new Vector3f(0,0,0),new Vector3f(0,0,0),1f);
     }
 
     @Override
     public void update(float delta) {
-        e.transform.rotation.z+=360*delta;
-        e.transform.position.x+=0.1*delta;
-        e.transform.scale-=0.001f;
+
     }
 
     @Override
     public void render() {
         e.render();
-        //cg.render();
-        //tg.render();
-        //g.render();
     }
 
     @Override
