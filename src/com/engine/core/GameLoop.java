@@ -98,7 +98,5 @@ public class GameLoop {
         gameLogic.dispose();
         EventManager.onDispose();
         Input.dispose();
-        MeshLoader.dispose();
-
     }
 }

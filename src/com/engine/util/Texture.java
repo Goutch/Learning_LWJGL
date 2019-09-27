@@ -2,6 +2,7 @@ package com.engine.util;
 
 import com.engine.events.DisposeListener;
 import com.engine.events.EventManager;
+import org.lwjgl.opengl.GL20;
 
 import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
@@ -75,6 +76,7 @@ public class Texture implements DisposeListener {
 
     @Override
     public void dispose() {
-
+        EventManager.unSubscribeDispose(this);
+        GL20.glDeleteTextures(texture);
     }
 }

@@ -7,7 +7,7 @@ import org.lwjgl.glfw.GLFWCursorPosCallback;
 import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWMouseButtonCallback;
 
-public class Input{
+public class Input {
     private static boolean[] isKeyPressed = new boolean[GLFW.GLFW_KEY_LAST];
     private static boolean[] isMouseButtonPressed = new boolean[GLFW.GLFW_MOUSE_BUTTON_LAST];
     private static double mouseX;

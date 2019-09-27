@@ -17,7 +17,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 import static org.lwjgl.system.MemoryUtil.NULL;
 
-public class Display {
+public class Display implements DisposeListener {
     private GLFWErrorCallback errorCallback = GLFWErrorCallback.createPrint(System.err);
     private GLFWWindowSizeCallback windowResizeCallback;
     private long window;
@@ -91,9 +91,9 @@ public class Display {
         glfwSetWindowMonitor(window,fullScreen?GLFW.glfwGetPrimaryMonitor():0,0,0,width,height,0);
 
     }
-
+    @Override
     public void dispose() {
-
+        EventManager.unSubscribeDispose(this);
         errorCallback.free();
         windowResizeCallback.free();
         GLFW.glfwDestroyWindow(window);

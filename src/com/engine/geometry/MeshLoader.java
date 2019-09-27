@@ -1,6 +1,4 @@
 package com.engine.geometry;
-
-
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
@@ -8,48 +6,46 @@ import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
-import java.util.LinkedList;
-
 import static org.lwjgl.opengl.GL15.*;
-import static org.lwjgl.opengl.GL30.glDeleteVertexArrays;
 
 public class MeshLoader {
 
-    private static LinkedList<Integer> vaos=new LinkedList<Integer>();
-    private static LinkedList<Integer> vbos=new LinkedList<Integer>();
-
-    public static int loadToVAO(float[] vertices,int[] indexes){
-        int vaoID=createVAO();
-        bindIndexesBuffer(indexes);
-        storeDataInAttributeList(0,3,vertices);
-        unbindVOA();
-        return vaoID;
-    }
-    public static int loadToVAO(float[] vertices,int[] indexes,float[] uvs)
+    public static int getVAO()
     {
-        int vaoID=createVAO();
-        bindIndexesBuffer(indexes);
-        storeDataInAttributeList(0,3,vertices);
+        return GL30.glGenVertexArrays();
+    }
+    public static int[] loadToVAO(int vao,float[] vertices,int[] indexes){
+        GL30.glBindVertexArray(vao);
+        int vbo1=bindIndexesBuffer(indexes);
+        int vbo2=storeDataInAttributeList(0,3,vertices);
+        unbindVOA();
+        return new int[]{vbo1,vbo2};
+    }
+    public static int[] loadToVAO(int vao,float[] vertices,int[] indexes,float[] uvs)
+    {
+        GL30.glBindVertexArray(vao);
+        int vbo1=bindIndexesBuffer(indexes);
+        int vbo2=storeDataInAttributeList(0,3,vertices);
         storeDataInAttributeList(1,2,uvs);
         unbindVOA();
-        return vaoID;
+        return new int[]{vbo1,vbo2};
     }
-    public static int loadToVAO(float[] vertices, int[] indexes, float[] atrib,int atribSize)
+    public static int[] loadToVAO(int vao,float[] vertices, int[] indexes, float[] atrib,int atribSize)
     {
-        int vaoID=createVAO();
+        GL30.glBindVertexArray(vao);
         bindIndexesBuffer(indexes);
-        storeDataInAttributeList(0,3,vertices);
-        storeDataInAttributeList(1,atribSize,atrib);
+        int vbo1=storeDataInAttributeList(0,3,vertices);
+        int vbo2=storeDataInAttributeList(1,atribSize,atrib);
         unbindVOA();
-        return vaoID;
+        return new int[]{vbo1,vbo2};
     }
 
-    private static void bindIndexesBuffer(int[] indexes){
+    private static int bindIndexesBuffer(int[] indexes){
         int vbo=GL15.glGenBuffers();
-        vbos.add(vbo);
         GL15.glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,vbo);
         IntBuffer buffer =storeDataInIntBuffer(indexes);
         GL15.glBufferData(GL_ELEMENT_ARRAY_BUFFER,buffer,GL_STATIC_DRAW);
+        return vbo;
     }
 
     private static IntBuffer storeDataInIntBuffer(int[] data){
@@ -58,24 +54,16 @@ public class MeshLoader {
         buffer.flip();
         return buffer;
     }
-    private static int createVAO()
-    {
-        int vao= GL30.glGenVertexArrays();
-        vaos.add(vao);
-        GL30.glBindVertexArray(vao);
-        return vao;
-    }
-    private static void storeDataInAttributeList(int attributeNumber,int atributeSize,float[] data)
+    private static int storeDataInAttributeList(int attributeNumber,int atributeSize,float[] data)
     {
         int vbo=glGenBuffers();
-        vbos.add(vbo);
         GL15.glBindBuffer(GL_ARRAY_BUFFER,vbo);
         FloatBuffer buffer=storeDataInFloatBuffer(data);
         GL15.glBufferData(GL_ARRAY_BUFFER,buffer, GL15.GL_STATIC_DRAW);
         GL20.glVertexAttribPointer(attributeNumber,atributeSize, GL11.GL_FLOAT,false,0,0);
         GL15.glBindBuffer(GL_ARRAY_BUFFER,0);
+        return vbo;
     }
-
 
     private static void unbindVOA()
     {
@@ -90,16 +78,4 @@ public class MeshLoader {
         return buffer;
     }
 
-
-    public static void dispose() {
-
-        for (int vao:vaos)
-        {
-            glDeleteVertexArrays(vao);
-        }
-        for (int vbo:vbos)
-        {
-            glDeleteBuffers(vbo);
-        }
-    }
 }
