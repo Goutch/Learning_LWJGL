@@ -13,16 +13,17 @@ public class TimeShader extends BaseShader {
     }
 
     @Override
+    public void loadUniforms(Entity entity)
+    {
+        super.loadUniforms(entity);
+        loadTime();
+    }
+    @Override
     protected void getAllUniformLocations() {
         super.getAllUniformLocations();
         timeLocation=getUniformLocation("time");
     }
-    @Override
-    public void start(Entity entity)
-    {
-        super.start(entity);
-        loadTime();
-    }
+
     private void loadTime(){
         loadFloatUniform(timeLocation, GameLoop.getTimeSinceStart());
     }

@@ -15,6 +15,9 @@ import javax.imageio.ImageIO;
 
 import static org.lwjgl.opengl.GL11.*;
 
+/**
+ * Represent a texture in memory
+ */
 public class Texture implements DisposeListener {
 
     private int width, height;
@@ -76,7 +79,6 @@ public class Texture implements DisposeListener {
 
     @Override
     public void dispose() {
-        EventManager.unSubscribeDispose(this);
         GL20.glDeleteTextures(texture);
     }
 }

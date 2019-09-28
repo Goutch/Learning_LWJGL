@@ -1,12 +1,12 @@
 package com.engine.core;
 
 import com.engine.events.EventManager;
-import com.engine.geometry.MeshLoader;
 import com.engine.inputs.Input;
+import com.engine.rendering.Camera;
 import com.engine.rendering.Display;
 import com.engine.rendering.Renderer;
+import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
-import org.lwjgl.system.CallbackI;
 
 
 import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
@@ -21,6 +21,10 @@ public class GameLoop {
     private static int frames = 0;
     private static long startTime;
 
+    /**
+     * Start the gameloop and send events to the game logic listener.
+     * @param gameLogicListener
+     */
     public static void start(GameLogic gameLogicListener) {
         gameLogic = gameLogicListener;
         gameLoopThread = new Thread() {
@@ -55,9 +59,9 @@ public class GameLoop {
 
     private static void init() {
         startTime = System.currentTimeMillis();
-        display = new Display(GameOptions.WINDOW_START_WIDTH, GameOptions.WINDOW_START_HEIGHT, GameOptions.TITLE);
-        Input.init(display.getWindow());
-        Renderer.init();
+        Display.createDisplay(GameOptions.WINDOW_START_WIDTH, GameOptions.WINDOW_START_HEIGHT, GameOptions.TITLE);
+        Input.init(Display.getWindow());
+        Camera.setMainCamera(new Camera(new Vector3f(0,0,0),new Vector3f(0,0,0),90,1000));
         gameLogic.init();
         EventManager.onInit();
     }
@@ -88,7 +92,8 @@ public class GameLoop {
     }
 
     private static void render() {
-        Renderer.clear();
+        Camera.main.calculateViewMatrix();
+        Renderer.preRender();
         gameLogic.render();
         EventManager.onRender();
         display.swapBuffers();

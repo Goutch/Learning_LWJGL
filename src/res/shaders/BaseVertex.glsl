@@ -1,13 +1,13 @@
 #version 400 core
 
-in vec3 vertexPosition;
-
-
-
 uniform mat4 transformMatrix;
+uniform mat4 projectionMatrix;
+uniform mat4 viewMatrix;
+in vec3 vertexPosition;
 
 void main()
 {
 
-    gl_Position=transformMatrix*vec4(vertexPosition.xyz,1.);
+    gl_Position=projectionMatrix*viewMatrix*transformMatrix*vec4(vertexPosition.xyz,1.);
+
 }

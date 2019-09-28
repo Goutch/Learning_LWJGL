@@ -7,6 +7,9 @@ import org.lwjgl.glfw.GLFWCursorPosCallback;
 import org.lwjgl.glfw.GLFWKeyCallback;
 import org.lwjgl.glfw.GLFWMouseButtonCallback;
 
+/**
+ * GLFW window inputs handler of mouse and keyboard
+ */
 public class Input {
     private static boolean[] isKeyPressed = new boolean[GLFW.GLFW_KEY_LAST];
     private static boolean[] isMouseButtonPressed = new boolean[GLFW.GLFW_MOUSE_BUTTON_LAST];
@@ -43,6 +46,10 @@ public class Input {
         GLFW.glfwSetCursorPosCallback(window, cursorCallback);
     }
 
+    /**
+     * @param key GLFW key code
+     * @return True if key is pressed.
+     */
     public static boolean IsKeyPressed(int key) {
         return isKeyPressed[key];
     }
@@ -51,10 +58,17 @@ public class Input {
         return isMouseButtonPressed;
     }
 
+    /**
+     *
+     * @return
+     */
     public static double getMouseX() {
         return mouseX;
     }
-
+    /**
+     *
+     * @return
+     */
     public static double getMouseY() {
         return mouseY;
     }

@@ -12,7 +12,7 @@ public class TextureShader extends BaseShader {
 
     @Override
     protected void bindAttributes() {
-        bindAttribute(0,"vertexPosition");
+        super.bindAttributes();
         bindAttribute(1,"textureCoord");
     }
 }

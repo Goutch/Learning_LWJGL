@@ -3,6 +3,9 @@ package com.engine.entities;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
+/**
+ * Represents the position, the rotation , and the scale of an entity.
+ */
 public class Transform {
     public static final Vector3f ONE = new Vector3f(1, 1,1);
     public static final Vector3f ZERO = new Vector3f(0, 0,0);

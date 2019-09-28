@@ -17,22 +17,33 @@ import static org.lwjgl.opengl.GL11.*;
 
 import static org.lwjgl.system.MemoryUtil.NULL;
 
-public class Display implements DisposeListener {
-    private GLFWErrorCallback errorCallback = GLFWErrorCallback.createPrint(System.err);
-    private GLFWWindowSizeCallback windowResizeCallback;
-    private long window;
-    private int width;
-    private int height;
+/**
+ * Represent an GLFW display.
+ */
+public class Display{
 
 
-    public Display(int width, int height,String title) {
+    private static GLFWErrorCallback errorCallback = GLFWErrorCallback.createPrint(System.err);
+    private static GLFWWindowSizeCallback windowResizeCallback;
+    private static  long window;
 
-        this.width=width;
-        this.height=height;
-        createWindow(title);
+    public static int getWidth() {
+        return width;
     }
-    private void createWindow(String title)
+
+    public static int getHeight() {
+        return height;
+    }
+
+    private static int width;
+    private static int height;
+    private static float aspectRatio;
+
+    public static void createDisplay(int windowWidth, int windowHeight,String title)
     {
+        width=windowWidth;
+        height=windowHeight;
+        aspectRatio=(float) height/width;
         if(!GLFW.glfwInit())
             throw new IllegalStateException("Unable to initialize GLFW");
 
@@ -50,6 +61,7 @@ public class Display implements DisposeListener {
         GLFW.glfwSetWindowSizeCallback(window,(window,w,h)->{
             width=w;
             height=h;
+            aspectRatio=(float) height/width;
             glViewport(0,0,width,height);
             EventManager.onWindowResize(w,h);
         });
@@ -64,36 +76,46 @@ public class Display implements DisposeListener {
 
         glfwShowWindow(window);
     }
-    private void centerWindow(){
+
+    private static void centerWindow(){
         GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
         glfwSetWindowPos(window, (vidmode.width() - width) / 2, (vidmode.height() - height) / 2);
     }
-    public void getInputs()
+
+    public static void getInputs()
     {
-        //getInputs
         glfwPollEvents();
     }
 
-    public void swapBuffers(){
+
+    public static void swapBuffers(){
         glfwSwapBuffers(window);
     }
 
-    public void close()
+
+    public static void close()
     {
         glfwSetWindowShouldClose(window, true);
     }
-    public long getWindow()
+
+
+    public static long getWindow()
     {
         return window;
     }
-    public void setFullScreen(boolean fullScreen)
+
+
+    public static void setFullScreen(boolean fullScreen)
     {
         glfwSetWindowMonitor(window,fullScreen?GLFW.glfwGetPrimaryMonitor():0,0,0,width,height,0);
 
     }
-    @Override
-    public void dispose() {
-        EventManager.unSubscribeDispose(this);
+    public static float getAspectRatio()
+    {
+        return aspectRatio;
+    }
+    public static void dispose() {
+
         errorCallback.free();
         windowResizeCallback.free();
         GLFW.glfwDestroyWindow(window);

@@ -14,12 +14,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.FloatBuffer;
 
+/**
+ * Represent a vertex and fragment shader.
+ */
 public abstract class ShaderProgram implements DisposeListener {
 
     private int programID;
     private int vertexShaderID;
     private int fragmentShaderID;
-    private int atributeCount=0;
+    private int attributeCount =0;
 
     private static FloatBuffer matrixBuffer= BufferUtils.createFloatBuffer(16);
     public ShaderProgram(String vertexFile,String fragmentFile)
@@ -35,30 +38,37 @@ public abstract class ShaderProgram implements DisposeListener {
         GL20.glValidateProgram(programID);
         getAllUniformLocations();
     }
-    public void start(Entity entity)
+
+    public void start()
     {
         GL20.glUseProgram(programID);
     }
+
+    /**
+     * Called on render to load uniform to shader
+     * @param entity
+     */
+    public void loadUniforms(Entity entity){}
     public void stop()
     {
         GL20.glUseProgram(0);
     }
-    @Override
-    public void dispose()
-    {
-        stop();
-        GL20.glDetachShader(programID,vertexShaderID);
-        GL20.glDetachShader(programID,fragmentShaderID);
-        GL20.glDeleteShader(vertexShaderID);
-        GL20.glDeleteShader(fragmentShaderID);
-        GL20.glDeleteProgram(programID);
-    }
+
+
+    /**
+     *  Bind the an attribute to the shader program ex: vertex positions, uvs , colors
+     * @param attribute index of the attribute in the vertexArrayObject
+     * @param variableName name of the attribute variable ex: "vertexPositions"
+     */
     protected void bindAttribute(int attribute,String variableName)
     {
         GL20.glBindAttribLocation(programID,attribute,variableName);
-        atributeCount++;
+        attributeCount++;
     }
 
+    /**
+     * Called in the constructor to bind all attributes to the program via the bindAttribute method
+     */
     protected abstract void bindAttributes();
 
     protected void loadFloatUniform(int location,float value)
@@ -86,12 +96,22 @@ public abstract class ShaderProgram implements DisposeListener {
         return  GL20.glGetUniformLocation(programID,uniformName);
     }
 
+    /**
+     * Called in the constructor to get the location of the shader uniforms via the method getUniformLocation
+     */
     protected abstract void getAllUniformLocations();
 
-    public int getAtributeCount()
+    public int getAttributeCount()
     {
-        return atributeCount;
+        return attributeCount;
     }
+
+    /**
+     * Load the shader from a file.
+     * @param file
+     * @param type
+     * @return The shader reference
+     */
     private static int loadShader(String file,int type){
         StringBuilder shaderSource = new StringBuilder();
         try{
@@ -114,5 +134,15 @@ public abstract class ShaderProgram implements DisposeListener {
             System.exit(-1);
         }
         return shaderID;
+    }
+    @Override
+    public void dispose()
+    {
+        stop();
+        GL20.glDetachShader(programID,vertexShaderID);
+        GL20.glDetachShader(programID,fragmentShaderID);
+        GL20.glDeleteShader(vertexShaderID);
+        GL20.glDeleteShader(fragmentShaderID);
+        GL20.glDeleteProgram(programID);
     }
 }
