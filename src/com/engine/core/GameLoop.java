@@ -59,7 +59,9 @@ public class GameLoop {
 
     private static void init() {
         startTime = System.currentTimeMillis();
+
         Display.createDisplay(GameOptions.WINDOW_START_WIDTH, GameOptions.WINDOW_START_HEIGHT, GameOptions.TITLE);
+        Renderer.init();
         Input.init(Display.getWindow());
         Camera.setMainCamera(new Camera(new Vector3f(0,0,0),new Vector3f(0,0,0),90,1000));
         gameLogic.init();

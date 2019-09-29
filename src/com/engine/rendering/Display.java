@@ -66,8 +66,6 @@ public class Display{
             EventManager.onWindowResize(w,h);
         });
 
-        GL11.glClearColor(GameOptions.CLEAR_COLOR.r,GameOptions.CLEAR_COLOR.b,GameOptions.CLEAR_COLOR.g,GameOptions.CLEAR_COLOR.a);
-        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 
         if(GameOptions.VSYNC)
         {
