@@ -29,7 +29,7 @@ public class ColoredMesh extends Mesh{
     }
     public void setColors(Color color) {
         colors=new float[vertices.length];
-        for (int i = 0; i <colors.length/3 ; i++) {
+        for (int i = 0; i <(colors.length/3) ; i++) {
             this.colors[i * 3] = color.r;
             this.colors[i * 3 + 1] = color.g;
             this.colors[i * 3 + 2] = color.b;

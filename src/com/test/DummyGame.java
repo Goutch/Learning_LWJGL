@@ -70,37 +70,38 @@ public class DummyGame implements GameLogic {
         }
 
         //terrain
-        int terrainSize=10;
+        int terrainSize=4;
         float[] vertices=new float[(terrainSize+1)*(terrainSize+1)*3];
         int[] indices=new int[(terrainSize+1)*(terrainSize+1)*6];
-        int rowCounter=0;
-        for (int i = 0; i < vertices.length/3; i++) {
-            if(i%terrainSize+1==terrainSize)
-            {
-                rowCounter++;
-            }
-            else
-            {
-                vertices[i*3]=i%terrainSize -((float)terrainSize/2)+1.5f;
-                vertices[i*3+1]=0;
-                vertices[i*3+2]=rowCounter-((float)terrainSize/2)+1.5f;
+
+        for (int i = 0; i < terrainSize+1; i++) {
+            for (int j = 0; j < terrainSize+1; j++) {
+                int index=(i*(terrainSize+1))+j;
+                    vertices[index * 3] = j-(float)terrainSize/2;
+                    vertices[index * 3 + 1] = 0;
+                    vertices[index * 3 + 2] = i-(float)terrainSize/2;
             }
         }
 
-        for (int i = 0; i < indices.length/6; i++) {
-            indices[i*6]=i;
-            indices[i*6+1]=i+1;
-            indices[i*6+2]=i+terrainSize;
-            indices[i*6+3]=i+terrainSize;
-            indices[i*6+4]=i+1;
-            indices[i*6+5]=i+terrainSize+1;
-
+        for (int i = 0; i < terrainSize; i++) {
+            for (int j = 0; j < terrainSize+1; j++) {
+                int index=(i*(terrainSize))+j;
+                    if(j!=terrainSize)
+                    {
+                        indices[index*6]=index+i;
+                        indices[index*6+1]=index+i+1;
+                        indices[index*6+2]=index+i+terrainSize+1;
+                        indices[index*6+3]=index+i+terrainSize+1;
+                        indices[index*6+4]=index+i+1;
+                        indices[index*6+5]=index+i+terrainSize+2;
+                    }
+            }
         }
 
         ColoredMesh terrainMesh=new ColoredMesh(vertices,indices,Color.GREEN);
         terrain=new ColoredMeshRenderer(new Vector3f(0,-0.5f,0),Transform.ZERO,1,terrainMesh,Shaders.VERTEX_COLOR_SHADER);
         //camera
-        Camera.setMainCamera(new GodCam(new Vector3f(0, 0, 0), new Vector3f(0, 45, 0), 90, 1000, 3));
+        Camera.setMainCamera(new GodCam(new Vector3f(0, 0, 0), new Vector3f(0, 45, 0), 90, 10, 3));
     }
 
     @Override
@@ -111,9 +112,9 @@ public class DummyGame implements GameLogic {
     @Override
     public void render() {
         Renderer.setWireframe(true);
-        for (MeshRenderer mr:cubes) {
-            mr.render();
-        }
+       // for (MeshRenderer mr:cubes) {
+       //     mr.render();
+       // }
 
         terrain.render();
         Renderer.setWireframe(false);
