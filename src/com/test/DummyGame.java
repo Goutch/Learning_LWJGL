@@ -70,9 +70,9 @@ public class DummyGame implements GameLogic {
         }
 
         //terrain
-        int terrainSize=4;
+        int terrainSize=5;
         float[] vertices=new float[(terrainSize+1)*(terrainSize+1)*3];
-        int[] indices=new int[(terrainSize+1)*(terrainSize+1)*6];
+        int[] indices=new int[terrainSize*terrainSize*6];
 
         for (int i = 0; i < terrainSize+1; i++) {
             for (int j = 0; j < terrainSize+1; j++) {
@@ -84,17 +84,15 @@ public class DummyGame implements GameLogic {
         }
 
         for (int i = 0; i < terrainSize; i++) {
-            for (int j = 0; j < terrainSize+1; j++) {
-                int index=(i*(terrainSize))+j;
-                    if(j!=terrainSize)
-                    {
+            for (int j = 0; j < terrainSize; j++) {
+                int index=(i*(terrainSize)+j);
                         indices[index*6]=index+i;
                         indices[index*6+1]=index+i+1;
                         indices[index*6+2]=index+i+terrainSize+1;
                         indices[index*6+3]=index+i+terrainSize+1;
                         indices[index*6+4]=index+i+1;
                         indices[index*6+5]=index+i+terrainSize+2;
-                    }
+
             }
         }
 

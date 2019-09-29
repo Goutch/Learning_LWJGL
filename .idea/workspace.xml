@@ -4,7 +4,6 @@
     <list default="true" id="5186e4fe-f434-4ecb-ab20-90d6f3767f00" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/DummyGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/DummyGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/ColoredMesh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/ColoredMesh.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/test/DummyGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/DummyGame.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -92,7 +91,7 @@
       <workItem from="1569455675862" duration="1187000" />
       <workItem from="1569519922834" duration="7284000" />
       <workItem from="1569593746484" duration="9090000" />
-      <workItem from="1569625742200" duration="46457000" />
+      <workItem from="1569625742200" duration="47921000" />
     </task>
     <servers />
   </component>
