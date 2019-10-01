@@ -1,15 +1,13 @@
 package com.engine.geometry;
 
 
-import com.engine.rendering.Renderer;
-
 public class TexturedMesh extends Mesh{
     protected float[] uvs;
 
     public TexturedMesh(float[] vertices, int[] indexes,float[] normals, float[] uvs) {
         init();
         this.vertices = vertices;
-        this.indexes = indexes;
+        this.indices = indexes;
         this.normals=normals;
         this.uvs = uvs;
         this.vbos = MeshLoader.loadToVAO(vaoID, vertices, indexes, uvs);
@@ -17,7 +15,7 @@ public class TexturedMesh extends Mesh{
     }
     public TexturedMesh(Mesh mesh,float[] uvs)
     {
-        this(mesh.vertices,mesh.indexes,mesh.normals,uvs);
+        this(mesh.vertices,mesh.indices,mesh.normals,uvs);
     }
 
     public void setUvs(float[] uvs) {

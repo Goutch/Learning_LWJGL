@@ -1,13 +1,11 @@
 package com.engine.geometry;
 
-import com.engine.entities.Transform;
-
 public class Plane extends Mesh {
     public Plane(int sizeX,int sizeZ) {
 
-        float[] vertices=new float[(sizeX+1)*(sizeZ+1)*3];
-        int[] indices=new int[sizeX*sizeZ*6];
-        float[] normals=new float[(sizeX+1)*(sizeZ+1)*3];
+        vertices=new float[(sizeX+1)*(sizeZ+1)*3];
+        indices =new int[sizeX*sizeZ*6];
+        normals=new float[(sizeX+1)*(sizeZ+1)*3];
         for (int x = 0; x < sizeX+1; x++) {
             for (int z = 0; z < sizeZ+1; z++) {
                 int index=(x*(sizeZ+1))+z;
@@ -36,10 +34,8 @@ public class Plane extends Mesh {
             normals[i*3+2]= 0;
         }
         this.init();
-        this.vertices=vertices;
-        this.normals=normals;
-        this.indexes=indices;
-        this.vbos = MeshLoader.loadToVAO(vaoID, this.vertices, indexes);
+
+        this.vbos = MeshLoader.loadToVAO(vaoID, this.vertices, indices);
     }
 
 }

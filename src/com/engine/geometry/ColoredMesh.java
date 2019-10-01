@@ -9,7 +9,7 @@ public class ColoredMesh extends Mesh{
     public ColoredMesh(float[] vertices, int[] indexes,float[] normals,Color[] colors) {
         init();
         this.vertices = vertices;
-        this.indexes = indexes;
+        this.indices = indexes;
         this.normals=normals;
         setColors(colors);
         this.vbos = MeshLoader.loadToVAO(vaoID, vertices, indexes, this.colors, 3);
@@ -17,18 +17,18 @@ public class ColoredMesh extends Mesh{
     public ColoredMesh(float[] vertices, int[] indexes,float[] normals,Color color) {
         init();
         this.vertices = vertices;
-        this.indexes = indexes;
+        this.indices = indexes;
         this.normals=normals;
         setColors(color);
         this.vbos = MeshLoader.loadToVAO(vaoID, vertices, indexes, this.colors, 3);
     }
     public ColoredMesh(Mesh mesh,Color[] colors)
     {
-        this(mesh.vertices,mesh.indexes,mesh.normals,colors);
+        this(mesh.vertices,mesh.indices,mesh.normals,colors);
     }
     public ColoredMesh(Mesh mesh,Color color)
     {
-        this(mesh.vertices,mesh.indexes,mesh.normals,color);
+        this(mesh.vertices,mesh.indices,mesh.normals,color);
     }
     public void setColors(float[] colors) {
         this.colors = colors;

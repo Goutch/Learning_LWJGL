@@ -3,20 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="5186e4fe-f434-4ecb-ab20-90d6f3767f00" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/DummyGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/DummyGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/models/chr_knight.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/models/chr_knight.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/models/monu10.mtl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/models/monu10.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/models/monu10.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/models/stall.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/models/stallTexture.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/models/untitled.mtl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/models/untitled.obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/models/untitled.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/ColoredMesh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/ColoredMesh.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/Mesh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/Mesh.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/MeshLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/MeshLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/Plane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/test/DummyGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/DummyGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/TexturedMesh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/TexturedMesh.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/shaders/VertexColorVertex.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/shaders/VertexColorVertex.glsl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -110,6 +102,7 @@
       <workItem from="1569812250434" duration="478000" />
       <workItem from="1569869967136" duration="17988000" />
       <workItem from="1569933527906" duration="784000" />
+      <workItem from="1569955494398" duration="2030000" />
     </task>
     <servers />
   </component>

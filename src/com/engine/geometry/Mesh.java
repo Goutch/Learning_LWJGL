@@ -9,20 +9,18 @@ import static org.lwjgl.opengl.GL15.glDeleteBuffers;
 import static org.lwjgl.opengl.GL30.glDeleteVertexArrays;
 
 /**
- * Represent a mesh
+ * Represent a mesh in memory
  */
-public class Mesh implements DisposeListener{
+public class Mesh implements DisposeListener {
     protected float[] vertices;
-
-    protected int[] indexes;
-
-
+    protected int[] indices;
     protected float[] normals;
+    protected float[] colors;
+    protected float[] uvs;
     protected int vaoID;
     protected int[] vbos;
 
-    public void init()
-    {
+    public void init() {
         EventManager.subscribeDispose(this);
         this.vaoID = MeshLoader.getVAO();
     }
@@ -31,19 +29,12 @@ public class Mesh implements DisposeListener{
         init();
     }
 
-
-    public Mesh( float[] vertices, int[] indexes) {
+    public Mesh(float[] vertices, int[] indices, float[] normals) {
         init();
+        this.normals = normals;
         this.vertices = vertices;
-        this.indexes = indexes;
-        this.vbos = MeshLoader.loadToVAO(vaoID, vertices, indexes);
-    }
-    public Mesh( float[] vertices, int[] indexes,float[] normals) {
-        init();
-        this.normals=normals;
-        this.vertices = vertices;
-        this.indexes = indexes;
-        this.vbos = MeshLoader.loadToVAO(vaoID, vertices, indexes);
+        this.indices = indices;
+        this.vbos = MeshLoader.loadToVAO(vaoID, vertices, indices);
     }
 
     /**
@@ -54,11 +45,9 @@ public class Mesh implements DisposeListener{
     }
 
     public int getVertexCount() {
-        if(indexes!=null)
-        {
-            return indexes.length*3;
-        }
-        else {
+        if (indices != null) {
+            return indices.length * 3;
+        } else {
             return vertices.length;
         }
 
@@ -72,20 +61,46 @@ public class Mesh implements DisposeListener{
         return vertices;
     }
 
-    public int[] getIndexes() {
-        return indexes;
+    public int[] getIndices() {
+        return indices;
     }
 
-    public void setNormals(float[] normals) {
-        this.normals = normals;
-    }
-    public void setVertices(float[] vertices,int[] indexes) {
-        this.vertices = vertices;
-        this.indexes = indexes;
-        for (int vbo : vbos) {
-            glDeleteBuffers(vbo);
+    /*
+     * bind the vertices,indices,normals to the vao
+     */
+    public void build() {
+        if (vertices != null) {
+
+            if (indices == null) {
+                if (normals != null && colors != null && uvs != null) {
+                    this.vbos = MeshLoader.loadToVAO(vaoID, vertices,  normals, 3, uvs, 2, colors, 4);
+                } else if (normals != null && colors != null) {
+                    this.vbos = MeshLoader.loadToVAO(vaoID, vertices,  colors, 4);
+                } else if (normals != null && uvs != null) {
+                    this.vbos = MeshLoader.loadToVAO(vaoID, vertices, uvs, 2);
+                } else if (normals != null) {
+                    this.vbos = MeshLoader.loadToVAO(vaoID, vertices,  normals, 3);
+                } else {
+                    this.vbos = MeshLoader.loadToVAO(vaoID, vertices);
+                }
+            } else {
+                if (normals != null && colors != null && uvs != null) {
+                    this.vbos = MeshLoader.loadToVAO(vaoID, vertices, indices, normals, 3, uvs, 2, colors, 4);
+                } else if (normals != null && colors != null) {
+                    this.vbos = MeshLoader.loadToVAO(vaoID, vertices, indices, colors, 4);
+                } else if (normals != null && uvs != null) {
+                    this.vbos = MeshLoader.loadToVAO(vaoID, vertices, indices, uvs, 2);
+                } else if (normals != null) {
+                    this.vbos = MeshLoader.loadToVAO(vaoID, vertices, indices, normals, 3);
+                } else {
+                    this.vbos = MeshLoader.loadToVAO(vaoID, vertices, indices);
+                }
+            }
+
+        } else {
+            System.err.println("Cant build mesh, the minimum requirement is a vertices array");
         }
-        this.vbos = MeshLoader.loadToVAO(vaoID, vertices, indexes);
+
     }
 
     @Override
