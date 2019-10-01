@@ -71,7 +71,7 @@ public class ModelImporter {
                 }
                 line=bufferedReader.readLine();
             }
-            float[] verticesArray=new float[vertices.size()*2];//TODO:weird af (*2 should not work)
+            float[] verticesArray=new float[vertices.size()];//TODO:weird af (*2 should not work)
             float[] uvsArray=new float[(vertices.size()/3)*2];
             float[] normalsArray=new float[vertices.size()];
 

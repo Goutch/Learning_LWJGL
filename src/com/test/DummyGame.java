@@ -26,8 +26,8 @@ public class DummyGame implements GameLogic {
     public void init() {
         Display.centerWindow();
         //textured cubes
-        TexturedMesh texturedMesh1=ModelImporter.ImportModel("res/models/untitled.obj");
-        Texture tex1=new Texture("res/models/untitled.png");
+        TexturedMesh texturedMesh1=ModelImporter.ImportModel("res/models/monu10.obj");
+        Texture tex1=new Texture("res/models/monu10.png");
 
         Vector3f[] positions1 = new Vector3f[]
                 {
@@ -36,7 +36,7 @@ public class DummyGame implements GameLogic {
                         new Vector3f(2, 0, 0),
                         new Vector3f(-2, 0, 0),
                 };
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 1; i++) {
             cubes.add( new TexturedMeshRenderer(positions1[i],
                     new Vector3f(0, 0, 0),
                     1f,
@@ -53,7 +53,7 @@ public class DummyGame implements GameLogic {
                         new Vector3f(8, 0, 0),
                         new Vector3f(-8, 0, 0),
                 };
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 1; i++) {
             cubes.add( new TexturedMeshRenderer(positions2[i],
                     new Vector3f(0, 0, 0),
                     1f,
