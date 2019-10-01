@@ -1,25 +1,19 @@
 package com.engine.geometry;
 
-public class Plane {
-    /**
-     *
-     * @param sizeX
-     * @param sizeZ
-     * @return the mesh instance of a plane
-     */
-    public static Mesh get(int sizeX,int sizeZ)
-    {
-        ////terrain
+import com.engine.entities.Transform;
+
+public class Plane extends Mesh {
+    public Plane(int sizeX,int sizeZ) {
 
         float[] vertices=new float[(sizeX+1)*(sizeZ+1)*3];
         int[] indices=new int[sizeX*sizeZ*6];
-
+        float[] normals=new float[(sizeX+1)*(sizeZ+1)*3];
         for (int x = 0; x < sizeX+1; x++) {
             for (int z = 0; z < sizeZ+1; z++) {
                 int index=(x*(sizeZ+1))+z;
                 vertices[index * 3] = z-(float)sizeZ/2;
                 vertices[index * 3 + 1] = 0;
-                vertices[index * 3 + 2] = x-(float)sizeZ/2;
+                vertices[index * 3 + 2] = x-(float)sizeX/2;
             }
         }
 
@@ -36,6 +30,16 @@ public class Plane {
 
             }
         }
-        return new Mesh(vertices,indices);
+        for (int i = 0; i <(sizeX+1)*(sizeZ+1) ; i++) {
+            normals[i*3]= 0;
+            normals[i*3+1]= 1;
+            normals[i*3+2]= 0;
+        }
+        this.init();
+        this.vertices=vertices;
+        this.normals=normals;
+        this.indexes=indices;
+        this.vbos = MeshLoader.loadToVAO(vaoID, this.vertices, indexes);
     }
+
 }
