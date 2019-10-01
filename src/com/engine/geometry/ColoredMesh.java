@@ -6,23 +6,25 @@ import com.engine.util.Color;
 public class ColoredMesh extends Mesh{
 
     protected float[] colors;
-    public ColoredMesh(float[] vertices, int[] indexes,Color[] colors) {
+    public ColoredMesh(float[] vertices, int[] indexes,float[] normals,Color[] colors) {
         init();
         this.vertices = vertices;
         this.indexes = indexes;
+        this.normals=normals;
         setColors(colors);
         this.vbos = MeshLoader.loadToVAO(vaoID, vertices, indexes, this.colors, 3);
     }
-    public ColoredMesh(float[] vertices, int[] indexes,Color color) {
+    public ColoredMesh(float[] vertices, int[] indexes,float[] normals,Color color) {
         init();
         this.vertices = vertices;
         this.indexes = indexes;
+        this.normals=normals;
         setColors(color);
         this.vbos = MeshLoader.loadToVAO(vaoID, vertices, indexes, this.colors, 3);
     }
     public ColoredMesh(Mesh mesh,Color[] colors)
     {
-        this(mesh.vertices,mesh.indexes,colors);
+        this(mesh.vertices,mesh.indexes,mesh.normals,colors);
     }
     public void setColors(float[] colors) {
         this.colors = colors;

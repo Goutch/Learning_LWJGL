@@ -16,13 +16,17 @@ public class Mesh implements DisposeListener{
 
     protected int[] indexes;
 
+
+    protected float[] normals;
     protected int vaoID;
     protected int[] vbos;
 
-    protected void init() {
+    public void init()
+    {
         EventManager.subscribeDispose(this);
         this.vaoID = MeshLoader.getVAO();
     }
+
     public Mesh() {
         init();
     }
@@ -34,7 +38,13 @@ public class Mesh implements DisposeListener{
         this.indexes = indexes;
         this.vbos = MeshLoader.loadToVAO(vaoID, vertices, indexes);
     }
-
+    public Mesh( float[] vertices, int[] indexes,float[] normals) {
+        init();
+        this.normals=normals;
+        this.vertices = vertices;
+        this.indexes = indexes;
+        this.vbos = MeshLoader.loadToVAO(vaoID, vertices, indexes);
+    }
 
     /**
      * @return vertex array buffer
@@ -48,6 +58,10 @@ public class Mesh implements DisposeListener{
     }
 
 
+    public float[] getNormals() {
+        return normals;
+    }
+
     public float[] getVertices() {
         return vertices;
     }
@@ -56,7 +70,9 @@ public class Mesh implements DisposeListener{
         return indexes;
     }
 
-
+    public void setNormals(float[] normals) {
+        this.normals = normals;
+    }
     public void setVertices(float[] vertices,int[] indexes) {
         this.vertices = vertices;
         this.indexes = indexes;

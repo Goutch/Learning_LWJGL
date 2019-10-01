@@ -2,7 +2,7 @@ package com.engine.core;
 
 import com.engine.events.EventManager;
 import com.engine.inputs.Input;
-import com.engine.rendering.Camera;
+import com.engine.entities.Camera;
 import com.engine.rendering.Display;
 import com.engine.rendering.Renderer;
 import org.joml.Vector3f;

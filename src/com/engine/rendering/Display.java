@@ -75,7 +75,7 @@ public class Display{
         glfwShowWindow(window);
     }
 
-    private static void centerWindow(){
+    public static void centerWindow(){
         GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
         glfwSetWindowPos(window, (vidmode.width() - width) / 2, (vidmode.height() - height) / 2);
     }

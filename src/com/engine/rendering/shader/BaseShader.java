@@ -3,8 +3,7 @@ package com.engine.rendering.shader;
 import com.engine.entities.Entity;
 import com.engine.events.EventManager;
 import com.engine.events.ProjectionMatrixChangeListener;
-import com.engine.rendering.Camera;
-import com.engine.rendering.Renderer;
+import com.engine.entities.Camera;
 import org.joml.Matrix4f;
 
 public class BaseShader extends ShaderProgram implements ProjectionMatrixChangeListener {

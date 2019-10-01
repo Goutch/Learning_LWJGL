@@ -2,9 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5186e4fe-f434-4ecb-ab20-90d6f3767f00" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/engine/geometry/ModelImporter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameOptions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Display.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Display.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/DummyGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/DummyGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/models/1987Camel Trophy Range Rover dae.dae" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/models/1987Camel Trophy Range Rover.3ds" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/models/1987Camel Trophy Range Rover.fbx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/models/1987Camel Trophy Range Rover.mtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/models/1987Camel Trophy Range Rover.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/models/1987Camel Trophy Range Rover.stl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/models/1987Camel Trophy Range Rover.x3d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/core/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/core/GameLoop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/core/GameOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/core/GameOptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/ColoredMesh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/ColoredMesh.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/Mesh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/Mesh.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/TexturedMesh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/TexturedMesh.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entities/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/Display.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shader/BaseShader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shader/BaseShader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/test/DummyGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/DummyGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/test/GodCam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/FirstPersonCam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/Main.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +55,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Java" />
+    <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -92,6 +114,8 @@
       <workItem from="1569519922834" duration="7284000" />
       <workItem from="1569593746484" duration="9090000" />
       <workItem from="1569625742200" duration="47921000" />
+      <workItem from="1569812250434" duration="478000" />
+      <workItem from="1569869967136" duration="17988000" />
     </task>
     <servers />
   </component>
