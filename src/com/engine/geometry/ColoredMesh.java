@@ -26,6 +26,10 @@ public class ColoredMesh extends Mesh{
     {
         this(mesh.vertices,mesh.indexes,mesh.normals,colors);
     }
+    public ColoredMesh(Mesh mesh,Color color)
+    {
+        this(mesh.vertices,mesh.indexes,mesh.normals,color);
+    }
     public void setColors(float[] colors) {
         this.colors = colors;
     }

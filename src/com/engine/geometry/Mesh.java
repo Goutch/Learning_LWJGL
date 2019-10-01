@@ -54,9 +54,8 @@ public class Mesh implements DisposeListener{
     }
 
     public int getVertexCount() {
-        return vertices.length;
+        return indexes.length*3;
     }
-
 
     public float[] getNormals() {
         return normals;
