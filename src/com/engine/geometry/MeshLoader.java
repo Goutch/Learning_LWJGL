@@ -1,4 +1,5 @@
 package com.engine.geometry;
+import com.engine.rendering.shader.ShaderProgram;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;
@@ -10,80 +11,24 @@ import static org.lwjgl.opengl.GL15.*;
 
 public class MeshLoader {
 
+
     public static int getVAO()
     {
         return GL30.glGenVertexArrays();
     }
-    public static int[] loadToVAO(int vao,float[] vertices){
-        GL30.glBindVertexArray(vao);
-        int vbo1=storeDataInAttributeList(0,3,vertices);
-        unbindVOA();
-        return new int[]{vbo1};
-    }
-    public static int[] loadToVAO(int vao,float[] vertices,int[] indexes){
-        GL30.glBindVertexArray(vao);
-        int vbo1=bindIndexesBuffer(indexes);
-        int vbo2=storeDataInAttributeList(0,3,vertices);
-        unbindVOA();
-        return new int[]{vbo1,vbo2};
-    }
-    public static int[] loadToVAO(int vao,float[] vertices, int[] indexes, float[] atrib1,int atrib1Size)
+
+    public static int[] loadToVAO(int vao,float[] vertices, int[] indexes, float[] normals,float[] uvs,float[] colors)
     {
         GL30.glBindVertexArray(vao);
         bindIndexesBuffer(indexes);
-        int vbo1=storeDataInAttributeList(0,3,vertices);
-        int vbo2=storeDataInAttributeList(1,atrib1Size,atrib1);
+        int verticesVBO=storeDataInAttributeList(ShaderProgram.VERTICES_ATTRIBUTE_ID,ShaderProgram.VERTICES_ATTRIBUTE_SIZE,vertices);
+        int normalsVBO=normals==null?-1:storeDataInAttributeList(ShaderProgram.NORMALS_ATTRIBUTE_ID,ShaderProgram.NORMALS_ATTRIBUTE_SIZE,normals);
+        int uvsVBO=uvs==null?-1:storeDataInAttributeList(ShaderProgram.UVS_ATTRIBUTE_ID,ShaderProgram.UVS_ATTRIBUTE_SIZE,uvs);
+        int colorsVBO=colors==null?-1:storeDataInAttributeList(ShaderProgram.COLORS_ATTRIBUTE_ID,ShaderProgram.COLORS_ATTRIBUTE_SIZE,colors);
         unbindVOA();
-        return new int[]{vbo1,vbo2};
+        return new int[]{verticesVBO,uvsVBO,normalsVBO,colorsVBO};
     }
-    public static int[] loadToVAO(int vao,float[] vertices, float[] atrib1,int atrib1Size)
-    {
-        GL30.glBindVertexArray(vao);
-        int vbo1=storeDataInAttributeList(0,3,vertices);
-        int vbo2=storeDataInAttributeList(1,atrib1Size,atrib1);
-        unbindVOA();
-        return new int[]{vbo1,vbo2};
-    }
-    public static int[] loadToVAO(int vao,float[] vertices, int[] indexes, float[] atrib1,int atrib1Size,float[] atrib2,int atrib2Size)
-    {
-        GL30.glBindVertexArray(vao);
-        bindIndexesBuffer(indexes);
-        int vbo1=storeDataInAttributeList(0,3,vertices);
-        int vbo2=storeDataInAttributeList(1,atrib1Size,atrib1);
-        int vbo3=storeDataInAttributeList(2,atrib2Size,atrib2);
-        unbindVOA();
-        return new int[]{vbo1,vbo2,vbo3};
-    }
-    public static int[] loadToVAO(int vao,float[] vertices,float[] atrib1,int atrib1Size,float[] atrib2,int atrib2Size)
-    {
-        GL30.glBindVertexArray(vao);
-        int vbo1=storeDataInAttributeList(0,3,vertices);
-        int vbo2=storeDataInAttributeList(1,atrib1Size,atrib1);
-        int vbo3=storeDataInAttributeList(2,atrib2Size,atrib2);
-        unbindVOA();
-        return new int[]{vbo1,vbo2,vbo3};
-    }
-    public static int[] loadToVAO(int vao,float[] vertices, int[] indexes, float[] atrib1,int atrib1Size,float[] atrib2,int atrib2Size,float[] atrib3,int atrib3Size)
-    {
-        GL30.glBindVertexArray(vao);
-        bindIndexesBuffer(indexes);
-        int vbo1=storeDataInAttributeList(0,3,vertices);
-        int vbo2=storeDataInAttributeList(1,atrib1Size,atrib1);
-        int vbo3=storeDataInAttributeList(2,atrib2Size,atrib2);
-        int vbo4=storeDataInAttributeList(2,atrib3Size,atrib3);
-        unbindVOA();
-        return new int[]{vbo1,vbo2,vbo3,vbo4};
-    }
-    public static int[] loadToVAO(int vao,float[] vertices,float[] atrib1,int atrib1Size,float[] atrib2,int atrib2Size,float[] atrib3,int atrib3Size)
-    {
-        GL30.glBindVertexArray(vao);
-        int vbo1=storeDataInAttributeList(0,3,vertices);
-        int vbo2=storeDataInAttributeList(1,atrib1Size,atrib1);
-        int vbo3=storeDataInAttributeList(2,atrib2Size,atrib2);
-        int vbo4=storeDataInAttributeList(2,atrib3Size,atrib3);
-        unbindVOA();
-        return new int[]{vbo1,vbo2,vbo3,vbo4};
-    }
+
     private static int bindIndexesBuffer(int[] indexes){
         int vbo=GL15.glGenBuffers();
         GL15.glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,vbo);

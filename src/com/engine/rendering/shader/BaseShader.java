@@ -60,7 +60,7 @@ public class BaseShader extends ShaderProgram implements ProjectionMatrixChangeL
     }
     @Override
     protected void bindAttributes() {
-        super.bindAttribute(getAttributeCount(),"vertexPosition");
+        super.bindAttribute(VERTICES_ATTRIBUTE_ID,"vertexPosition");
     }
 
 

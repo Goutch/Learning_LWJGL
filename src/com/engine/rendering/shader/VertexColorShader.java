@@ -12,6 +12,6 @@ public class VertexColorShader extends BaseShader {
     @Override
     protected void bindAttributes() {
         super.bindAttributes();
-        super.bindAttribute(getAttributeCount(),"color");
+        super.bindAttribute(ShaderProgram.COLORS_ATTRIBUTE_ID,"color");
     }
 }

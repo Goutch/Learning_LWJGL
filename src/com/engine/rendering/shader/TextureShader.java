@@ -13,6 +13,6 @@ public class TextureShader extends BaseShader {
     @Override
     protected void bindAttributes() {
         super.bindAttributes();
-        bindAttribute(getAttributeCount(),"textureCoord");
+        bindAttribute(ShaderProgram.UVS_ATTRIBUTE_ID,"textureCoord");
     }
 }

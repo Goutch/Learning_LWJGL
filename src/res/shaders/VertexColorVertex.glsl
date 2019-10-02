@@ -5,8 +5,8 @@ uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
 
 in vec3 vertexPosition;
-in vec3 color;
-out vec3 vertexColor;
+in vec4 color;
+out vec4 vertexColor;
 
 
 void main()

@@ -19,6 +19,14 @@ import java.nio.FloatBuffer;
  */
 public abstract class ShaderProgram implements DisposeListener {
 
+    public static final int VERTICES_ATTRIBUTE_ID=0;
+    public static final int VERTICES_ATTRIBUTE_SIZE=3;
+    public static final int NORMALS_ATTRIBUTE_ID=1;
+    public static final int NORMALS_ATTRIBUTE_SIZE=3;
+    public static final int UVS_ATTRIBUTE_ID =2;
+    public static final int UVS_ATTRIBUTE_SIZE=2;
+    public static final int COLORS_ATTRIBUTE_ID=3;
+    public static final int COLORS_ATTRIBUTE_SIZE=4;
     private int programID;
     private int vertexShaderID;
     private int fragmentShaderID;
@@ -49,6 +57,7 @@ public abstract class ShaderProgram implements DisposeListener {
      * @param entity
      */
     public void loadUniforms(Entity entity){}
+
     public void stop()
     {
         GL20.glUseProgram(0);
