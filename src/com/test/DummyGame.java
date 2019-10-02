@@ -1,6 +1,7 @@
 package com.test;
 
 import com.engine.core.GameLogic;
+import com.engine.entities.Light;
 import com.engine.entities.MeshRenderer;
 import com.engine.entities.Transform;
 import com.engine.geometry.*;
@@ -25,12 +26,10 @@ public class DummyGame implements GameLogic {
         Display.centerWindow();
 
         Mesh dragonMesh=ModelImporter.ImportModel("res/models/dragon.obj");
-        dragonMesh.setColors(Color.RED);
-        dragonMesh.build();
         dragon=new MeshRenderer(new Vector3f(0,0,0),
                 new Vector3f(0,0,0),1f,
                 dragonMesh,
-                Shaders.VERTEX_COLOR_SHADER);
+                Shaders.LIGHT_SHADER);
         //floating cubes
         Color[] colors = new Color[Geometry.Cube.VERTICES.length];
         for (int i = 0; i < colors.length; i++) {
@@ -69,7 +68,7 @@ public class DummyGame implements GameLogic {
 
     @Override
     public void update(float delta) {
-
+        Light.main.transform.position=Camera.main.transform.position;
     }
 
     @Override

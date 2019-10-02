@@ -45,6 +45,7 @@ public abstract class ShaderProgram implements DisposeListener {
         GL20.glLinkProgram(programID);
         GL20.glValidateProgram(programID);
         getAllUniformLocations();
+        initUniforms();
     }
 
     public void start()
@@ -56,8 +57,8 @@ public abstract class ShaderProgram implements DisposeListener {
      * Called on render to load uniform to shader
      * @param entity
      */
-    public void loadUniforms(Entity entity){}
-
+    public void loadUniformsBeforeRender(Entity entity){}
+    protected void initUniforms(){}
     public void stop()
     {
         GL20.glUseProgram(0);

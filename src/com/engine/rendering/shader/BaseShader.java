@@ -27,6 +27,11 @@ public class BaseShader extends ShaderProgram implements ProjectionMatrixChangeL
     public BaseShader(String vertexFile, String fragFile)
     {
         super(vertexFile, fragFile);
+
+    }
+    @Override
+    protected void initUniforms()
+    {
         if(Camera.main!=null)
         {
             start();
@@ -53,7 +58,7 @@ public class BaseShader extends ShaderProgram implements ProjectionMatrixChangeL
     }
 
     @Override
-    public void loadUniforms(Entity entity)
+    public void loadUniformsBeforeRender(Entity entity)
     {
         loadTransformMatrix(entity.transform.toTranformMatrix());
         loadViewMatrix(Camera.main.getViewMatrix());

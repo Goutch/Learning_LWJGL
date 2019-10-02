@@ -29,7 +29,7 @@ public class Renderer {
         ShaderProgram shader = meshRenderer.getShader();
         Mesh mesh = meshRenderer.getMesh();
         shader.start();
-        shader.loadUniforms(meshRenderer);
+        shader.loadUniformsBeforeRender(meshRenderer);
         meshRenderer.bindTexture();
         GL30.glBindVertexArray(mesh.getVaoID());
 

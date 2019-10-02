@@ -1,9 +1,5 @@
 package com.engine.entities;
 
-import com.engine.events.EventManager;
-import com.engine.events.RenderListener;
-import com.engine.geometry.Mesh;
-import com.engine.rendering.Renderer;
 import org.joml.Vector3f;
 
 /**
