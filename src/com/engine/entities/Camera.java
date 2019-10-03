@@ -61,7 +61,7 @@ public class Camera extends Entity {
     }
     private void createProjectionMatrix() {
         float aspectRatio = (float) Display.getWidth() / (float) Display.getHeight();
-        float y_scale = (float) ((1f / Math.tan(Math.toRadians(fov / 2f))) * aspectRatio);
+        float y_scale = (float) (1f / Math.tan(Math.toRadians(fov / 2f)));
         float x_scale = y_scale / aspectRatio;
         float frustum_length = farPlane - nearPlane;
 

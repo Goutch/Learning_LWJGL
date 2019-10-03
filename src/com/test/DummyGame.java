@@ -10,14 +10,12 @@ import com.engine.geometry.*;
 import com.engine.entities.Camera;
 import com.engine.rendering.Display;
 import com.engine.rendering.Material;
-import com.engine.rendering.Renderer;
 import com.engine.rendering.shader.Shaders;
 import com.engine.util.Color;
 import com.engine.util.Texture;
 import org.joml.Vector3f;
 
 import java.util.LinkedList;
-import java.util.Random;
 
 
 public class DummyGame implements GameLogic {
