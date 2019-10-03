@@ -31,7 +31,7 @@ public class DummyGame implements GameLogic {
         //camera
         Camera.setMainCamera(new FirstPersonCam(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), 90, 10, 3));
 
-        Material.DEFAULT=new Material().shader(Shaders.DIFFUSE_LIGHT_SHADER);
+        Material.DEFAULT=new Material().shader(Shaders.DIFFUSE_LIGHT_SHADER).shineFactor(1f).dampFactor(100);
         Material mat=new Material().shader(Shaders.VERTEX_COLOR_SHADER);
         Material walnutMat=new Material().texture(new Texture("res/models/walnut.jpg")).shader(Shaders.TEXTURE_SHADER);
         Mesh dragonMesh=ModelImporter.ImportModel("res/models/dragon.obj");
@@ -113,13 +113,14 @@ public class DummyGame implements GameLogic {
         }
         cubeMesh.setColors(cubeColors);
         cubeMesh.build();
-        Renderer.setWireframe(true);
+
     }
 
     @Override
     public void update(float delta) {
 
         //Light.main.transform.position=Camera.main.transform.position;
+        //dragon.transform.rotation.y+=180*delta;
     }
 
     @Override

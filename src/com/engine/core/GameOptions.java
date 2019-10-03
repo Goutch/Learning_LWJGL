@@ -12,5 +12,6 @@ public class GameOptions {
     public static int WINDOW_START_WIDTH=900;
     public static int WINDOW_START_HEIGHT=600;
     public static Color CLEAR_COLOR= Color.BLACK;
+    public static float AMBIENT_LIGHT =0.15f;
 
 }

@@ -8,6 +8,8 @@ import com.engine.util.Texture;
 public class Material {
     public static Material DEFAULT=new Material().shader(Shaders.BASE_SHADER);
     private ShaderProgram shader= Shaders.BASE_SHADER;
+    private float shineFactor =0;
+    private float dampFactor =0;
     private Texture texture=null;
     public Material(){
 
@@ -40,6 +42,23 @@ public class Material {
         this.shader=shader;
         return this;
     }
+    public Material shineFactor(float shine)
+    {
+        this.shineFactor =shine;
+        return this;
+    }
+    public Material dampFactor(float damp)
+    {
+        this.dampFactor =damp;
+        return this;
+    }
 
+    public float getShineFactor() {
+        return shineFactor;
+    }
+
+    public float getDampFactor() {
+        return dampFactor;
+    }
 
 }
