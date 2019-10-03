@@ -98,6 +98,7 @@ public class GameLoop {
         Renderer.preRender();
         gameLogic.render();
         EventManager.onRender();
+        Renderer.render();
         display.swapBuffers();
     }
 

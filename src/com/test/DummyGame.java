@@ -49,7 +49,7 @@ public class DummyGame implements GameLogic {
                 1f,
                 dragonMesh);
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             cubes.add(new MeshRenderer(
                     new Vector3f(
                             (float) (Math.random() * 50f) - 25,
@@ -64,7 +64,7 @@ public class DummyGame implements GameLogic {
                     sphereMesh,
                     mat));
         }
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             cubes.add(new MeshRenderer(
                     new Vector3f(
                             (float) (Math.random() * 50) - 25,
@@ -78,7 +78,7 @@ public class DummyGame implements GameLogic {
                     cubeMesh,
                     mat));
         }
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             cubes.add(new MeshRenderer(
                     new Vector3f(
                             (float) (Math.random() * 10f) - 5,

@@ -23,12 +23,12 @@ public class Geometry {
         for (int x = 0; x < sizeX; x++) {
             for (int z = 0; z < sizeZ; z++) {
                 int index = (x * (sizeZ) + z);
-                indices[index * 6] = index + x;
+                indices[index * 6 ] = index + x + sizeZ + 1;
                 indices[index * 6 + 1] = index + x + 1;
-                indices[index * 6 + 2] = index + x + sizeZ + 1;
-                indices[index * 6 + 3] = index + x + sizeZ + 1;
+                indices[index * 6+2] = index + x;
+                indices[index * 6 + 3] = index + x + sizeZ + 2;
                 indices[index * 6 + 4] = index + x + 1;
-                indices[index * 6 + 5] = index + x + sizeZ + 2;
+                indices[index * 6 + 5] = index + x + sizeZ + 1;
 
             }
         }

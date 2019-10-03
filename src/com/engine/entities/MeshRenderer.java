@@ -38,6 +38,6 @@ public class MeshRenderer extends Entity implements RenderListener {
 
     @Override
     public void render() {
-        Renderer.render(this);
+        Renderer.addToRenderQueue(this);
     }
 }

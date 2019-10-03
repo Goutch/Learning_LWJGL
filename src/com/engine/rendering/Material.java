@@ -14,14 +14,18 @@ public class Material {
     public Material(){
 
     }
-    public void bind(Entity entity)
+    public void bind()
     {
         shader.start();
-        shader.loadUniformsBeforeRender(entity,this);
         if(texture!=null)
         {
             texture.bind();
         }
+    }
+
+    public void bindEntity(Entity entity)
+    {
+        shader.loadUniformsBeforeRender(entity,this);
     }
     public void unBind()
     {
