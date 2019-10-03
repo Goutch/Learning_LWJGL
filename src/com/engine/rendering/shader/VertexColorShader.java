@@ -1,6 +1,20 @@
 package com.engine.rendering.shader;
 
-public class VertexColorShader extends BaseShader {
+
+/**
+ * Inputs:
+ * vertexPositions,
+ * vertexNormal,
+ * vertexColor.
+ *
+ * Uniforms:
+ * transformMatrix,
+ * projectionMatrix,
+ * viewMatrix,
+ * lightPosition,
+ * lightColor.
+ */
+public class VertexColorShader extends DiffuseLightShader {
 
     private static final String VERTEX_FILE="src/res/shaders/VertexColorVertex.glsl";
     private static final String FRAMGMENT_FILE="src/res/shaders/VertexColorFragment.glsl";
@@ -12,6 +26,6 @@ public class VertexColorShader extends BaseShader {
     @Override
     protected void bindAttributes() {
         super.bindAttributes();
-        super.bindAttribute(ShaderProgram.COLORS_ATTRIBUTE_ID,"color");
+        super.bindAttribute(ShaderProgram.COLORS_ATTRIBUTE_ID,"vertexColor");
     }
 }

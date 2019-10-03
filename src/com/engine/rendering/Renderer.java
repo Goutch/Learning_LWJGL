@@ -26,11 +26,9 @@ public class Renderer {
      * @param meshRenderer
      */
     public static void render(MeshRenderer meshRenderer) {
-        ShaderProgram shader = meshRenderer.getShader();
+        Material material = meshRenderer.getMaterial();
         Mesh mesh = meshRenderer.getMesh();
-        shader.start();
-        shader.loadUniformsBeforeRender(meshRenderer);
-        meshRenderer.bindTexture();
+        material.bind(meshRenderer);
         GL30.glBindVertexArray(mesh.getVaoID());
 
         GL20.glEnableVertexAttribArray(ShaderProgram.VERTICES_ATTRIBUTE_ID);
@@ -46,8 +44,7 @@ public class Renderer {
         GL20.glDisableVertexAttribArray(ShaderProgram.COLORS_ATTRIBUTE_ID);
 
         GL30.glBindVertexArray(0);
-        meshRenderer.unBindTexture();
-        shader.stop();
+        material.unBind();
     }
 
     public static void preRender() {

@@ -34,28 +34,59 @@ public class ModelImporter {
                 }
 
                 //vertices
-                if (words[0].equals("v")) {
-                    vertices.add(Float.parseFloat(words[1]));
-                    vertices.add(Float.parseFloat(words[2]));
-                    vertices.add(Float.parseFloat(words[3]));
+                switch (words[0]) {
+                    case "v":
+                        vertices.add(Float.parseFloat(words[1]));
+                        vertices.add(Float.parseFloat(words[2]));
+                        vertices.add(Float.parseFloat(words[3]));
+                        break;
+                    //normals
+                    case "vn":
+                        normals.add(Float.parseFloat(words[1]));
+                        normals.add(Float.parseFloat(words[2]));
+                        normals.add(Float.parseFloat(words[3]));
+                        break;
+                    //uvs
+                    case "vt":
+                        uvs.add(Float.parseFloat(words[1]));
+                        uvs.add(Float.parseFloat(words[2]));
+                        break;
+                    //indices
+                    case "f":
+                        if(words.length==5)
+                        {
+                            if(words[1].contains("/"))
+                            {
+                                indices.add(words[1]);
+                                indices.add(words[2]);
+                                indices.add(words[3]);
+                                indices.add(words[3]);
+                                indices.add(words[2]);
+                                indices.add(words[4]);
+                            }
+                            else
+                                {
+                                indices.add(words[1]+"/"+words[2]+"/"+words[3]);
+                                indices.add(words[3]+"/"+words[2]+"/"+words[4]);
+                            }
+
+                        }
+                        if(words.length==4)
+                        {
+                            if(words[1].contains("/"))
+                            {
+                                indices.add(words[1]);
+                                indices.add(words[2]);
+                                indices.add(words[3]);
+                            }
+                            else
+                            {
+                                indices.add(words[1]+"/"+words[2]+"/"+words[3]);
+                            }
+                        }
+                        break;
                 }
-                //normals
-                else if (words[0].equals("vn")) {
-                    normals.add(Float.parseFloat(words[1]));
-                    normals.add(Float.parseFloat(words[2]));
-                    normals.add(Float.parseFloat(words[3]));
-                }
-                //uvs
-                else if (words[0].equals("vt")) {
-                    uvs.add(Float.parseFloat(words[1]));
-                    uvs.add(Float.parseFloat(words[2]));
-                }
-                //indices
-                else if (words[0].equals("f")) {
-                    indices.add(words[1]);
-                    indices.add(words[2]);
-                    indices.add(words[3]);
-                }
+
                 line = bufferedReader.readLine();
             }
 
@@ -67,6 +98,8 @@ public class ModelImporter {
             String[] verts;//0=vertexIndex , 1=uv index , 2=normal Index
             for (int i = 0; i < indices.size(); i++) {
                 verts = indices.get(i).split("/");
+
+
                 int vertexPointer = Integer.parseInt(verts[0]) - 1;
                 int uvPointer = Integer.parseInt(verts[1]) - 1;
                 int normalPointer = Integer.parseInt(verts[2]) - 1;
@@ -76,16 +109,23 @@ public class ModelImporter {
                 verticesArray[vertexPointer * 3] = vertices.get(vertexPointer * 3);
                 verticesArray[vertexPointer * 3 + 1] = vertices.get(vertexPointer * 3 + 1);
                 verticesArray[vertexPointer * 3 + 2] = vertices.get(vertexPointer * 3 + 2);
+                if(!uvs.isEmpty())
+                {
+                    uvsArray[vertexPointer * 2] = uvs.get(uvPointer * 2);
+                    uvsArray[vertexPointer * 2 + 1] = 1 - uvs.get(uvPointer * 2 + 1);
+                }
 
-                uvsArray[vertexPointer * 2] = uvs.get(uvPointer * 2);
-                uvsArray[vertexPointer * 2 + 1] = 1 - uvs.get(uvPointer * 2 + 1);
+                if(!normals.isEmpty())
+                {
+                    normalsArray[vertexPointer * 3] = normals.get(normalPointer * 3);
+                    normalsArray[vertexPointer * 3 + 1] = normals.get(normalPointer * 3 + 1);
+                    normalsArray[vertexPointer * 3 + 2] = normals.get(normalPointer * 3 + 2);
 
-                normalsArray[vertexPointer * 3] = normals.get(normalPointer * 3);
-                normalsArray[vertexPointer * 3 + 1] = normals.get(normalPointer * 3 + 1);
-                normalsArray[vertexPointer * 3 + 2] = normals.get(normalPointer * 3 + 2);
-
+                }
 
             }
+            if (uvsArray.length==0)uvsArray=null;
+            if(normalsArray.length==0)normalsArray=null;
             return new Mesh(verticesArray, indicesArray, normalsArray, uvsArray);
 
         } catch (IOException e) {

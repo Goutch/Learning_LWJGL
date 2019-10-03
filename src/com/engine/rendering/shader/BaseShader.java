@@ -4,8 +4,18 @@ import com.engine.entities.Entity;
 import com.engine.events.EventManager;
 import com.engine.events.ProjectionMatrixChangeListener;
 import com.engine.entities.Camera;
+import com.engine.rendering.Material;
 import org.joml.Matrix4f;
 
+/**
+ * Inputs:
+ * vertexPositions
+ *
+ * Unifroms:
+ * transformMatrix
+ * projectionMatrix
+ * viewMatrix
+ */
 public class BaseShader extends ShaderProgram implements ProjectionMatrixChangeListener {
 
     private static final String VERTEX_FILE="src/res/shaders/BaseVertex.glsl";
@@ -58,7 +68,7 @@ public class BaseShader extends ShaderProgram implements ProjectionMatrixChangeL
     }
 
     @Override
-    public void loadUniformsBeforeRender(Entity entity)
+    public void loadUniformsBeforeRender(Entity entity, Material material)
     {
         loadTransformMatrix(entity.transform.toTranformMatrix());
         loadViewMatrix(Camera.main.getViewMatrix());
