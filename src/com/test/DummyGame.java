@@ -2,7 +2,6 @@ package com.test;
 
 import com.engine.core.GameLogic;
 import com.engine.core.GameOptions;
-import com.engine.entities.Light;
 import com.engine.entities.MeshRenderer;
 import com.engine.entities.Transform;
 import com.engine.geometry.*;

@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5186e4fe-f434-4ecb-ab20-90d6f3767f00" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/engine/entities/light/DirectionalLight.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/engine/entities/light/PointLight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/DummyGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/DummyGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/entities/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entities/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/entities/Light.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entities/light/Light.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shader/DiffuseLightShader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shader/DiffuseLightShader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/test/DummyGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/DummyGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/shaders/VertexColorFragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/shaders/VertexColorFragment.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/res/shaders/VertexColorVertex.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/res/shaders/VertexColorVertex.glsl" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +107,7 @@
       <workItem from="1569933527906" duration="784000" />
       <workItem from="1569967369010" duration="12118000" />
       <workItem from="1570059621787" duration="11971000" />
-      <workItem from="1570106576727" duration="15687000" />
+      <workItem from="1570106576727" duration="18475000" />
     </task>
     <servers />
   </component>

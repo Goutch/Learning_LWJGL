@@ -2,7 +2,7 @@ package com.engine.rendering.shader;
 
 import com.engine.core.GameOptions;
 import com.engine.entities.Entity;
-import com.engine.entities.Light;
+import com.engine.entities.light.DirectionalLight;
 import com.engine.rendering.Material;
 import org.joml.Vector3f;
 /**
@@ -57,9 +57,9 @@ public class DiffuseLightShader extends BaseShader {
     }
 
     private void loadLight(Material material){
-        if(Light.main.transform.position!=null)
-            loadVectorUniform(lightColorLocation,new Vector3f(Light.main.color.r,Light.main.color.g,Light.main.color.b));
-            loadVectorUniform(lightPositionLocation, Light.main.transform.position);
+        if(DirectionalLight.main.transform.position!=null)
+            loadVectorUniform(lightColorLocation,new Vector3f(DirectionalLight.main.color.r, DirectionalLight.main.color.g, DirectionalLight.main.color.b));
+            loadVectorUniform(lightPositionLocation, DirectionalLight.main.transform.position);
             loadFloatUniform(shineFactorLocation,material.getShineFactor());
             loadFloatUniform(dampFactorLocation,material.getDampFactor());
             loadFloatUniform(ambientLightLocation, GameOptions.AMBIENT_LIGHT);
