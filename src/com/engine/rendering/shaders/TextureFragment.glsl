@@ -1,4 +1,7 @@
 #version 400 core
+
+//Material
+uniform vec3 materialColor;
 //Diffuse
 uniform vec3 lightColor;
 uniform float ambientLight;
@@ -10,20 +13,25 @@ uniform float shineFactor; //
 uniform float dampFactor; //
 in vec3 toCameraDirection; //
 
+//texture
+uniform sampler2D textureSampler;
+in vec2 uv;
+
 
 out vec4 fragColor;
-
-void main()
-{
-    //light
+void main(){
+    //texture
+    vec4 textureColor=texture(textureSampler, uv);
+    //diffuse
     vec3 normalizedNormal=normalize(normal);
     vec3 normalizedToLightDirection=normalize(toLightDirection);
 
     float lightValue=dot(normalizedNormal,normalizedToLightDirection);
-    lightValue=max(lightValue,ambientLight);
-    vec3 light=lightColor*lightValue;
+    lightValue=max(lightValue,0.);
+    vec3 diffuseLight=lightColor*lightValue;
     //specular
-    if(shineFactor>0.0001f)
+    vec3 specularLight=vec3(0.,0.,0.);
+    if(shineFactor>0.0001)
     {
         vec3 normalizedToCameraDirection=normalize(toCameraDirection);
         vec3 lightDirection=-normalizedToLightDirection;
@@ -32,9 +40,9 @@ void main()
         float specularReflection=dot(reflectedLightDirection,normalizedToCameraDirection);
         specularReflection=max(specularReflection,0.);
         float dampedReflection=pow(specularReflection,dampFactor);
-        vec3 SpecularLight=dampedReflection*shineFactor*lightColor;
-        light=light+SpecularLight;
+        specularLight=dampedReflection*shineFactor*lightColor;
     }
-    //base
-    fragColor=vec4(light,1.);
+    vec4 light=vec4(ambientLight+diffuseLight+specularLight,1.);
+
+    fragColor=textureColor*vec4(materialColor,1.)*light;
 }

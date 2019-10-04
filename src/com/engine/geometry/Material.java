@@ -1,31 +1,31 @@
-package com.engine.rendering;
+package com.engine.geometry;
 
 import com.engine.entities.Entity;
-import com.engine.rendering.shader.ShaderProgram;
-import com.engine.rendering.shader.Shaders;
+import com.engine.rendering.shaders.ShaderProgram;
+import com.engine.rendering.shaders.Shaders;
+import com.engine.util.Color;
 import com.engine.util.Texture;
 
 public class Material {
-    public static Material DEFAULT=new Material().shader(Shaders.BASE_SHADER);
+    public static Material DEFAULT=new Material();
     private ShaderProgram shader= Shaders.BASE_SHADER;
     private float shineFactor =0;
     private float dampFactor =0;
     private Texture texture=null;
+    private Color color=Color.WHITE;
+
     public Material(){
 
     }
     public void bind()
     {
         shader.start();
+        shader.loadPreRenderGeneralUniforms();
+        shader.loadPreRenderMaterialUniforms(this);
         if(texture!=null)
         {
             texture.bind();
         }
-    }
-
-    public void bindEntity(Entity entity)
-    {
-        shader.loadUniformsBeforeRender(entity,this);
     }
     public void unBind()
     {
@@ -35,6 +35,11 @@ public class Material {
         }
         shader.stop();
     }
+    public void bindEntity(Entity entity)
+    {
+        shader.loadPreRenderEntityUniforms(entity);
+    }
+
     public Material texture(Texture texture)
     {
         this.texture=texture;
@@ -56,6 +61,11 @@ public class Material {
         this.dampFactor =damp;
         return this;
     }
+    public Material color(Color color)
+    {
+        this.color=color;
+        return this;
+    }
 
     public float getShineFactor() {
         return shineFactor;
@@ -64,5 +74,8 @@ public class Material {
     public float getDampFactor() {
         return dampFactor;
     }
+
+    public Color getColor() { return color; }
+
 
 }

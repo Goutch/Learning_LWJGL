@@ -1,24 +1,28 @@
-package com.engine.rendering.shader;
+package com.engine.rendering.shaders;
 
 import com.engine.geometry.VBO;
 
 /**
  * Inputs:
  * vertexPositions,
- * vertexNormals,
- * textureCoord(uv).
+ * vertexNormals.
+ * textureCoord(uvs).
  *
- * Uniforms:
+ * Unifroms:
  * transformMatrix,
  * projectionMatrix,
  * viewMatrix,
  * lightPosition,
  * lightColor.
+ * dampFactor,
+ * shineFactor,
+ * materialColor,
+ *
  */
 public class TextureShader extends DiffuseLightShader {
 
-    private static final String VERTEX_FILE="src/res/shaders/TextureVertex.glsl";
-    private static final String FRAMGMENT_FILE="src/res/shaders/TextureFragment.glsl";
+    private static final String VERTEX_FILE="src/com/engine/rendering/shaders/TextureVertex.glsl";
+    private static final String FRAMGMENT_FILE="src/com/engine/rendering/shaders/TextureFragment.glsl";
 
     public TextureShader() {
         super(VERTEX_FILE, FRAMGMENT_FILE);

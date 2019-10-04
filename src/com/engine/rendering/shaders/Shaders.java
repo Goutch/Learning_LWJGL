@@ -1,4 +1,4 @@
-package com.engine.rendering.shader;
+package com.engine.rendering.shaders;
 
 
 public class Shaders {

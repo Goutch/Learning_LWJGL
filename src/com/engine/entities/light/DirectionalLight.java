@@ -13,7 +13,7 @@ public class DirectionalLight extends Entity {
         super(position, rotation, 1f);
         this.color=color;
     }
-    public Vector3f getDirection(){
-        return new Vector3f((float)Math.cos(Math.toRadians(transform.rotation.z)),(float)Math.cos(Math.toRadians(transform.rotation.x)),(float)Math.cos(Math.toRadians(transform.rotation.y)));
-    }
+   //public Vector3f getDirection(){
+   //    return new Vector3f((float)Math.cos(Math.toRadians(transform.rotation.z)),(float)Math.cos(Math.toRadians(transform.rotation.x)),(float)Math.cos(Math.toRadians(transform.rotation.y)));
+   //}
 }

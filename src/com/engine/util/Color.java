@@ -1,5 +1,8 @@
 package com.engine.util;
 
+import org.joml.Vector3f;
+import org.joml.Vector4f;
+
 public class Color {
 
     public static Color RED=new Color(1,0,0,1);
@@ -14,5 +17,13 @@ public class Color {
         this.g=Math.max(0,Math.min(1,g));
         this.b=Math.max(0,Math.min(1,b));
         this.a=Math.max(0,Math.min(1,a));
+    }
+    public Vector3f toVector3f()
+    {
+        return new Vector3f(r,g,b);
+    }
+    public Vector4f toVector4f()
+    {
+        return new Vector4f(r,g,b,a);
     }
 }

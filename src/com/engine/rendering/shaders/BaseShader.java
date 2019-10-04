@@ -1,11 +1,11 @@
-package com.engine.rendering.shader;
+package com.engine.rendering.shaders;
 
 import com.engine.entities.Entity;
 import com.engine.events.EventManager;
 import com.engine.events.ProjectionMatrixChangeListener;
 import com.engine.entities.Camera;
 import com.engine.geometry.VBO;
-import com.engine.rendering.Material;
+import com.engine.geometry.Material;
 import org.joml.Matrix4f;
 
 /**
@@ -19,12 +19,15 @@ import org.joml.Matrix4f;
  */
 public class BaseShader extends ShaderProgram implements ProjectionMatrixChangeListener {
 
-    private static final String VERTEX_FILE="src/res/shaders/BaseVertex.glsl";
-    private static final String FRAMGMENT_FILE="src/res/shaders/BaseFragment.glsl";
+    private static final String VERTEX_FILE="src/com/engine/rendering/shaders/BaseVertex.glsl";
+    private static final String FRAMGMENT_FILE="src/com/engine/rendering/shaders/BaseFragment.glsl";
     private int transformMatrixLocation;
     private int projectionMatrixLocation;
     private int viewMatrixLocation;
 
+    private int shineFactorLocation;
+    private int dampFactorLocation;
+    private int materialColorLocation;
     public BaseShader() {
         super(VERTEX_FILE, FRAMGMENT_FILE);
         if(Camera.main!=null)
@@ -45,18 +48,11 @@ public class BaseShader extends ShaderProgram implements ProjectionMatrixChangeL
     {
         if(Camera.main!=null)
         {
-            start();
-            loadProjectionMatrix(Camera.main.getProjectionMatrix());
-            stop();
+            onProjectionMatrixChanged(Camera.main.getProjectionMatrix());
         }
         EventManager.subscribeProjectionMatrixChange(this);
     }
-    @Override
-    public void onProjectionMatrixChanged(Matrix4f projectionMatrix) {
-        start();
-        loadProjectionMatrix(projectionMatrix);
-        stop();
-    }
+
 
     /**
      * Called when the engines has finished to initialize to ensure the main camera exist
@@ -66,13 +62,27 @@ public class BaseShader extends ShaderProgram implements ProjectionMatrixChangeL
         transformMatrixLocation =getUniformLocation("transformMatrix");
         projectionMatrixLocation=getUniformLocation("projectionMatrix");
         viewMatrixLocation=getUniformLocation("viewMatrix");
-    }
 
+        shineFactorLocation=getUniformLocation("shineFactor");
+        dampFactorLocation=getUniformLocation("dampFactor");
+        materialColorLocation=getUniformLocation("materialColor");
+    }
     @Override
-    public void loadUniformsBeforeRender(Entity entity, Material material)
-    {
-        loadTransformMatrix(entity.transform.toTranformMatrix());
+    public void loadPreRenderGeneralUniforms(){
+        super.loadPreRenderGeneralUniforms();
         loadViewMatrix(Camera.main.getViewMatrix());
+    }
+    @Override
+    public void loadPreRenderMaterialUniforms(Material material)
+    {
+        super.loadPreRenderMaterialUniforms(material);
+        loadMaterial(material);
+    }
+    @Override
+    public void loadPreRenderEntityUniforms(Entity entity)
+    {
+        super.loadPreRenderEntityUniforms(entity);
+        loadTransformMatrix(entity.transform.toTranformMatrix());
     }
     @Override
     protected void bindAttributes() {
@@ -92,6 +102,16 @@ public class BaseShader extends ShaderProgram implements ProjectionMatrixChangeL
     {
         loadMatrix(viewMatrixLocation,viewMatrix);
     }
-
-
+    private void loadMaterial(Material material)
+    {
+        loadFloatUniform(shineFactorLocation,material.getShineFactor());
+        loadFloatUniform(dampFactorLocation,material.getDampFactor());
+        loadVectorUniform(materialColorLocation,(material.getColor().toVector3f()));
+    }
+    @Override
+    public void onProjectionMatrixChanged(Matrix4f projectionMatrix) {
+        start();
+        loadProjectionMatrix(projectionMatrix);
+        stop();
+    }
 }

@@ -4,12 +4,13 @@ import com.engine.core.GameLogic;
 import com.engine.core.GameOptions;
 import com.engine.entities.MeshRenderer;
 import com.engine.entities.Transform;
+import com.engine.entities.light.DirectionalLight;
 import com.engine.geometry.*;
 
 import com.engine.entities.Camera;
 import com.engine.rendering.Window;
-import com.engine.rendering.Material;
-import com.engine.rendering.shader.Shaders;
+import com.engine.geometry.Material;
+import com.engine.rendering.shaders.Shaders;
 import com.engine.util.Color;
 import com.engine.util.Texture;
 import org.joml.Vector3f;
@@ -28,78 +29,50 @@ public class DummyGame implements GameLogic {
         //camera
         Camera.setMainCamera(new FirstPersonCam(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), 90, 10, 3));
 
-        Material.DEFAULT=new Material().shader(Shaders.DIFFUSE_LIGHT_SHADER).shineFactor(1f).dampFactor(100);
-        Material mat=new Material().shader(Shaders.VERTEX_COLOR_SHADER);
-        Material walnutMat=new Material().texture(new Texture("res/models/walnut.jpg")).shader(Shaders.TEXTURE_SHADER);
+        Material daragonMat=new Material().color(new Color(.6f,.6f,0f,1f)).shader(Shaders.DIFFUSE_LIGHT_SHADER).shineFactor(10f).dampFactor(10);
+        Material cubeMat=new Material().shader(Shaders.VERTEX_COLOR_SHADER);
+        Material sphereMat=new Material().shader(Shaders.DIFFUSE_LIGHT_SHADER).color(Color.BLUE).shineFactor(10f).dampFactor(1);
+        Material walnutMat=new Material().texture(new Texture("res/models/walnut.jpg")).shader(Shaders.TEXTURE_SHADER).color(Color.BLUE);
+        Material terrainMat=new Material().color(Color.GREEN).shader(Shaders.DIFFUSE_LIGHT_SHADER);
         Mesh dragonMesh=ModelImporter.ImportModel("res/models/dragon.obj");
         Mesh cubeMesh = ModelImporter.ImportModel("res/models/cube.obj");
         Mesh sphereMesh = ModelImporter.ImportModel("res/models/sphere.obj");
         Mesh walnutMesh= ModelImporter.ImportModel("res/models/walnut.obj");
         Mesh terrainMesh = Geometry.getPlane(100, 100);
-        terrainMesh.setColors(Color.GREEN);
-        terrainMesh.build();
 
-        terrain = new MeshRenderer(new Vector3f(0, -0.5f, 0), Transform.ZERO, 1,terrainMesh,mat);
+        terrain = new MeshRenderer(new Vector3f(0, -0.5f, 0), Transform.ZERO, 1,terrainMesh,terrainMat);
         dragon=new MeshRenderer(
-                new Vector3f(0,0,10),
+                new Vector3f(0,0,-10),
                 new Vector3f(0,0,0),
                 1f,
-                dragonMesh);
+                dragonMesh,
+                daragonMat);
 
-        for (int i = 0; i < 1000; i++) {
+        float range=25;
+        for (int i = 0; i < 10; i++) {
             cubes.add(new MeshRenderer(
-                    new Vector3f(
-                            (float) (Math.random() * 50f) - 25,
-                            (float) (Math.random() * 25),
-                            (float) (Math.random() * 50) - 25),
-                    new Vector3f(
-                            (float) Math.random() * 360f,
-                            (float) Math.random() * 360,
-                            (float) Math.random() * 360),
+                    getRandomVector(-range,range,0,range,-range,range),
+                    getRandomVector(0,360,0,360,0,360),
                     0.25f,
-
                     sphereMesh,
-                    mat));
+                    sphereMat));
         }
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 10; i++) {
             cubes.add(new MeshRenderer(
-                    new Vector3f(
-                            (float) (Math.random() * 50) - 25,
-                            (float) (Math.random() * 25),
-                            (float) (Math.random() * 50) - 25),
-                    new Vector3f(
-                            (float) Math.random() * 360f,
-                            (float) Math.random() * 360,
-                            (float) Math.random() * 360),
+                    getRandomVector(-range,range,0,range,-range,range),
+                    getRandomVector(0,360,0,360,0,360),
                     1f,
                     cubeMesh,
-                    mat));
+                    cubeMat));
         }
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10; i++) {
             cubes.add(new MeshRenderer(
-                    new Vector3f(
-                            (float) (Math.random() * 10f) - 5,
-                            (float) (Math.random() * 10) ,
-                            (float) (Math.random() * 10) - 5),
-                    new Vector3f(
-                            (float) Math.random() * 360f,
-                            (float) Math.random() * 360,
-                            (float) Math.random() * 360),
+                    getRandomVector(-range,range,0,range,-range,range),
+                    getRandomVector(0,360,0,360,0,360),
                     1f,
                     walnutMesh,
                     walnutMat));
         }
-
-        Color[] sphereColors = new Color[sphereMesh.getVertices().length];
-        for (int i = 0; i < sphereColors.length; i++) {
-            sphereColors[i] = Color.RED;
-            i++;
-            sphereColors[i] = Color.GREEN;
-            i++;
-            sphereColors[i] = Color.BLUE;
-        }
-        sphereMesh.setColors(sphereColors);
-        sphereMesh.build();
         Color[] cubeColors = new Color[cubeMesh.getVertices().length];
         for (int i = 0; i < cubeColors.length; i++) {
             cubeColors[i] = Color.RED;
@@ -116,8 +89,7 @@ public class DummyGame implements GameLogic {
     @Override
     public void update(float delta) {
 
-        //Light.main.transform.position=Camera.main.transform.position;
-        //dragon.transform.rotation.y+=180*delta;
+        DirectionalLight.main.transform.position=Camera.main.transform.position;
     }
 
     @Override
@@ -134,5 +106,12 @@ public class DummyGame implements GameLogic {
     @Override
     public void dispose() {
 
+    }
+
+    private Vector3f getRandomVector(float minX,float maxX,float minY,float maxY,float minZ,float maxZ){
+        return  new Vector3f(
+                (float) (Math.random() * maxX) +minX,
+                 (float) (Math.random() * maxY) +minY,
+                (float) (Math.random() * maxZ) +minZ);
     }
 }

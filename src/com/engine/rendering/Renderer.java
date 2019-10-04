@@ -2,13 +2,10 @@ package com.engine.rendering;
 
 
 import com.engine.core.GameOptions;
-import com.engine.entities.Entity;
 import com.engine.entities.MeshRenderer;
+import com.engine.geometry.Material;
 import com.engine.geometry.Mesh;
-import com.engine.rendering.shader.ShaderProgram;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL20;
-import org.lwjgl.opengl.GL30;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -96,7 +93,6 @@ public class Renderer {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
     }
     /**
-     *
      * @deprecated  use {@link #addToRenderQueue(MeshRenderer)} instead.
      */
     @Deprecated
@@ -107,7 +103,6 @@ public class Renderer {
         material.bindEntity(meshRenderer);
         mesh.bind();
         GL11.glDrawElements(GL11.GL_TRIANGLES, mesh.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
-
         mesh.unBind();
         material.unBind();
     }

@@ -1,7 +1,6 @@
 package com.engine.geometry;
 
 import com.engine.events.DisposeListener;
-import com.engine.rendering.shader.ShaderProgram;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL15;

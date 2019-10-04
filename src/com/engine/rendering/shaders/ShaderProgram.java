@@ -1,9 +1,9 @@
-package com.engine.rendering.shader;
+package com.engine.rendering.shaders;
 
 import com.engine.entities.Entity;
 import com.engine.events.DisposeListener;
 import com.engine.events.EventManager;
-import com.engine.rendering.Material;
+import com.engine.geometry.Material;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.lwjgl.BufferUtils;
@@ -51,7 +51,10 @@ public abstract class ShaderProgram implements DisposeListener {
      * Called on render to load uniform to shader
      * @param entity
      */
-    public void loadUniformsBeforeRender(Entity entity,Material material){}
+    public void loadPreRenderEntityUniforms(Entity entity){}
+    public void loadPreRenderMaterialUniforms(Material material){}
+    public void loadPreRenderGeneralUniforms(){}
+
     protected void initUniforms(){}
     public void stop()
     {
