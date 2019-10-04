@@ -65,7 +65,7 @@ public class DummyGame implements GameLogic {
                     cubeMesh,
                     cubeMat));
         }
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             cubes.add(new MeshRenderer(
                     getRandomVector(-range,range,0,range,-range,range),
                     getRandomVector(0,360,0,360,0,360),
