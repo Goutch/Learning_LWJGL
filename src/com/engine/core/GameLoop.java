@@ -3,7 +3,7 @@ package com.engine.core;
 import com.engine.events.EventManager;
 import com.engine.inputs.Input;
 import com.engine.entities.Camera;
-import com.engine.rendering.Display;
+import com.engine.rendering.Window;
 import com.engine.rendering.Renderer;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
@@ -14,7 +14,7 @@ import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 public class GameLoop {
     private static Thread gameLoopThread;
     private static boolean running = false;
-    private static Display display;
+    private static Window window;
     private final static boolean PRINT_FPS = true;
     private static long lastFramePrint = 0;
     private static GameLogic gameLogic;
@@ -39,7 +39,7 @@ public class GameLoop {
 
                 long current = System.currentTimeMillis();
                 long previous = System.currentTimeMillis();
-                while (!glfwWindowShouldClose(display.getWindow())) {
+                while (!glfwWindowShouldClose(window.getWindow())) {
                     previous = current;
                     current = System.currentTimeMillis();
                     getInputs();
@@ -60,9 +60,9 @@ public class GameLoop {
     private static void init() {
         startTime = System.currentTimeMillis();
 
-        Display.createDisplay(GameOptions.WINDOW_START_WIDTH, GameOptions.WINDOW_START_HEIGHT, GameOptions.TITLE);
+        Window.createDisplay(GameOptions.WINDOW_START_WIDTH, GameOptions.WINDOW_START_HEIGHT, GameOptions.TITLE);
         Renderer.init();
-        Input.init(Display.getWindow());
+        Input.init(Window.getWindow());
         Camera.setMainCamera(new Camera(new Vector3f(0,0,0),new Vector3f(0,0,0),90,1000));
         gameLogic.init();
         EventManager.onInit();
@@ -73,9 +73,9 @@ public class GameLoop {
     }
 
     private static void getInputs() {
-        display.getInputs();
+        window.getInputs();
         if (Input.IsKeyPressed(GLFW.GLFW_KEY_ESCAPE)) {
-            display.close();
+            window.close();
         }
     }
 
@@ -99,7 +99,7 @@ public class GameLoop {
         gameLogic.render();
         EventManager.onRender();
         Renderer.render();
-        display.swapBuffers();
+        window.swapBuffers();
     }
 
     private static void dispose() {

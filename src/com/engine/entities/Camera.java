@@ -1,7 +1,7 @@
 package com.engine.entities;
 
 import com.engine.events.EventManager;
-import com.engine.rendering.Display;
+import com.engine.rendering.Window;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
@@ -60,7 +60,7 @@ public class Camera extends Entity {
         viewMatrix.translate(offset);
     }
     private void createProjectionMatrix() {
-        float aspectRatio = (float) Display.getWidth() / (float) Display.getHeight();
+        float aspectRatio = (float) Window.getWidth() / (float) Window.getHeight();
         float y_scale = (float) (1f / Math.tan(Math.toRadians(fov / 2f)));
         float x_scale = y_scale / aspectRatio;
         float frustum_length = farPlane - nearPlane;

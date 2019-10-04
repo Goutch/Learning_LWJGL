@@ -1,5 +1,7 @@
 package com.engine.rendering.shader;
 
+import com.engine.geometry.VBO;
+
 /**
  * Inputs:
  * vertexPositions,
@@ -25,6 +27,6 @@ public class TextureShader extends DiffuseLightShader {
     @Override
     protected void bindAttributes() {
         super.bindAttributes();
-        bindAttribute(ShaderProgram.UVS_ATTRIBUTE_ID,"textureCoord");
+        bindAttribute(VBO.UVS_ATTRIBUTE_ID,"textureCoord");
     }
 }

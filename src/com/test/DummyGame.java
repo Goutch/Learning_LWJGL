@@ -7,7 +7,7 @@ import com.engine.entities.Transform;
 import com.engine.geometry.*;
 
 import com.engine.entities.Camera;
-import com.engine.rendering.Display;
+import com.engine.rendering.Window;
 import com.engine.rendering.Material;
 import com.engine.rendering.shader.Shaders;
 import com.engine.util.Color;
@@ -23,7 +23,7 @@ public class DummyGame implements GameLogic {
     MeshRenderer dragon;
     @Override
     public void init() {
-        Display.centerWindow();
+        Window.centerWindow();
         GameOptions.PRINT_FPS=true;
         //camera
         Camera.setMainCamera(new FirstPersonCam(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), 90, 10, 3));

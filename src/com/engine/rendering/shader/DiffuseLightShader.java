@@ -3,6 +3,7 @@ package com.engine.rendering.shader;
 import com.engine.core.GameOptions;
 import com.engine.entities.Entity;
 import com.engine.entities.light.DirectionalLight;
+import com.engine.geometry.VBO;
 import com.engine.rendering.Material;
 import org.joml.Vector3f;
 /**
@@ -38,7 +39,7 @@ public class DiffuseLightShader extends BaseShader {
     @Override
     protected void bindAttributes() {
         super.bindAttributes();
-        super.bindAttribute(NORMALS_ATTRIBUTE_ID,"vertexNormal");
+        super.bindAttribute(VBO.NORMALS_ATTRIBUTE_ID,"vertexNormal");
     }
     @Override
     public void loadUniformsBeforeRender(Entity entity,Material material)

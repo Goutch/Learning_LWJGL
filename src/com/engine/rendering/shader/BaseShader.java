@@ -4,6 +4,7 @@ import com.engine.entities.Entity;
 import com.engine.events.EventManager;
 import com.engine.events.ProjectionMatrixChangeListener;
 import com.engine.entities.Camera;
+import com.engine.geometry.VBO;
 import com.engine.rendering.Material;
 import org.joml.Matrix4f;
 
@@ -75,7 +76,7 @@ public class BaseShader extends ShaderProgram implements ProjectionMatrixChangeL
     }
     @Override
     protected void bindAttributes() {
-        super.bindAttribute(VERTICES_ATTRIBUTE_ID,"vertexPosition");
+        super.bindAttribute(VBO.VERTICES_ATTRIBUTE_ID,"vertexPosition");
     }
 
 

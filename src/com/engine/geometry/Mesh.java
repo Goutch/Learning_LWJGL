@@ -13,8 +13,9 @@ import static org.lwjgl.opengl.GL30.glDeleteVertexArrays;
  * Represent a mesh
  */
 public class Mesh implements DisposeListener {
-    protected int vaoID = -1;
-    protected int[] vbos = null;
+    //protected int vaoID = -1;
+    //protected int[] vbos = null;
+    protected VAO vao;
     protected float[] vertices = null;
     protected int[] indices = null;
     protected float[] normals = null;
@@ -23,7 +24,7 @@ public class Mesh implements DisposeListener {
 
     public void init() {
         EventManager.subscribeDispose(this);
-        this.vaoID = MeshLoader.getVAO();
+        vao=new VAO();
     }
 
     public Mesh() {
@@ -88,30 +89,28 @@ public class Mesh implements DisposeListener {
         build();
     }
 
-
+    public void bind()
+    {
+        vao.bind();
+    }
+    public void unBind()
+    {
+        vao.unbind();
+    }
     /*
-     * bind the vertices,indices,normals to the vao
+     * bind the vertices,indices,normals,etc to the vao
      */
     public void build() {
         if (vertices != null && indices != null) {
-            if (vbos != null) {
-                for (int vbo : vbos) {
-                    glDeleteBuffers(vbo);
-                }
-            }
-            this.vbos = MeshLoader.loadToVAO(vaoID, vertices, indices, normals, uvs, colors);
-
+            vao.clearAll();
+            vao.setindices(indices);
+            vao.put(vertices,VBO.VERTICES_ATTRIBUTE_ID,VBO.VERTICES_ATTRIBUTE_SIZE);
+            if(normals!=null)vao.put(normals,VBO.NORMALS_ATTRIBUTE_ID,VBO.NORMALS_ATTRIBUTE_SIZE);
+            if(uvs!=null)vao.put(uvs,VBO.UVS_ATTRIBUTE_ID,VBO.UVS_ATTRIBUTE_SIZE);
+            if(colors!=null)vao.put(colors,VBO.COLORS_ATTRIBUTE_ID,VBO.COLORS_ATTRIBUTE_SIZE);
         } else {
             System.err.println("Cant build mesh, the minimum requirement is a vertices and indices array");
         }
-
-    }
-
-    /**
-     * @return vertex array buffer
-     */
-    public int getVaoID() {
-        return vaoID;
     }
 
     public int getVertexCount() {
@@ -165,20 +164,7 @@ public class Mesh implements DisposeListener {
 
     @Override
     public void dispose() {
-        if (vbos != null)
-        {
-            for (int vbo : vbos) {
-                if (vbo != -1)
-                    glDeleteBuffers(vbo);
-            }
-            vbos=null;
-        }
-        if(vaoID!=-1)
-        {
-            glDeleteVertexArrays(vaoID);
-            vaoID=-1;
-        }
-
+        vao.dispose();
     }
 
 }

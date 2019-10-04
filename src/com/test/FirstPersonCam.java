@@ -4,8 +4,7 @@ import com.engine.events.EventManager;
 import com.engine.events.UpdateListener;
 import com.engine.inputs.Input;
 import com.engine.entities.Camera;
-import com.engine.rendering.Display;
-import org.joml.Matrix4f;
+import com.engine.rendering.Window;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
@@ -20,7 +19,7 @@ public class FirstPersonCam extends Camera implements UpdateListener {
         super(position, rotation, fov, viewDistance);
         EventManager.subscribeUpdate(this);
         this.speed=speed;
-        lastFrame =new Vector2f(Display.getWidth()/2,Display.getHeight()/2);
+        lastFrame =new Vector2f(Window.getWidth()/2, Window.getHeight()/2);
     }
 
     @Override
@@ -54,12 +53,12 @@ public class FirstPersonCam extends Camera implements UpdateListener {
 
         //rotation
         Vector2f mousePos=new Vector2f((float) Input.getMouseX(),(float) Input.getMouseY());
-        Vector2f change=new Vector2f((mousePos.x- lastFrame.x)/Display.getWidth(),(mousePos.y-lastFrame.y)/Display.getHeight());//% of screen the mouse travelled
+        Vector2f change=new Vector2f((mousePos.x- lastFrame.x)/ Window.getWidth(),(mousePos.y-lastFrame.y)/ Window.getHeight());//% of screen the mouse travelled
         if (mousePos.x<0+boderWidth)
         {
             change.x=-1f*deltaTime;
         }
-        else if (mousePos.x>Display.getWidth()-boderWidth)
+        else if (mousePos.x> Window.getWidth()-boderWidth)
         {
             change.x=1f*deltaTime;
         }
@@ -67,11 +66,11 @@ public class FirstPersonCam extends Camera implements UpdateListener {
         {
             change.y=-1f*deltaTime;
         }
-        else if(mousePos.y>Display.getHeight()-borderHeight)
+        else if(mousePos.y> Window.getHeight()-borderHeight)
         {
             change.y=1f*deltaTime;
         }
-        change.y*=(Camera.main.getFov()*Display.getAspectRatio());
+        change.y*=(Camera.main.getFov()* Window.getAspectRatio());
         change.x*=Camera.main.getFov();//degrees the mouse travelled
 
         this.transform.rotation.y+=change.x;

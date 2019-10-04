@@ -64,12 +64,7 @@ public class Renderer {
     public static void render() {
 
         for (Mesh mesh:renderQueue.keySet()) {
-            GL30.glBindVertexArray(mesh.getVaoID());
-
-            GL20.glEnableVertexAttribArray(ShaderProgram.VERTICES_ATTRIBUTE_ID);
-            GL20.glEnableVertexAttribArray(ShaderProgram.NORMALS_ATTRIBUTE_ID);
-            GL20.glEnableVertexAttribArray(ShaderProgram.UVS_ATTRIBUTE_ID);
-            GL20.glEnableVertexAttribArray(ShaderProgram.COLORS_ATTRIBUTE_ID);
+            mesh.bind();
             for (Material material: renderQueue.get(mesh).keySet()) {
                 material.bind();
                 List<MeshRenderer> batch=renderQueue.get(mesh).get(material);
@@ -81,12 +76,7 @@ public class Renderer {
                 }
                 material.unBind();
             }
-            GL20.glDisableVertexAttribArray(ShaderProgram.VERTICES_ATTRIBUTE_ID);
-            GL20.glDisableVertexAttribArray(ShaderProgram.NORMALS_ATTRIBUTE_ID);
-            GL20.glDisableVertexAttribArray(ShaderProgram.UVS_ATTRIBUTE_ID);
-            GL20.glDisableVertexAttribArray(ShaderProgram.COLORS_ATTRIBUTE_ID);
-
-            GL30.glBindVertexArray(0);
+            mesh.unBind();
         }
         renderQueue.clear();
     }
@@ -115,21 +105,10 @@ public class Renderer {
         Mesh mesh = meshRenderer.getMesh();
         material.bind();
         material.bindEntity(meshRenderer);
-        GL30.glBindVertexArray(mesh.getVaoID());
-
-        GL20.glEnableVertexAttribArray(ShaderProgram.VERTICES_ATTRIBUTE_ID);
-        GL20.glEnableVertexAttribArray(ShaderProgram.NORMALS_ATTRIBUTE_ID);
-        GL20.glEnableVertexAttribArray(ShaderProgram.UVS_ATTRIBUTE_ID);
-        GL20.glEnableVertexAttribArray(ShaderProgram.COLORS_ATTRIBUTE_ID);
-
+        mesh.bind();
         GL11.glDrawElements(GL11.GL_TRIANGLES, mesh.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
 
-        GL20.glDisableVertexAttribArray(ShaderProgram.VERTICES_ATTRIBUTE_ID);
-        GL20.glDisableVertexAttribArray(ShaderProgram.NORMALS_ATTRIBUTE_ID);
-        GL20.glDisableVertexAttribArray(ShaderProgram.UVS_ATTRIBUTE_ID);
-        GL20.glDisableVertexAttribArray(ShaderProgram.COLORS_ATTRIBUTE_ID);
-
-        GL30.glBindVertexArray(0);
+        mesh.unBind();
         material.unBind();
     }
 

@@ -20,7 +20,7 @@ import static org.lwjgl.system.MemoryUtil.NULL;
 /**
  * Represent an GLFW display.
  */
-public class Display{
+public class Window {
 
 
     private static GLFWErrorCallback errorCallback = GLFWErrorCallback.createPrint(System.err);

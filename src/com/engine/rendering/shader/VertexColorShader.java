@@ -1,6 +1,8 @@
 package com.engine.rendering.shader;
 
 
+import com.engine.geometry.VBO;
+
 /**
  * Inputs:
  * vertexPositions,
@@ -26,6 +28,6 @@ public class VertexColorShader extends DiffuseLightShader {
     @Override
     protected void bindAttributes() {
         super.bindAttributes();
-        super.bindAttribute(ShaderProgram.COLORS_ATTRIBUTE_ID,"vertexColor");
+        super.bindAttribute(VBO.COLORS_ATTRIBUTE_ID,"vertexColor");
     }
 }

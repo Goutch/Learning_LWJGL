@@ -17,17 +17,17 @@ public class MeshLoader {
         return GL30.glGenVertexArrays();
     }
 
-    public static int[] loadToVAO(int vao,float[] vertices, int[] indexes, float[] normals,float[] uvs,float[] colors)
-    {
-        GL30.glBindVertexArray(vao);
-        bindIndexesBuffer(indexes);
-        int verticesVBO=storeDataInAttributeList(ShaderProgram.VERTICES_ATTRIBUTE_ID,ShaderProgram.VERTICES_ATTRIBUTE_SIZE,vertices);
-        int normalsVBO=normals==null?-1:storeDataInAttributeList(ShaderProgram.NORMALS_ATTRIBUTE_ID,ShaderProgram.NORMALS_ATTRIBUTE_SIZE,normals);
-        int uvsVBO=uvs==null?-1:storeDataInAttributeList(ShaderProgram.UVS_ATTRIBUTE_ID,ShaderProgram.UVS_ATTRIBUTE_SIZE,uvs);
-        int colorsVBO=colors==null?-1:storeDataInAttributeList(ShaderProgram.COLORS_ATTRIBUTE_ID,ShaderProgram.COLORS_ATTRIBUTE_SIZE,colors);
-        unbindVOA();
-        return new int[]{verticesVBO,uvsVBO,normalsVBO,colorsVBO};
-    }
+    //public static int[] loadToVAO(int vao,float[] vertices, int[] indexes, float[] normals,float[] uvs,float[] colors)
+    //{
+    //   //GL30.glBindVertexArray(vao);
+    //   //bindIndexesBuffer(indexes);
+    //   //int verticesVBO=storeDataInAttributeList(ShaderProgram.VERTICES_ATTRIBUTE_ID,ShaderProgram.VERTICES_ATTRIBUTE_SIZE,vertices);
+    //   //int normalsVBO=normals==null?-1:storeDataInAttributeList(ShaderProgram.NORMALS_ATTRIBUTE_ID,ShaderProgram.NORMALS_ATTRIBUTE_SIZE,normals);
+    //   //int uvsVBO=uvs==null?-1:storeDataInAttributeList(ShaderProgram.UVS_ATTRIBUTE_ID,ShaderProgram.UVS_ATTRIBUTE_SIZE,uvs);
+    //   //int colorsVBO=colors==null?-1:storeDataInAttributeList(ShaderProgram.COLORS_ATTRIBUTE_ID,ShaderProgram.COLORS_ATTRIBUTE_SIZE,colors);
+    //   //unbindVOA();
+    //   //return new int[]{verticesVBO,uvsVBO,normalsVBO,colorsVBO};
+    //}
 
     private static int bindIndexesBuffer(int[] indexes){
         int vbo=GL15.glGenBuffers();
