@@ -31,7 +31,7 @@ public class PanelRenderer extends Entity implements RenderListener {
     RectPoint pivot;
     private Panel panel;
     private Texture texture;
-    private Color color=Color.TURQUOISE;
+    private Color color=new Color(1,1,0,0.5f);
     private GUIShader shader= Shaders.GUI_SHADER;
     public PanelRenderer(Panel panel, Vector3f position) {
         super(position, new Vector3f(0,0,0), 1f);

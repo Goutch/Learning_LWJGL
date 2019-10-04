@@ -5,6 +5,7 @@ import com.engine.core.GameOptions;
 import com.engine.entities.MeshRenderer;
 import com.engine.entities.Transform;
 import com.engine.entities.light.DirectionalLight;
+import com.engine.exemples.FirstPersonCam;
 import com.engine.geometry.*;
 
 import com.engine.entities.Camera;
@@ -18,7 +19,7 @@ import org.joml.Vector3f;
 import java.util.LinkedList;
 
 
-public class DummyGame implements GameLogic {
+public class LightTest implements GameLogic {
     LinkedList<MeshRenderer> cubes = new LinkedList<MeshRenderer>();
     MeshRenderer terrain;
     MeshRenderer dragon;
