@@ -67,40 +67,34 @@ public class BaseShader extends ShaderProgram implements ProjectionMatrixChangeL
         dampFactorLocation=getUniformLocation("dampFactor");
         materialColorLocation=getUniformLocation("materialColor");
     }
-    @Override
+
     public void loadPreRenderGeneralUniforms(){
-        super.loadPreRenderGeneralUniforms();
+
         loadViewMatrix(Camera.main.getViewMatrix());
     }
-    @Override
+
     public void loadPreRenderMaterialUniforms(Material material)
     {
-        super.loadPreRenderMaterialUniforms(material);
         loadMaterial(material);
     }
-    @Override
     public void loadPreRenderEntityUniforms(Entity entity)
     {
-        super.loadPreRenderEntityUniforms(entity);
         loadTransformMatrix(entity.transform.toTranformMatrix());
     }
-    @Override
     protected void bindAttributes() {
         super.bindAttribute(VBO.VERTICES_ATTRIBUTE_ID,"vertexPosition");
     }
-
-
     private void loadTransformMatrix(Matrix4f transformMatrix)
     {
-        loadMatrix(transformMatrixLocation,transformMatrix);
+        loadMatrixUniform(transformMatrixLocation,transformMatrix);
     }
     private void loadProjectionMatrix(Matrix4f projectionMatrix)
     {
-        loadMatrix(projectionMatrixLocation,projectionMatrix);
+        loadMatrixUniform(projectionMatrixLocation,projectionMatrix);
     }
     private void loadViewMatrix(Matrix4f viewMatrix)
     {
-        loadMatrix(viewMatrixLocation,viewMatrix);
+        loadMatrixUniform(viewMatrixLocation,viewMatrix);
     }
     private void loadMaterial(Material material)
     {

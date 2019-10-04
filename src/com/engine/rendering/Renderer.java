@@ -3,8 +3,10 @@ package com.engine.rendering;
 
 import com.engine.core.GameOptions;
 import com.engine.entities.MeshRenderer;
+import com.engine.entities.PanelRenderer;
 import com.engine.geometry.Material;
 import com.engine.geometry.Mesh;
+import com.engine.gui.Panel;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -77,7 +79,15 @@ public class Renderer {
         }
         renderQueue.clear();
     }
-
+    public static void render(PanelRenderer panel)
+    {
+        Mesh mesh=panel.getMesh();
+        panel.bindShader();
+        mesh.bind();
+        GL11.glDrawElements(GL11.GL_TRIANGLES,mesh.getVertexCount(), GL11.GL_UNSIGNED_INT,0);
+        mesh.unBind();
+        panel.unBindShader();
+    }
     public static void setWireframe(boolean wireframe) {
         if (!wireframe) {
             GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);

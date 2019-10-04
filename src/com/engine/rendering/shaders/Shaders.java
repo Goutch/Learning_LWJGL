@@ -6,4 +6,5 @@ public class Shaders {
     public static final DiffuseLightShader DIFFUSE_LIGHT_SHADER =new DiffuseLightShader();
     public static final TextureShader TEXTURE_SHADER=new TextureShader();
     public static final VertexColorShader VERTEX_COLOR_SHADER=new VertexColorShader();
+    public static final GUIShader GUI_SHADER=new GUIShader();
 }

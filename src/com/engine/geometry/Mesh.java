@@ -13,8 +13,6 @@ import static org.lwjgl.opengl.GL30.glDeleteVertexArrays;
  * Represent a mesh
  */
 public class Mesh implements DisposeListener {
-    //protected int vaoID = -1;
-    //protected int[] vbos = null;
     protected VAO vao;
     protected float[] vertices = null;
     protected int[] indices = null;

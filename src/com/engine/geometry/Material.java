@@ -1,6 +1,7 @@
 package com.engine.geometry;
 
 import com.engine.entities.Entity;
+import com.engine.rendering.shaders.BaseShader;
 import com.engine.rendering.shaders.ShaderProgram;
 import com.engine.rendering.shaders.Shaders;
 import com.engine.util.Color;
@@ -8,7 +9,7 @@ import com.engine.util.Texture;
 
 public class Material {
     public static Material DEFAULT=new Material();
-    private ShaderProgram shader= Shaders.BASE_SHADER;
+    private BaseShader shader= Shaders.BASE_SHADER;
     private float shineFactor =0;
     private float dampFactor =0;
     private Texture texture=null;
@@ -46,7 +47,7 @@ public class Material {
         return this;
     }
 
-    public Material shader(ShaderProgram shader)
+    public Material shader(BaseShader shader)
     {
         this.shader=shader;
         return this;

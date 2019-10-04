@@ -6,6 +6,7 @@ import com.engine.events.EventManager;
 import com.engine.geometry.Material;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
+import org.joml.Vector4f;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
@@ -47,14 +48,6 @@ public abstract class ShaderProgram implements DisposeListener {
         GL20.glUseProgram(programID);
     }
 
-    /**
-     * Called on render to load uniform to shader
-     * @param entity
-     */
-    public void loadPreRenderEntityUniforms(Entity entity){}
-    public void loadPreRenderMaterialUniforms(Material material){}
-    public void loadPreRenderGeneralUniforms(){}
-
     protected void initUniforms(){}
     public void stop()
     {
@@ -86,6 +79,9 @@ public abstract class ShaderProgram implements DisposeListener {
     {
         GL20.glUniform3f(location,vector.x,vector.y,vector.z);
     }
+    protected void loadVectorUniform(int location,Vector4f vector) {
+        GL20.glUniform4f(location,vector.x,vector.y,vector.z,vector.w);
+    }
     protected void loadBooleanUniform(int location, boolean value)
     {
         GL20.glUniform1f(location, (value) ? 1 : 0);
@@ -94,7 +90,7 @@ public abstract class ShaderProgram implements DisposeListener {
     {
         GL20.glUniform1i(location,value);
     }
-    protected void loadMatrix(int location, Matrix4f matrix)
+    protected void loadMatrixUniform(int location, Matrix4f matrix)
     {
         GL20.glUniformMatrix4fv(location, false, matrix.get(matrixBuffer));
     }

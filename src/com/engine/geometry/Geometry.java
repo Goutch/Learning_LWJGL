@@ -1,10 +1,6 @@
 package com.engine.geometry;
 
 public class Geometry {
-    // constants
-    private final static float PI = 3.1415926f;
-    private final static float H_ANGLE = PI / 180 * 72;    // 72 degree = 360 / 5
-    private final static float V_ANGLE = (float) Math.atan(1.0f / 2f);  // elevation = 26.565 degree
 
     public static Mesh getPlane(int sizeX, int sizeZ) {
         float[] vertices = new float[(sizeX + 1) * (sizeZ + 1) * 3];
@@ -39,5 +35,6 @@ public class Geometry {
         }
         return new Mesh(vertices, indices, normals);
     }
+
 
 }
