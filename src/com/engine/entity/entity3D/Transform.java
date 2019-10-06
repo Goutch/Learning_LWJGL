@@ -15,9 +15,9 @@ public class Transform {
     public static final Vector3f DOWN=new Vector3f(0,-1,0);
     public static final Vector3f RIGHT=new Vector3f(1,0,0);
     public static final Vector3f LEFT=new Vector3f(-1,0,0);
-    public Vector3f position;
-    public Vector3f rotation;
-    public float scale;
+    protected Vector3f position;
+    protected Vector3f rotation;
+    protected float scale;
     public Transform(Vector3f position,Vector3f rotation,float scale)
     {
         this.position=position;
@@ -35,4 +35,73 @@ public class Transform {
         matrix.scale(scale);
         return matrix;
     }
+    public void translate(Vector3f translation)
+    {
+        position.add(translation);
+    }
+    public void setPosition(Vector3f position)
+    {
+        this.position.set(position);
+    }
+    public Vector3f getPosition()
+    {
+        return new Vector3f().set(position);
+    }
+    public float px()
+    {
+        return position.x;
+    }
+    public void px(float x)
+    {
+        position.x=x;
+    }
+    public float py()
+    {
+        return position.y;
+    }
+    public void py(float y)
+    {
+        position.y=y;
+    }
+    public float pz()
+    {
+        return position.z;
+    }
+    public void pz(float z)
+    {
+        position.z=z;
+    }
+    public void rotate(Vector3f rotation)
+    {
+        this.rotation.add(rotation);
+    }
+    public Vector3f getRotation()
+    {
+        return new Vector3f().set(rotation);
+    }
+    public float rx()
+    {
+        return rotation.x;
+    }
+    public void rx(float x)
+    {
+       rotation.x=x;
+    }
+    public float ry()
+    {
+        return rotation.y;
+    }
+    public void ry(float y)
+    {
+        rotation.y=y;
+    }
+    public float rz()
+    {
+        return rotation.z;
+    }
+    public void rz(float z)
+    {
+        rotation.z=z;
+    }
+
 }

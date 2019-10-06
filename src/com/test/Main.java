@@ -5,7 +5,7 @@ import com.engine.core.GameLoop;
 public class Main {
 
     public static void main(String[] args) {
-        GameLoop.start(new GUITest());
+        GameLoop.start(new LightTest());
     }
 }
 

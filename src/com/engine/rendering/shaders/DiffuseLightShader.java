@@ -54,9 +54,9 @@ public class DiffuseLightShader extends BaseShader {
     }
 
     private void loadLight(){
-        if(DirectionalLight.main.transform.position!=null)
+        if(DirectionalLight.main!=null)
             loadVectorUniform(lightColorLocation,new Vector3f(DirectionalLight.main.color.r, DirectionalLight.main.color.g, DirectionalLight.main.color.b));
-            loadVectorUniform(lightPositionLocation, DirectionalLight.main.transform.position);
+            loadVectorUniform(lightPositionLocation, DirectionalLight.main.transform.getPosition());
             loadFloatUniform(ambientLightLocation, GameOptions.AMBIENT_LIGHT);
     }
 

@@ -2,6 +2,7 @@ package com.test;
 
 import com.engine.core.GameLogic;
 import com.engine.core.GameOptions;
+import com.engine.entity.entity3D.Entity3D;
 import com.engine.entity.entity3D.MeshRenderer;
 import com.engine.entity.entity3D.Transform;
 import com.engine.exemples.FirstPersonCam;
@@ -49,7 +50,7 @@ public class LightTest implements GameLogic {
                 daragonMat);
 
         float range=25;
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             cubes.add(new MeshRenderer(
                     getRandomVector(-range,range,0,range,-range,range),
                     getRandomVector(0,360,0,360,0,360),
@@ -57,7 +58,7 @@ public class LightTest implements GameLogic {
                     sphereMesh,
                     sphereMat));
         }
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10000; i++) {
             cubes.add(new MeshRenderer(
                     getRandomVector(-range,range,0,range,-range,range),
                     getRandomVector(0,360,0,360,0,360),
@@ -88,7 +89,11 @@ public class LightTest implements GameLogic {
 
     @Override
     public void update(float delta) {
-
+        Vector3f rotation=new Vector3f(1,1,1);
+        for (Entity3D e:
+             cubes) {
+            e.transform.rotate(rotation);
+        }
         //DirectionalLight.main.transform.position=Camera.main.transform.position;
     }
 
