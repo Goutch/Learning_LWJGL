@@ -1,9 +1,7 @@
 package com.engine.rendering.shaders;
 
-import com.engine.entities.Entity;
 import com.engine.events.DisposeListener;
 import com.engine.events.EventManager;
-import com.engine.geometry.Material;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;

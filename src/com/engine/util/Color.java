@@ -6,13 +6,20 @@ import org.joml.Vector4f;
 public class Color {
 
     public static Color RED=new Color(1,0,0,1);
+    public static Color ORANGE=new Color(1,0.5f,0,1);
     public static Color YELLOW=new Color(1,1,0,1);
     public static Color GREEN=new Color(0,1,0,1);
     public static Color TURQUOISE=new Color(0,1,1,1);
     public static Color BLUE=new Color(0,0,1,1);
-    public static Color PURPLE=new Color(1,0,1,1);
+    public static Color PURPLE=new Color(0.5f,0,1,1);
+    public static Color PINK=new Color(1,0,1,1);
     public static Color WHITE=new Color(1,1,1,1);
+    public static Color GRAY=new Color(0.5f,0.5f,0.5f,1);
     public static Color BLACK=new Color(0,0,0,1);
+    public static Color random()
+    {
+        return new Color((float)Math.random(),(float) Math.random(),(float)Math.random(),1);
+    }
 
     public float r=1,g=1,b=1,a=1;
     public Color(float r,float g,float b,float a){

@@ -4,26 +4,25 @@ import com.engine.events.DisposeListener;
 
 import org.lwjgl.opengl.GL30;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 import static org.lwjgl.opengl.GL30.glDeleteVertexArrays;
 
 public class VAO implements DisposeListener {
     private int id=-1;
-    private List<VBO> vbos;
+    private HashMap<Integer,VBO> vbos;
     private VBO indices=null;
     public VAO()
     {
         id=GL30.glGenVertexArrays();
-        vbos=new ArrayList<VBO>();
+        vbos=new HashMap<Integer, VBO>();
     }
 
     public void bind()
     {
         GL30.glBindVertexArray(id);
-        for (VBO vbo:vbos)
+        for (VBO vbo:vbos.values())
         {
             vbo.bind();
         }
@@ -31,7 +30,7 @@ public class VAO implements DisposeListener {
     }
     public void unbind()
     {
-        for (VBO vbo:vbos)
+        for (VBO vbo:vbos.values())
         {
             vbo.unBind();
         }
@@ -41,11 +40,11 @@ public class VAO implements DisposeListener {
     {
         GL30.glBindVertexArray(id);
         VBO vbo=new VBO(position,size,data);
-        clear(position);
-        vbos.add(vbo);
+        remove(position);
+        vbos.put(position,vbo);
         GL30.glBindVertexArray(0);
     }
-    public void setindices(int[] data)
+    public void setIndices(int[] data)
     {
         if(indices!=null)
             indices.dispose();
@@ -54,10 +53,10 @@ public class VAO implements DisposeListener {
         GL30.glBindVertexArray(0);
     }
 
-    public void clearAll()
+    public void clear()
     {
         for (int i = 0; i <vbos.size() ; i++) {
-            clear(i);
+            remove(i);
         }
         if(indices!=null)
         {
@@ -67,21 +66,18 @@ public class VAO implements DisposeListener {
 
         vbos.clear();
     }
-    public void clear(int position)
+    public void remove(int position)
     {
-        int index=-1;
-        for (int i = 0; i <vbos.size() ; i++) {
-            if(vbos.get(i).getPosition()==position)
-                index=i;
+        if(vbos.containsKey(position))
+        {
+            vbos.get(position).dispose();
+            vbos.remove(position);
         }
-        if(index!=-1) {
-            vbos.get(index).dispose();
-            vbos.remove(index);
-        }
+
     }
     @Override
     public void dispose() {
-        for (VBO vbo:vbos)
+        for (VBO vbo:vbos.values())
         {
             vbo.dispose();
         }

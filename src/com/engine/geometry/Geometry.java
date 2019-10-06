@@ -33,7 +33,7 @@ public class Geometry {
             normals[i * 3 + 1] = 1;
             normals[i * 3 + 2] = 0;
         }
-        return new Mesh(vertices, indices, normals);
+        return new Mesh().vertices(vertices).indices(indices).normals(normals).build();
     }
 
 

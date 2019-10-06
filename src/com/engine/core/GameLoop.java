@@ -2,7 +2,7 @@ package com.engine.core;
 
 import com.engine.events.EventManager;
 import com.engine.inputs.Input;
-import com.engine.entities.Camera;
+import com.engine.entity.entity3D.Camera;
 import com.engine.rendering.Window;
 import com.engine.rendering.Renderer;
 import org.joml.Vector3f;
@@ -27,13 +27,15 @@ public class GameLoop {
      */
     public static void start(GameLogic gameLogicListener) {
         gameLogic = gameLogicListener;
+        if (running)
+            return;
+        running = true;
         gameLoopThread = new Thread() {
             public void run() {
 
-                if (running)
-                    return;
 
-                running = true;
+
+
 
                 init();
 

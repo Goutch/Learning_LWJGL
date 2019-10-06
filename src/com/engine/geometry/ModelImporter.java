@@ -4,9 +4,7 @@ package com.engine.geometry;
 import java.io.*;
 import java.util.ArrayList;
 
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 public class ModelImporter {
 
@@ -126,7 +124,11 @@ public class ModelImporter {
             }
             if (uvsArray.length==0)uvsArray=null;
             if(normalsArray.length==0)normalsArray=null;
-            return new Mesh(verticesArray, indicesArray, normalsArray, uvsArray);
+            return new Mesh()
+                    .vertices(verticesArray)
+                    .indices(indicesArray)
+                    .normals(normalsArray)
+                    .uvs(uvsArray).build();
 
         } catch (IOException e) {
             e.printStackTrace();

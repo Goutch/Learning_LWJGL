@@ -1,8 +1,9 @@
 package com.engine.geometry;
 
-import com.engine.entities.Entity;
+
+import com.engine.entity.entity3D.Entity3D;
 import com.engine.rendering.shaders.BaseShader;
-import com.engine.rendering.shaders.ShaderProgram;
+
 import com.engine.rendering.shaders.Shaders;
 import com.engine.util.Color;
 import com.engine.util.Texture;
@@ -36,7 +37,7 @@ public class Material {
         }
         shader.stop();
     }
-    public void bindEntity(Entity entity)
+    public void bindEntity(Entity3D entity)
     {
         shader.loadPreRenderEntityUniforms(entity);
     }

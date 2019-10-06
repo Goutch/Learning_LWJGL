@@ -1,12 +1,11 @@
-package com.engine.entities;
+package com.engine.entity.entity3D;
 
-import com.engine.events.RenderListener;
 import com.engine.geometry.Material;
 import com.engine.geometry.Mesh;
 import com.engine.rendering.Renderer;
 import org.joml.Vector3f;
 
-public class MeshRenderer extends Entity implements RenderListener {
+public class MeshRenderer extends Entity3D{
 
     private Mesh mesh;
     private Material material;
@@ -38,6 +37,7 @@ public class MeshRenderer extends Entity implements RenderListener {
 
     @Override
     public void render() {
+        super.render();
         Renderer.addToRenderQueue(this);
     }
 }

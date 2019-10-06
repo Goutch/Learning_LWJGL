@@ -3,7 +3,7 @@ package com.engine.exemples;
 import com.engine.events.EventManager;
 import com.engine.events.UpdateListener;
 import com.engine.inputs.Input;
-import com.engine.entities.Camera;
+import com.engine.entity.entity3D.Camera;
 import com.engine.rendering.Window;
 import org.joml.Vector2f;
 import org.joml.Vector3f;

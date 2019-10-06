@@ -1,10 +1,8 @@
 package com.engine.rendering.shaders;
 
 import com.engine.core.GameOptions;
-import com.engine.entities.Entity;
-import com.engine.entities.light.DirectionalLight;
+import com.engine.entity.entity3D.light.DirectionalLight;
 import com.engine.geometry.VBO;
-import com.engine.geometry.Material;
 import org.joml.Vector3f;
 /**
  * Inputs:

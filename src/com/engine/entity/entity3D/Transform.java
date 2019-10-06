@@ -1,4 +1,4 @@
-package com.engine.entities;
+package com.engine.entity.entity3D;
 
 import org.joml.Matrix4f;
 import org.joml.Vector3f;

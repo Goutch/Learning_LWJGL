@@ -2,11 +2,10 @@ package com.engine.rendering;
 
 
 import com.engine.core.GameOptions;
-import com.engine.entities.MeshRenderer;
-import com.engine.entities.PanelRenderer;
+import com.engine.entity.entity3D.MeshRenderer;
+import com.engine.entity.entity2D.gui.Panel;
 import com.engine.geometry.Material;
 import com.engine.geometry.Mesh;
-import com.engine.gui.Panel;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -83,7 +82,7 @@ public class Renderer {
         }
         renderQueue.clear();
     }
-    public static void render(PanelRenderer panel)
+    public static void render(Panel panel)
     {
         Mesh mesh=panel.getMesh();
         panel.bindShader();

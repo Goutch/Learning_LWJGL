@@ -1,9 +1,9 @@
 package com.engine.rendering.shaders;
 
-import com.engine.entities.Entity;
+import com.engine.entity.entity3D.Entity3D;
 import com.engine.events.EventManager;
 import com.engine.events.ProjectionMatrixChangeListener;
-import com.engine.entities.Camera;
+import com.engine.entity.entity3D.Camera;
 import com.engine.geometry.VBO;
 import com.engine.geometry.Material;
 import org.joml.Matrix4f;
@@ -77,7 +77,7 @@ public class BaseShader extends ShaderProgram implements ProjectionMatrixChangeL
     {
         loadMaterial(material);
     }
-    public void loadPreRenderEntityUniforms(Entity entity)
+    public void loadPreRenderEntityUniforms(Entity3D entity)
     {
         loadTransformMatrix(entity.transform.toTranformMatrix());
     }

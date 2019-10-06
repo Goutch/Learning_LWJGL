@@ -2,13 +2,12 @@ package com.test;
 
 import com.engine.core.GameLogic;
 import com.engine.core.GameOptions;
-import com.engine.entities.MeshRenderer;
-import com.engine.entities.Transform;
-import com.engine.entities.light.DirectionalLight;
+import com.engine.entity.entity3D.MeshRenderer;
+import com.engine.entity.entity3D.Transform;
 import com.engine.exemples.FirstPersonCam;
 import com.engine.geometry.*;
 
-import com.engine.entities.Camera;
+import com.engine.entity.entity3D.Camera;
 import com.engine.rendering.Window;
 import com.engine.geometry.Material;
 import com.engine.rendering.shaders.Shaders;
@@ -30,10 +29,10 @@ public class LightTest implements GameLogic {
         //camera
         Camera.setMainCamera(new FirstPersonCam(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), 90, 10, 3));
 
-        Material daragonMat=new Material().color(new Color(.6f,.6f,0f,1f)).shader(Shaders.DIFFUSE_LIGHT_SHADER).shineFactor(10f).dampFactor(10);
+        Material daragonMat=new Material().color(new Color(.6f,.6f,0f,1f)).shader(Shaders.DIFFUSE_LIGHT_SHADER).shineFactor(1f).dampFactor(10);
         Material cubeMat=new Material().shader(Shaders.VERTEX_COLOR_SHADER);
-        Material sphereMat=new Material().shader(Shaders.DIFFUSE_LIGHT_SHADER).color(Color.BLUE).shineFactor(10f).dampFactor(1);
-        Material walnutMat=new Material().texture(new Texture("res/models/walnut.jpg")).shader(Shaders.TEXTURE_SHADER).color(Color.BLUE);
+        Material sphereMat=new Material().shader(Shaders.DIFFUSE_LIGHT_SHADER).shineFactor(1f).dampFactor(20f);
+        Material walnutMat=new Material().texture(new Texture("res/models/walnut.jpg")).shader(Shaders.TEXTURE_SHADER).shineFactor(1f).dampFactor(10f);
         Material terrainMat=new Material().color(Color.GREEN).shader(Shaders.DIFFUSE_LIGHT_SHADER);
         Mesh dragonMesh=ModelImporter.ImportModel("res/models/dragon.obj");
         Mesh cubeMesh = ModelImporter.ImportModel("res/models/cube.obj");
@@ -50,7 +49,7 @@ public class LightTest implements GameLogic {
                 daragonMat);
 
         float range=25;
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             cubes.add(new MeshRenderer(
                     getRandomVector(-range,range,0,range,-range,range),
                     getRandomVector(0,360,0,360,0,360),
@@ -58,7 +57,7 @@ public class LightTest implements GameLogic {
                     sphereMesh,
                     sphereMat));
         }
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             cubes.add(new MeshRenderer(
                     getRandomVector(-range,range,0,range,-range,range),
                     getRandomVector(0,360,0,360,0,360),
@@ -82,7 +81,7 @@ public class LightTest implements GameLogic {
             i++;
             cubeColors[i] = Color.BLUE;
         }
-        cubeMesh.setColors(cubeColors);
+        cubeMesh.colors(cubeColors);
         cubeMesh.build();
 
     }
@@ -90,7 +89,7 @@ public class LightTest implements GameLogic {
     @Override
     public void update(float delta) {
 
-        DirectionalLight.main.transform.position=Camera.main.transform.position;
+        //DirectionalLight.main.transform.position=Camera.main.transform.position;
     }
 
     @Override
@@ -111,8 +110,8 @@ public class LightTest implements GameLogic {
 
     private Vector3f getRandomVector(float minX,float maxX,float minY,float maxY,float minZ,float maxZ){
         return  new Vector3f(
-                (float) (Math.random() * maxX) +minX,
-                 (float) (Math.random() * maxY) +minY,
-                (float) (Math.random() * maxZ) +minZ);
+                (float) (Math.random() * Math.abs(maxX-minX)) +minX,
+                 (float) (Math.random() * Math.abs(maxY-minY)) +minY,
+                (float) (Math.random() * Math.abs(maxZ-minZ)) +minZ);
     }
 }

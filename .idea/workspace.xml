@@ -2,12 +2,43 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5186e4fe-f434-4ecb-ab20-90d6f3767f00" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/engine/entity/Entity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/engine/entity/entity2D/Entity2D.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/engine/entity/entity2D/RectTranform.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/engine/entity/entity2D/gui/Panel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/engine/entity/entity3D/Entity3D.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/engine/gui/GUIComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Renderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Renderer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/entities/PanelRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entities/PanelRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/util/Color.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/util/Color.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/DummyGame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/core/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/core/GameLoop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/entities/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/entity3D/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/entities/Entity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/entities/MeshRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/entity3D/MeshRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/entities/PanelRenderer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/entities/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/entity3D/Transform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/entities/light/DirectionalLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/entity3D/light/DirectionalLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/entities/light/Light.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/entity3D/light/Light.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/entities/light/PointLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/entity3D/light/PointLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/exemples/FirstPersonCam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/exemples/FirstPersonCam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/Geometry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/Geometry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/Material.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/Mesh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/Mesh.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/ModelImporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/ModelImporter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/VAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/VAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/gui/Panel.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/Renderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/test/DummyGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/LightTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/test/FirstPersonCam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/exemples/FirstPersonCam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/Window.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/BaseShader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shaders/BaseShader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/DiffuseLightShader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shaders/DiffuseLightShader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/GUIShader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shaders/GUIShader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/ShaderProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shaders/ShaderProgram.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/util/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/util/Color.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/test/GUITest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/GUITest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/test/LightTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/LightTest.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -107,7 +138,7 @@
       <workItem from="1570059621787" duration="11971000" />
       <workItem from="1570106576727" duration="19128000" />
       <workItem from="1570149636537" duration="4354000" />
-      <workItem from="1570200336511" duration="16599000" />
+      <workItem from="1570200336511" duration="38868000" />
     </task>
     <servers />
   </component>
@@ -132,17 +163,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/engine/rendering/shaders/GUIShader.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/LWJGL_Engine$Main.ic" NAME="Main Coverage Results" MODIFIED="1569377188097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

@@ -1,11 +1,11 @@
-package com.engine.entities;
+package com.engine.entity.entity3D;
 
 import com.engine.events.EventManager;
 import com.engine.rendering.Window;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
-public class Camera extends Entity {
+public class Camera extends Entity3D {
     public static Camera main=null;
     private float fov = 90;
     private float nearPlane = 0.1f;
@@ -52,7 +52,7 @@ public class Camera extends Entity {
     {
         viewMatrix=new Matrix4f();
         viewMatrix.identity();
-        viewMatrix.rotate((float)Math.toRadians(transform.rotation.x),Transform.RIGHT);
+        viewMatrix.rotate((float)Math.toRadians(transform.rotation.x), Transform.RIGHT);
         viewMatrix.rotate((float)Math.toRadians(transform.rotation.y),Transform.UP);
 
         viewMatrix.rotate((float)Math.toRadians(transform.rotation.z),Transform.FOWARD);

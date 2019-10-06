@@ -1,11 +1,11 @@
-package com.engine.entities.light;
+package com.engine.entity.entity3D.light;
 
-import com.engine.entities.Entity;
-import com.engine.entities.Transform;
+import com.engine.entity.entity3D.Entity3D;
+import com.engine.entity.entity3D.Transform;
 import com.engine.util.Color;
 import org.joml.Vector3f;
 
-public class DirectionalLight extends Entity {
+public class DirectionalLight extends Entity3D {
     public static DirectionalLight main=new DirectionalLight(new Vector3f(0,10,0), Transform.ZERO,Color.WHITE,10);
     float intensity=10;
     public Color color;

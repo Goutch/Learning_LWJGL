@@ -1,4 +1,4 @@
-package com.engine.entities.light;
+package com.engine.entity.entity3D.light;
 
 import com.engine.util.Color;
 import org.joml.Vector3f;

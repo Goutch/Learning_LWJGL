@@ -1,18 +1,19 @@
 package com.test;
 
 import com.engine.core.GameLogic;
-import com.engine.entities.PanelRenderer;
-import com.engine.gui.Panel;
-import org.joml.Vector2i;
+import com.engine.entity.entity2D.RectTranform;
+import com.engine.entity.entity2D.gui.Panel;
+import com.engine.util.Color;
+import org.joml.Vector2f;
 import org.joml.Vector3f;
 
+
 public class GUITest implements GameLogic {
-    PanelRenderer panel;
+    Panel panel;
     @Override
     public void init() {
-
-        panel=new PanelRenderer(new Panel(new Vector2i(1,1)),new Vector3f(0,0,0));
-
+        panel=new Panel(new Vector3f(),0, new Vector2f(1,1), RectTranform.PivotPoint.CENTER, Color.WHITE);
+        panel.addPanel(new Panel(new Vector3f(),0,new Vector2f(0.5f,0.5f), RectTranform.PivotPoint.BOTTOM_CENTER,Color.ORANGE));
     }
 
     @Override

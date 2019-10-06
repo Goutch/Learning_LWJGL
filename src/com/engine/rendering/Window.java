@@ -67,6 +67,7 @@ public class Window {
         });
 
 
+        EventManager.onWindowResize(width,height);
         if(GameOptions.VSYNC)
         {
             glfwSwapInterval(1);

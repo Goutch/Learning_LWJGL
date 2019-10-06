@@ -20,71 +20,41 @@ public class Mesh implements DisposeListener {
     protected float[] colors = null;
     protected float[] uvs = null;
 
-    public void init() {
+    public Mesh() {
         EventManager.subscribeDispose(this);
         vao=new VAO();
     }
-
-    public Mesh() {
-        init();
+    public Mesh vertices(float[] vertices)
+    {
+        this.vertices=vertices;
+        return this;
+    }
+    public Mesh indices(int[] indices)
+    {
+        this.indices= indices;
+        return this;
+    }
+    public Mesh normals(float[] normals)
+    {
+        this.normals=normals;
+        return this;
     }
 
-
-    public Mesh(float[] vertices, int[] indices) {
-        init();
-        this.vertices = vertices;
-        this.indices = indices;
-        build();
+    public Mesh uvs(float[] uvs)
+    {
+        this.uvs=uvs;
+        return this;
     }
 
-    public Mesh(float[] vertices, int[] indices, float[] normals) {
-        init();
-        this.normals = normals;
-        this.vertices = vertices;
-        this.indices = indices;
-        build();
-    }
-    public Mesh(float[] vertices, int[] indices,Color[] colors) {
-        init();
-        this.vertices = vertices;
-        this.indices = indices;
+    public Mesh colors(Color[] colors)
+    {
         setColors(colors);
-        build();
+        return this;
     }
-    public Mesh(float[] vertices, int[] indices,Color color) {
-        init();
-        this.vertices = vertices;
-        this.indices = indices;
-        setColors(color);
-        build();
-    }
-
-
-    public Mesh(float[] vertices, int[] indices, float[] normals, Color[] colors) {
-        init();
-        this.vertices = vertices;
-        this.indices = indices;
-        this.normals = normals;
+    public Mesh colors(float[] colors)
+    {
         setColors(colors);
-        build();
-    }
-
-    public Mesh(float[] vertices, int[] indices, float[] normals, Color color) {
-        init();
-        this.vertices = vertices;
-        this.indices = indices;
-        this.normals = normals;
-        setColors(color);
-        build();
-    }
-
-    public Mesh(float[] vertices, int[] indexes, float[] normals, float[] uvs) {
-        init();
-        this.vertices = vertices;
-        this.indices = indexes;
-        this.normals = normals;
-        this.uvs = uvs;
-        build();
+        return this;
     }
 
     public void bind()
@@ -95,20 +65,25 @@ public class Mesh implements DisposeListener {
     {
         vao.unbind();
     }
+    public void buildVertices()
+    {
+        vao.put(vertices,VBO.VERTICES_ATTRIBUTE_ID,VBO.VERTICES_ATTRIBUTE_SIZE);
+    }
+
     /*
      * bind the vertices,indices,normals,etc to the vao
      */
-    public void build() {
-        if (vertices != null && indices != null) {
-            vao.clearAll();
-            vao.setindices(indices);
+    public Mesh build() {
+        if (vao!=null&&vertices != null && indices != null) {
+            vao.setIndices(indices);
             vao.put(vertices,VBO.VERTICES_ATTRIBUTE_ID,VBO.VERTICES_ATTRIBUTE_SIZE);
             if(normals!=null)vao.put(normals,VBO.NORMALS_ATTRIBUTE_ID,VBO.NORMALS_ATTRIBUTE_SIZE);
             if(uvs!=null)vao.put(uvs,VBO.UVS_ATTRIBUTE_ID,VBO.UVS_ATTRIBUTE_SIZE);
             if(colors!=null)vao.put(colors,VBO.COLORS_ATTRIBUTE_ID,VBO.COLORS_ATTRIBUTE_SIZE);
         } else {
-            System.err.println("Cant build mesh, the minimum requirement is a vertices and indices array");
+            System.err.println("Cant build mesh,you must initialize the mesh and the minimum requirement is a vertices and indices array");
         }
+        return this;
     }
 
     public int getVertexCount() {
@@ -132,11 +107,11 @@ public class Mesh implements DisposeListener {
         return indices;
     }
 
-    public void setColors(float[] colors) {
+    private void setColors(float[] colors) {
         this.colors = colors;
     }
 
-    public void setColors(Color color) {
+    private void setColors(Color color) {
         if (color != null) {
             colors = new float[(getVertexCount() / 3) * 4];
             for (int i = 0; i < (colors.length / 4); i++) {
@@ -148,7 +123,7 @@ public class Mesh implements DisposeListener {
         } else this.colors = null;
     }
 
-    public void setColors(Color[] colors) {
+    private void setColors(Color[] colors) {
         if (colors != null) {
             this.colors = new float[colors.length * 4];
             for (int i = 0; i < colors.length; i++) {
