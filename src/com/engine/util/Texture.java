@@ -27,6 +27,10 @@ public class Texture implements DisposeListener {
         EventManager.subscribeDispose(this);
         texture = load(path);
     }
+    public Texture(int width,int height)
+    {
+
+    }
 
     private int load(String path) {
         int[] pixels = null;
@@ -49,7 +53,10 @@ public class Texture implements DisposeListener {
 
             data[i] = a << 24 | b << 16 | g << 8 | r;
         }
-
+        return createTexture(data);
+    }
+    private int createTexture(int[] data)
+    {
         int result = glGenTextures();
         glBindTexture(GL_TEXTURE_2D, result);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
@@ -64,7 +71,6 @@ public class Texture implements DisposeListener {
         glBindTexture(GL_TEXTURE_2D, 0);
         return result;
     }
-
     public void bind() {
         glBindTexture(GL_TEXTURE_2D, texture);
     }

@@ -1,7 +1,7 @@
 package com.engine.geometry;
 
 
-import com.engine.entity.entity3D.Entity3D;
+import com.engine.entity.Entity;
 import com.engine.rendering.shaders.BaseShader;
 
 import com.engine.rendering.shaders.Shaders;
@@ -37,7 +37,7 @@ public class Material {
         }
         shader.stop();
     }
-    public void bindEntity(Entity3D entity)
+    public void bindEntity(Entity entity)
     {
         shader.loadPreRenderEntityUniforms(entity);
     }

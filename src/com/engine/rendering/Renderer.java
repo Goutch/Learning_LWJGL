@@ -2,10 +2,11 @@ package com.engine.rendering;
 
 
 import com.engine.core.GameOptions;
-import com.engine.entity.entity3D.MeshRenderer;
-import com.engine.entity.entity2D.gui.Panel;
+import com.engine.entity.MeshRenderer;
+
 import com.engine.geometry.Material;
 import com.engine.geometry.Mesh;
+import org.lwjgl.opengl.GL;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -14,15 +15,10 @@ import java.util.List;
 
 
 public class Renderer {
-    public static HashMap<Mesh, HashMap<Material,List<MeshRenderer>>> renderQueue=new HashMap<Mesh, HashMap<Material,List<MeshRenderer>>>();
+    private static HashMap<Mesh, HashMap<Material,List<MeshRenderer>>> renderQueue=new HashMap<Mesh, HashMap<Material,List<MeshRenderer>>>();
     public static void init() {
-        GL11.glEnable(GL11.GL_CULL_FACE);
-        GL11.glCullFace(GL11.GL_BACK);
-        GL11.glEnable(GL11.GL_DEPTH_TEST);
-        //enable alpha
-        GL11.glEnable(GL11.GL_BLEND);
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA,GL11.GL_ONE_MINUS_SRC_ALPHA);
 
+        GL11.glCullFace(GL11.GL_BACK);
         GL11.glClearColor(GameOptions.CLEAR_COLOR.r, GameOptions.CLEAR_COLOR.b, GameOptions.CLEAR_COLOR.g, GameOptions.CLEAR_COLOR.a);
         clear();
 
@@ -64,7 +60,8 @@ public class Renderer {
      * render mesh in render queue
      */
     public static void render() {
-
+        GL11.glEnable(GL11.GL_CULL_FACE);
+        GL11.glEnable(GL11.GL_DEPTH_TEST);
         for (Mesh mesh:renderQueue.keySet()) {
             mesh.bind();
             for (Material material: renderQueue.get(mesh).keySet()) {
@@ -81,16 +78,10 @@ public class Renderer {
             mesh.unBind();
         }
         renderQueue.clear();
+        GL11.glDisable(GL11.GL_CULL_FACE);
+        GL11.glDisable(GL11.GL_DEPTH_TEST);
     }
-    public static void render(Panel panel)
-    {
-        Mesh mesh=panel.getMesh();
-        panel.bindShader();
-        mesh.bind();
-        GL11.glDrawElements(GL11.GL_TRIANGLES,mesh.getVertexCount(), GL11.GL_UNSIGNED_INT,0);
-        mesh.unBind();
-        panel.unBindShader();
-    }
+
     public static void setWireframe(boolean wireframe) {
         if (!wireframe) {
             GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);

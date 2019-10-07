@@ -43,7 +43,7 @@ public class Window {
     {
         width=windowWidth;
         height=windowHeight;
-        aspectRatio=(float) height/width;
+        aspectRatio=(float) width/height;
         if(!GLFW.glfwInit())
             throw new IllegalStateException("Unable to initialize GLFW");
 
@@ -61,7 +61,7 @@ public class Window {
         GLFW.glfwSetWindowSizeCallback(window,(window,w,h)->{
             width=w;
             height=h;
-            aspectRatio=(float) height/width;
+            aspectRatio=(float) width/height;
             glViewport(0,0,width,height);
             EventManager.onWindowResize(w,h);
         });
@@ -80,7 +80,10 @@ public class Window {
         GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
         glfwSetWindowPos(window, (vidmode.width() - width) / 2, (vidmode.height() - height) / 2);
     }
-
+    public static float GetAspectRatio()
+    {
+        return aspectRatio;
+    }
     public static void getInputs()
     {
         glfwPollEvents();

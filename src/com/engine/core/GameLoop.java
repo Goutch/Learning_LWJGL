@@ -2,7 +2,8 @@ package com.engine.core;
 
 import com.engine.events.EventManager;
 import com.engine.inputs.Input;
-import com.engine.entity.entity3D.Camera;
+import com.engine.entity.Camera;
+import com.engine.rendering.GUIRenderer;
 import com.engine.rendering.Window;
 import com.engine.rendering.Renderer;
 import org.joml.Vector3f;
@@ -33,10 +34,6 @@ public class GameLoop {
         gameLoopThread = new Thread() {
             public void run() {
 
-
-
-
-
                 init();
 
                 long current = System.currentTimeMillis();
@@ -64,6 +61,7 @@ public class GameLoop {
 
         Window.createDisplay(GameOptions.WINDOW_START_WIDTH, GameOptions.WINDOW_START_HEIGHT, GameOptions.TITLE);
         Renderer.init();
+        GUIRenderer.init();
         Input.init(Window.getWindow());
         Camera.setMainCamera(new Camera(new Vector3f(0,0,0),new Vector3f(0,0,0),90,1000));
         gameLogic.init();
@@ -101,6 +99,7 @@ public class GameLoop {
         gameLogic.render();
         EventManager.onRender();
         Renderer.render();
+        GUIRenderer.render();
         window.swapBuffers();
     }
 

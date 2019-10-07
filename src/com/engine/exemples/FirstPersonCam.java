@@ -3,7 +3,7 @@ package com.engine.exemples;
 import com.engine.events.EventManager;
 import com.engine.events.UpdateListener;
 import com.engine.inputs.Input;
-import com.engine.entity.entity3D.Camera;
+import com.engine.entity.Camera;
 import com.engine.rendering.Window;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
@@ -73,7 +73,7 @@ public class FirstPersonCam extends Camera implements UpdateListener {
         change.y*=(Camera.main.getFov()* Window.getAspectRatio());
         change.x*=Camera.main.getFov();//degrees the mouse travelled
 
-        this.transform.rotate(new Vector3f(0,change.x,0));
+        rotate(new Vector3f(0,change.x,0));
         //this.transform.rotation.x+=change.y*(float)Math.abs(Math.cos(Math.toRadians(transform.rotation.y)))*((transform.rotation.y%180)/180);
         //this.transform.rotation.z+=change.y*(float)Math.abs(Math.cos(Math.toRadians(transform.rotation.y)))*(((transform.rotation.y+90)%180)/180);
 
@@ -81,19 +81,19 @@ public class FirstPersonCam extends Camera implements UpdateListener {
         Vector3f translation=new Vector3f();
         if(dir.x!=0)
         {
-            translation.x+=dir.x*speed*deltaTime*(float)Math.cos(Math.toRadians(transform.ry()));
-            translation.z+=dir.x*speed*deltaTime*(float)Math.sin(Math.toRadians(transform.ry()));
+            translation.x+=dir.x*speed*deltaTime*(float)Math.cos(Math.toRadians(lry()));
+            translation.z+=dir.x*speed*deltaTime*(float)Math.sin(Math.toRadians(lry()));
         }
         if(dir.z!=0)
         {
-            translation.x+=dir.z*speed*deltaTime*(float)Math.cos(Math.toRadians(transform.ry()-90));
-            translation.z+=dir.z*speed*deltaTime*(float)Math.sin(Math.toRadians(transform.ry()-90));
+            translation.x+=dir.z*speed*deltaTime*(float)Math.cos(Math.toRadians(lry()-90));
+            translation.z+=dir.z*speed*deltaTime*(float)Math.sin(Math.toRadians(lry()-90));
         }
         if(dir.y!=0)
         {
             translation.y+=dir.y*speed*deltaTime;
         }
-        transform.translate(translation);
+        translate(translation);
         lastFrame =mousePos;
     }
 }

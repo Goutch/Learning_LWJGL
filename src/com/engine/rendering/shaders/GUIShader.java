@@ -1,6 +1,6 @@
 package com.engine.rendering.shaders;
 
-import com.engine.entity.entity2D.gui.Panel;
+import com.engine.entity.gui.Panel;
 import com.engine.geometry.VBO;
 
 import com.engine.util.Color;
@@ -21,7 +21,7 @@ public class GUIShader extends ShaderProgram {
     public void loadPreRenderPanelUniforms(Panel panel)
     {
         loadPanelColor(panel.getColor());
-        loadTransformMatrix(panel.transform.toTranformMatrix());
+        loadTransformMatrix(panel.getTransformMatrix());
     }
     @Override
     protected void bindAttributes() {
