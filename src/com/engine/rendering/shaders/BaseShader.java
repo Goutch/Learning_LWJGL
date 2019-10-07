@@ -79,7 +79,7 @@ public class BaseShader extends ShaderProgram implements ProjectionMatrixChangeL
     }
     public void loadPreRenderEntityUniforms(Entity entity)
     {
-        loadTransformMatrix(entity.getTransformMatrix());
+        loadTransformMatrix(entity.transform.getTransformMatrix());
     }
     protected void bindAttributes() {
         super.bindAttribute(VBO.VERTICES_ATTRIBUTE_ID,"vertexPosition");

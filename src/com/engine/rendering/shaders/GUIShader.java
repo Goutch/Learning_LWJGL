@@ -21,7 +21,7 @@ public class GUIShader extends ShaderProgram {
     public void loadPreRenderPanelUniforms(Panel panel)
     {
         loadPanelColor(panel.getColor());
-        loadTransformMatrix(panel.getTransformMatrix());
+        loadTransformMatrix(panel.transform.getTransformMatrix());
     }
     @Override
     protected void bindAttributes() {

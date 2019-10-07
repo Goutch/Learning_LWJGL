@@ -50,13 +50,16 @@ public class Camera extends Entity {
     }
     public void calculateViewMatrix()
     {
+        Vector3f rotation=new Vector3f();
+        Vector3f position=new Vector3f();
+        rotation=transform.getGlobalRotation().getEulerAnglesXYZ(rotation);
+        position=transform.getGlobalPosition();
         viewMatrix=new Matrix4f();
         viewMatrix.identity();
-        viewMatrix.rotate((float)Math.toRadians(rx()), Transform.RIGHT);
-        viewMatrix.rotate((float)Math.toRadians(ry()),Transform.UP);
-
-        viewMatrix.rotate((float)Math.toRadians(rz()),Transform.FOWARD);
-        Vector3f offset=new Vector3f(-px(),-py(),-pz());
+        viewMatrix.rotate(rotation.x, Transform.RIGHT);
+        viewMatrix.rotate(rotation.y,Transform.UP);
+        viewMatrix.rotate(rotation.z,Transform.FOWARD);
+        Vector3f offset=new Vector3f(-position.x,-position.y,-position.z);
         viewMatrix.translate(offset);
     }
     private void createProjectionMatrix() {
@@ -72,6 +75,5 @@ public class Camera extends Entity {
         projectionMatrix.m23(-1);
         projectionMatrix.m32(-((2 * nearPlane * farPlane) / frustum_length));
         projectionMatrix.m33(0);
-
     }
 }

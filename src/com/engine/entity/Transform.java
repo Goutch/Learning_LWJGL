@@ -1,6 +1,7 @@
 package com.engine.entity;
 
 import org.joml.Matrix4f;
+import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 /**
@@ -15,28 +16,86 @@ public class Transform {
     public static final Vector3f DOWN=new Vector3f(0,-1,0);
     public static final Vector3f RIGHT=new Vector3f(1,0,0);
     public static final Vector3f LEFT=new Vector3f(-1,0,0);
-    public Vector3f position=new Vector3f();
-    public Vector3f rotation=new Vector3f();
-    public float scale;
-    private Matrix4f transformMatrix;
+    private Matrix4f transformMatrix=new Matrix4f();
+    private Vector3f localPosition =new Vector3f();
+    private Vector3f localRotation =new Vector3f();
+    private float localScale=1f;
+    private Quaternionf rotation=new Quaternionf();
+    private Vector3f position=new Vector3f();
+    private float scale;
+    private Transform parent;
+
+
     public Transform(Vector3f position,Vector3f rotation,float scale)
     {
-        this.position.set(position);
-        this.rotation.set(rotation);
-        this.scale=scale;
+        localPosition=position;
+        localRotation=rotation;
+        localScale=scale;
+        computeTransformMatrix();
     }
-
-    public Matrix4f toTranformMatrix()
+    public Vector3f getLocalPosition()
+    {
+        return new Vector3f().set(localPosition);
+    }
+    public Vector3f getGlobalPosition()
+    {
+        position=parent==null?localPosition:parent.getTransformMatrix().mul(transformMatrix).getTranslation(position);
+        return new Vector3f().set(position);
+    }
+    public Vector3f getLocalRotation()
+    {
+        return new Vector3f().set(localRotation);
+    }
+    public Quaternionf getGlobalRotation()
+    {
+        rotation=parent==null?transformMatrix.getNormalizedRotation(rotation):parent.getTransformMatrix().mul(transformMatrix).getNormalizedRotation(rotation);
+        return new Quaternionf().set(rotation);
+    }
+    public float getLocalScale()
+    {
+        return scale;
+    }
+    public float getGlobalScale()
+    {
+        return parent==null?localScale:parent.getTransformMatrix().mul(transformMatrix).getScale(new Vector3f()).x;
+    }
+    private void computeTransformMatrix()
     {
         transformMatrix.identity();
-        transformMatrix.translate(position);
-        transformMatrix.rotate((float) Math.toRadians(rotation.x),RIGHT);
-        transformMatrix.rotate((float) Math.toRadians(rotation.y),UP);
-        transformMatrix.rotate((float) Math.toRadians(rotation.z),FOWARD);
-        transformMatrix.scale(scale);
-        return transformMatrix;
+        transformMatrix.translate(localPosition);
+        transformMatrix.rotate((float) Math.toRadians(localRotation.x),RIGHT);
+        transformMatrix.rotate((float) Math.toRadians(localRotation.y),UP);
+        transformMatrix.rotate((float) Math.toRadians(localRotation.z),FOWARD);
+        transformMatrix.scale(localScale);
+    }
+    public Matrix4f getTransformMatrix()
+    {
+        return parent==null?transformMatrix:parent.getTransformMatrix().mul(transformMatrix);
     }
 
-
-
+    public void translate(Vector3f translation) {
+        localPosition.add(translation);
+        computeTransformMatrix();
+    }
+    public void rotate(Vector3f rotation){
+        localRotation.add(rotation);
+        computeTransformMatrix();
+    }
+    public void setPosition(Vector3f position) {
+        localPosition.set(position);
+        computeTransformMatrix();
+    }
+    public void setRotation(Vector3f rotation)
+    {
+        localRotation.set(rotation);
+        computeTransformMatrix();
+    }
+    public void setScale()
+    {
+        transformMatrix.scale(scale);
+        computeTransformMatrix();
+    }
+    public void setParent(Transform parent) {
+        this.parent = parent;
+    }
 }

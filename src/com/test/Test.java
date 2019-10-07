@@ -130,6 +130,9 @@ public class Test implements GameLogic {
         {
             Renderer.setWireframe(false);
         }
+        for (Entity e : entities) {
+            e.transform.rotate(Transform.UP);
+        }
         if(Input.IsKeyPressed(GLFW.GLFW_KEY_RIGHT))
         {
             Vector2f add=new Vector2f(GUIEntities.get(1).getSize());

@@ -73,27 +73,29 @@ public class FirstPersonCam extends Camera implements UpdateListener {
         change.y*=(Camera.main.getFov()* Window.getAspectRatio());
         change.x*=Camera.main.getFov();//degrees the mouse travelled
 
-        rotate(new Vector3f(0,change.x,0));
+        transform.rotate(new Vector3f(0,change.x,0));
         //this.transform.rotation.x+=change.y*(float)Math.abs(Math.cos(Math.toRadians(transform.rotation.y)))*((transform.rotation.y%180)/180);
         //this.transform.rotation.z+=change.y*(float)Math.abs(Math.cos(Math.toRadians(transform.rotation.y)))*(((transform.rotation.y+90)%180)/180);
 
         //movement
         Vector3f translation=new Vector3f();
+        Vector3f rotation=new Vector3f();
+        rotation=transform.getLocalRotation();
         if(dir.x!=0)
         {
-            translation.x+=dir.x*speed*deltaTime*(float)Math.cos(Math.toRadians(lry()));
-            translation.z+=dir.x*speed*deltaTime*(float)Math.sin(Math.toRadians(lry()));
+            translation.x+=dir.x*speed*deltaTime*(float)Math.cos(Math.toRadians(rotation.y));
+            translation.z+=dir.x*speed*deltaTime*(float)Math.sin(Math.toRadians(rotation.y));
         }
         if(dir.z!=0)
         {
-            translation.x+=dir.z*speed*deltaTime*(float)Math.cos(Math.toRadians(lry()-90));
-            translation.z+=dir.z*speed*deltaTime*(float)Math.sin(Math.toRadians(lry()-90));
+            translation.x+=dir.z*speed*deltaTime*(float)Math.cos(Math.toRadians(rotation.y-90));
+            translation.z+=dir.z*speed*deltaTime*(float)Math.sin(Math.toRadians(rotation.y-90));
         }
         if(dir.y!=0)
         {
             translation.y+=dir.y*speed*deltaTime;
         }
-        translate(translation);
+        transform.translate(translation);
         lastFrame =mousePos;
     }
 }
