@@ -1,4 +1,4 @@
-package com.engine.rendering.shaders;
+package com.engine.rendering.shaders.projection;
 
 import com.engine.core.GameOptions;
 import com.engine.entity.light.DirectionalLight;
@@ -21,11 +21,12 @@ import org.joml.Vector3f;
  *
  */
 public class DiffuseLightShader extends BaseShader {
-    private static final String VERTEX_FILE="src/com/engine/rendering/shaders/DiffuseLightVertex.glsl";
-    private static final String FRAMGMENT_FILE="src/com/engine/rendering/shaders/DiffuseLightFragment.glsl";
+    private static final String VERTEX_FILE="src/com/engine/rendering/shaders/projection/DiffuseLightVertex.glsl";
+    private static final String FRAMGMENT_FILE="src/com/engine/rendering/shaders/projection/DiffuseLightFragment.glsl";
     private int lightPositionLocation;
     private int lightColorLocation;
     private int ambientLightLocation;
+
 
     public DiffuseLightShader(String vertex,String frag)
     {
@@ -51,6 +52,7 @@ public class DiffuseLightShader extends BaseShader {
         lightPositionLocation=getUniformLocation("lightPosition");
         lightColorLocation=getUniformLocation("lightColor");
         ambientLightLocation=getUniformLocation("ambientLight");
+
     }
 
     private void loadLight(){

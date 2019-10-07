@@ -2,7 +2,7 @@ package com.engine.geometry;
 
 
 import com.engine.entity.Entity;
-import com.engine.rendering.shaders.BaseShader;
+import com.engine.rendering.shaders.projection.BaseShader;
 
 import com.engine.rendering.shaders.Shaders;
 import com.engine.util.Color;
@@ -13,8 +13,9 @@ public class Material {
     private BaseShader shader= Shaders.BASE_SHADER;
     private float shineFactor =0;
     private float dampFactor =0;
+    private boolean hasTexture=false;
     private Texture texture=null;
-    private Color color=Color.WHITE;
+    private Color color=new Color(Color.WHITE);
 
     public Material(){
 
@@ -24,16 +25,16 @@ public class Material {
         shader.start();
         shader.loadPreRenderGeneralUniforms();
         shader.loadPreRenderMaterialUniforms(this);
-        if(texture!=null)
+        if(hasTexture)
         {
             texture.bind();
         }
     }
     public void unBind()
     {
-        if(texture!=null)
+        if(hasTexture)
         {
-            texture.unbind();
+            texture.unBind();
         }
         shader.stop();
     }
@@ -45,6 +46,7 @@ public class Material {
     public Material texture(Texture texture)
     {
         this.texture=texture;
+        hasTexture= texture != null;
         return this;
     }
 
@@ -65,10 +67,13 @@ public class Material {
     }
     public Material color(Color color)
     {
-        this.color=color;
+        this.color.set(color);
         return this;
     }
-
+    public boolean hasTexture()
+    {
+        return hasTexture;
+    }
     public float getShineFactor() {
         return shineFactor;
     }

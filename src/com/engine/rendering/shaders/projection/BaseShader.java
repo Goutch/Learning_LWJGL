@@ -1,4 +1,4 @@
-package com.engine.rendering.shaders;
+package com.engine.rendering.shaders.projection;
 
 import com.engine.entity.Entity;
 import com.engine.events.EventManager;
@@ -6,6 +6,7 @@ import com.engine.events.ProjectionMatrixChangeListener;
 import com.engine.entity.Camera;
 import com.engine.geometry.VBO;
 import com.engine.geometry.Material;
+import com.engine.rendering.shaders.ShaderProgram;
 import org.joml.Matrix4f;
 
 /**
@@ -19,8 +20,8 @@ import org.joml.Matrix4f;
  */
 public class BaseShader extends ShaderProgram implements ProjectionMatrixChangeListener {
 
-    private static final String VERTEX_FILE="src/com/engine/rendering/shaders/BaseVertex.glsl";
-    private static final String FRAMGMENT_FILE="src/com/engine/rendering/shaders/BaseFragment.glsl";
+    private static final String VERTEX_FILE="src/com/engine/rendering/shaders/projection/BaseVertex.glsl";
+    private static final String FRAMGMENT_FILE="src/com/engine/rendering/shaders/projection/BaseFragment.glsl";
     private int transformMatrixLocation;
     private int projectionMatrixLocation;
     private int viewMatrixLocation;

@@ -75,7 +75,7 @@ public class Texture implements DisposeListener {
         glBindTexture(GL_TEXTURE_2D, texture);
     }
 
-    public void unbind() {
+    public void unBind() {
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 

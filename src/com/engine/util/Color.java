@@ -22,11 +22,21 @@ public class Color {
     }
 
     public float r=1,g=1,b=1,a=1;
+    public Color(Color color){
+        set(color);
+    }
     public Color(float r,float g,float b,float a){
         this.r=Math.max(0,Math.min(1,r));
         this.g=Math.max(0,Math.min(1,g));
         this.b=Math.max(0,Math.min(1,b));
         this.a=Math.max(0,Math.min(1,a));
+    }
+    public void set(Color color)
+    {
+        this.r=Math.max(0,Math.min(1,color.r));
+        this.g=Math.max(0,Math.min(1,color.g));
+        this.b=Math.max(0,Math.min(1,color.b));
+        this.a=Math.max(0,Math.min(1,color.a));
     }
     public Vector3f toVector3f()
     {

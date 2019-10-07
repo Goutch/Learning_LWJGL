@@ -1,4 +1,4 @@
-package com.engine.rendering.shaders;
+package com.engine.rendering.shaders.projection;
 
 
 import com.engine.geometry.VBO;
@@ -22,8 +22,8 @@ import com.engine.geometry.VBO;
  */
 public class VertexColorShader extends DiffuseLightShader {
 
-    private static final String VERTEX_FILE="src/com/engine/rendering/shaders/VertexColorVertex.glsl";
-    private static final String FRAMGMENT_FILE="src/com/engine/rendering/shaders/VertexColorFragment.glsl";
+    private static final String VERTEX_FILE="src/com/engine/rendering/shaders/projection/VertexColorVertex.glsl";
+    private static final String FRAMGMENT_FILE="src/com/engine/rendering/shaders/projection/VertexColorFragment.glsl";
 
     public VertexColorShader() {
         super(VERTEX_FILE, FRAMGMENT_FILE);

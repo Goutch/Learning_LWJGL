@@ -3,19 +3,16 @@ package com.engine.entity.gui;
 import com.engine.entity.Entity;
 import com.engine.entity.Transform;
 import com.engine.events.EventManager;
-import com.engine.events.RenderListener;
 import com.engine.events.WindowResizeListener;
 import com.engine.geometry.Mesh;
+import com.engine.gui.GUIMaterial;
 import com.engine.rendering.GUIRenderer;
 import com.engine.rendering.Window;
-import com.engine.rendering.shaders.GUIShader;
-import com.engine.rendering.shaders.Shaders;
 import com.engine.util.Color;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
 public class Panel extends Entity implements WindowResizeListener {
-
 
     public enum PivotPoint {
         NONE,
@@ -33,37 +30,50 @@ public class Panel extends Entity implements WindowResizeListener {
         CENTER_LEFT,
     }
 
-    private PivotPoint pivot;
+    private PivotPoint pivot = PivotPoint.CENTER;
     private Vector3f pivotOffSet;
     private Vector2f size;
-    protected float aspectRatio;
+    private GUIMaterial material;
     protected Mesh mesh;
-    protected Color color = Color.WHITE;
-    protected GUIShader shader = Shaders.GUI_SHADER;
+    protected float aspectRatio;
 
-    public Panel(Vector3f position, Vector2f size, PivotPoint pivotPoint, Color color) {
+    public Panel(Vector3f position, Vector2f size, PivotPoint pivotPoint, GUIMaterial material) {
         super(position, Transform.ZERO, 1f);
         EventManager.subcribeWindowResize(this);
-        aspectRatio=Window.getAspectRatio();
-        this.size=new Vector2f(size);
-        this.color = color;
+        this.size = new Vector2f(size);
+        this.aspectRatio = size.x / size.y;
+        this.material = material;
         setPivot(pivotPoint);
         createMesh();
     }
-    public Vector2f getSize()
-    {
+    public Panel(Vector3f position, Vector2f size, PivotPoint pivotPoint) {
+        this(position,size,pivotPoint,GUIMaterial.DEFAULT);
+    }
+    public Panel(Vector3f position, Vector2f size) {
+        this(position,size,PivotPoint.CENTER,GUIMaterial.DEFAULT);
+    }
+
+    public Vector2f getSize() {
         return new Vector2f(size);
     }
+
     public void setSize(Vector2f size) {
         this.size.set(size);
+        this.aspectRatio = size.x / size.y;
         setPivot(pivot);
         updateMesh();
     }
-    @Override
-    public void onWindowResize(int width, int height) {
-        aspectRatio=(float) width/height;
-        updateMesh();
+
+    public GUIMaterial getMaterial() {
+        return material;
     }
+    public void setMaterial(GUIMaterial material)
+    {
+        this.material=material;
+    }
+
+
+
     private void updateMesh() {
         int sizeX = 1;
         int sizeY = 1;
@@ -71,8 +81,8 @@ public class Panel extends Entity implements WindowResizeListener {
         for (int x = 0; x < (sizeX + 1); x++) {
             for (int y = 0; y < (sizeY + 1); y++) {
                 int index = (x * (sizeY + 1) + y);
-                vertices[index * 3] = x * size.x+pivotOffSet.x;
-                vertices[index * 3 + 1] = (y * size.y+pivotOffSet.y)*aspectRatio;
+                vertices[index * 3] = x * size.x + pivotOffSet.x;
+                vertices[index * 3 + 1] = (y * size.y + pivotOffSet.y) * Window.getAspectRatio();
                 vertices[index * 3 + 2] = 0;
             }
         }
@@ -80,51 +90,45 @@ public class Panel extends Entity implements WindowResizeListener {
         mesh.buildVertices();
     }
 
-    private void createMesh() {
-        int sizeX = 1;
-        int sizeY = 1;
+    public float getAspectRatio() {
+        return aspectRatio;
+    }
 
-        float[] vertices = new float[(sizeY + 1) * (sizeX + 1) * 3];
-        for (int x = 0; x < (sizeX + 1); x++) {
-            for (int y = 0; y < (sizeY + 1); y++) {
-                int index = (x * (sizeY + 1) + y);
-                vertices[index * 3] = x * size.x+pivotOffSet.x;
-                vertices[index * 3 + 1] = (y * size.y+pivotOffSet.y)*aspectRatio;
+    private void createMesh() {
+        int quadsPerRow = 1;
+        int quadsPerColumn = 1;
+
+        float[] vertices = new float[(quadsPerColumn + 1) * (quadsPerRow + 1) * 3];
+        float[] uvs=new float[(quadsPerColumn + 1) * (quadsPerRow + 1)*2];
+        for (int x = 0; x < (quadsPerRow + 1); x++) {
+            for (int y = 0; y < (quadsPerColumn + 1); y++) {
+                int index = (x * (quadsPerColumn + 1) + y);
+                vertices[index * 3] = x * size.x + pivotOffSet.x;
+                uvs[index*2]=(float) x/quadsPerRow;
+                vertices[index * 3 + 1] = (y * size.y + pivotOffSet.y) * Window.getAspectRatio();
+                uvs[index*2+1]=1f-((float) y/quadsPerColumn);
                 vertices[index * 3 + 2] = 0;
             }
         }
-        int[] indices = new int[sizeY * sizeX * 6];
-        for (int x = 0; x < sizeX; x++) {
-            for (int y = 0; y < sizeY; y++) {
-                int index = (x * sizeY + y);
-                indices[index * 6] = index + x + sizeY + 1;
+        int[] indices = new int[quadsPerColumn * quadsPerRow * 6];
+        for (int x = 0; x < quadsPerRow; x++) {
+            for (int y = 0; y < quadsPerColumn; y++) {
+                int index = (x * quadsPerColumn + y);
+                indices[index * 6] = index + x + quadsPerColumn + 1;
                 indices[index * 6 + 1] = index + x + 1;
                 indices[index * 6 + 2] = index + x;
-                indices[index * 6 + 3] = index + x + sizeY + 2;
+                indices[index * 6 + 3] = index + x + quadsPerColumn + 2;
                 indices[index * 6 + 4] = index + x + 1;
-                indices[index * 6 + 5] = index + x + sizeY + 1;
+                indices[index * 6 + 5] = index + x + quadsPerColumn + 1;
             }
         }
 
-        mesh = new Mesh().vertices(vertices).indices(indices);
+        mesh = new Mesh().vertices(vertices).indices(indices).uvs(uvs);
         mesh.build();
-    }
-
-    public void bindShader() {
-        shader.start();
-        shader.loadPreRenderPanelUniforms(this);
-    }
-
-    public void unBindShader() {
-        shader.stop();
     }
 
     public Mesh getMesh() {
         return mesh;
-    }
-
-    public Color getColor() {
-        return color;
     }
 
     @Override
@@ -134,7 +138,7 @@ public class Panel extends Entity implements WindowResizeListener {
     }
 
     private void setPivot(PivotPoint pivot) {
-        this.pivot=pivot;
+        this.pivot = pivot;
         pivotOffSet = new Vector3f(0, 0, 0);
         switch (pivot) {
             case TOP_RIGHT:
@@ -168,5 +172,9 @@ public class Panel extends Entity implements WindowResizeListener {
                 this.pivotOffSet.y -= size.y * .5;
                 break;
         }
+    }
+    @Override
+    public void onWindowResize(int width, int height) {
+        updateMesh();
     }
 }

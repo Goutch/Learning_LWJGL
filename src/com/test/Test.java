@@ -10,6 +10,7 @@ import com.engine.exemples.FirstPersonCam;
 import com.engine.geometry.*;
 
 import com.engine.entity.Camera;
+import com.engine.gui.GUIMaterial;
 import com.engine.inputs.Input;
 import com.engine.rendering.Renderer;
 import com.engine.rendering.Window;
@@ -30,7 +31,7 @@ public class Test implements GameLogic {
     MeshRenderer dragon1;
     MeshRenderer dragon2;
     MeshRenderer terrain;
-    private Entity pivot;
+
     Entity parent;
     @Override
     public void init() {
@@ -41,9 +42,9 @@ public class Test implements GameLogic {
         Camera.setMainCamera(new FirstPersonCam(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), 90, 10, 3));
 
         //GUI
-        GUIEntities.add(new Panel(new Vector3f(-1,1,0),new Vector2f(0.7f,0.1f), Panel.PivotPoint.TOP_LEFT,new Color(1,0,0,0.5f)));
-        GUIEntities.add(new Panel(new Vector3f(-1,1,0),new Vector2f(0.35f,0.1f), Panel.PivotPoint.TOP_LEFT,new Color(1,0,0,1f)));
-        GUIEntities.add(new Panel(new Vector3f(1,1,0),new Vector2f(0.1f,0.1f), Panel.PivotPoint.TOP_RIGHT,Color.WHITE));
+        GUIEntities.add(new Panel(new Vector3f(-1,1,0),new Vector2f(0.7f,0.1f), Panel.PivotPoint.CENTER,new GUIMaterial().color(Color.RED)));
+        GUIEntities.add(new Panel(new Vector3f(-1,1,0),new Vector2f(0.35f,0.1f), Panel.PivotPoint.CENTER,new GUIMaterial().color(Color.RED)));
+        GUIEntities.add(new Panel(new Vector3f(1,1,0),new Vector2f(0.1f,0.1f), Panel.PivotPoint.CENTER,new GUIMaterial().color(Color.RED)));
         //materials
         Material daragonMat=new Material().color(new Color(0.8f,.2f,0f,0.5f)).shader(Shaders.DIFFUSE_LIGHT_SHADER).shineFactor(2f).dampFactor(20);
         Material cubeMat=new Material().shader(Shaders.VERTEX_COLOR_SHADER);
@@ -51,7 +52,7 @@ public class Test implements GameLogic {
         Material walnutMat=new Material().texture(new Texture("res/models/walnut.jpg")).shader(Shaders.TEXTURE_SHADER).shineFactor(1f).dampFactor(30f);
         Material terrainMat=new Material().color(Color.GREEN).shader(Shaders.DIFFUSE_LIGHT_SHADER);
 
-        pivot=new Entity(new Vector3f(),new Vector3f(),1);
+
         //meshes
         Mesh dragonMesh=ModelImporter.ImportModel("res/models/dragon.obj");
         Mesh cubeMesh = ModelImporter.ImportModel("res/models/cube.obj");
@@ -130,9 +131,9 @@ public class Test implements GameLogic {
         {
             Renderer.setWireframe(false);
         }
-        for (Entity e : entities) {
-            e.transform.rotate(Transform.UP);
-        }
+        //for (Entity e : entities) {
+        //    e.transform.rotate(Transform.UP);
+        //}
         if(Input.IsKeyPressed(GLFW.GLFW_KEY_RIGHT))
         {
             Vector2f add=new Vector2f(GUIEntities.get(1).getSize());
