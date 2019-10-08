@@ -1,7 +1,10 @@
 package com.engine.exemples;
 
+import com.engine.entity.Entity;
+import com.engine.entity.MeshRenderer;
 import com.engine.events.EventManager;
 import com.engine.events.UpdateListener;
+import com.engine.geometry.ModelImporter;
 import com.engine.inputs.Input;
 import com.engine.entity.Camera;
 import com.engine.rendering.Window;
@@ -10,16 +13,22 @@ import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
 
-public class FirstPersonCam extends Camera implements UpdateListener {
+public class FirstPersonCameraController extends Entity implements UpdateListener {
     float speed=2;
     Vector2f lastFrame;
+    private Camera camera;
+    private MeshRenderer cube;
     private final float boderWidth=20;//pixels
     private final float borderHeight=20;//pixels
-    public FirstPersonCam(Vector3f position, Vector3f rotation, float fov, float viewDistance, float speed) {
-        super(position, rotation, fov, viewDistance);
-        EventManager.subscribeUpdate(this);
+    public FirstPersonCameraController(Vector3f position, Vector3f rotation, Camera camera, float speed) {
+        super(position, rotation,1f);
         this.speed=speed;
+        this.camera=camera;
+        camera.transform.setParent(this.transform);
         lastFrame =new Vector2f(Window.getWidth()/2, Window.getHeight()/2);
+        cube=new MeshRenderer(new Vector3f(0,0,-2),new Vector3f(0,0,0),1, ModelImporter.ImportModel("res/models/cube.obj"));
+        EventManager.subscribeRender(cube);
+        cube.transform.setParent(this.transform);
     }
 
     @Override
@@ -72,10 +81,9 @@ public class FirstPersonCam extends Camera implements UpdateListener {
         }
         change.y*=(Camera.main.getFov()* Window.getAspectRatio());
         change.x*=Camera.main.getFov();//degrees the mouse travelled
-
+        cube.transform.rotate(new Vector3f(change.y,0,0));
         transform.rotate(new Vector3f(0,change.x,0));
-        //this.transform.rotation.x+=change.y*(float)Math.abs(Math.cos(Math.toRadians(transform.rotation.y)))*((transform.rotation.y%180)/180);
-        //this.transform.rotation.z+=change.y*(float)Math.abs(Math.cos(Math.toRadians(transform.rotation.y)))*(((transform.rotation.y+90)%180)/180);
+
 
         //movement
         Vector3f translation=new Vector3f();

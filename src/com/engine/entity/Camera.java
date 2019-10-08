@@ -3,6 +3,7 @@ package com.engine.entity;
 import com.engine.events.EventManager;
 import com.engine.rendering.Window;
 import org.joml.Matrix4f;
+import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 public class Camera extends Entity {
@@ -50,15 +51,13 @@ public class Camera extends Entity {
     }
     public void calculateViewMatrix()
     {
-        Vector3f rotation=new Vector3f();
-        Vector3f position=new Vector3f();
-        rotation=transform.getGlobalRotation().getEulerAnglesXYZ(rotation);
+        Quaternionf rotation;
+        Vector3f position;
+        rotation=transform.getGlobalRotation();
         position=transform.getGlobalPosition();
         viewMatrix=new Matrix4f();
         viewMatrix.identity();
-        viewMatrix.rotate(rotation.x, Transform.RIGHT);
-        viewMatrix.rotate(rotation.y,Transform.UP);
-        viewMatrix.rotate(rotation.z,Transform.FOWARD);
+        viewMatrix.rotate(rotation);
         Vector3f offset=new Vector3f(-position.x,-position.y,-position.z);
         viewMatrix.translate(offset);
     }

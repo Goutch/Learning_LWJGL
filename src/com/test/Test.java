@@ -6,7 +6,8 @@ import com.engine.entity.Entity;
 import com.engine.entity.MeshRenderer;
 import com.engine.entity.Transform;
 import com.engine.entity.gui.Panel;
-import com.engine.exemples.FirstPersonCam;
+import com.engine.events.EventManager;
+import com.engine.exemples.FirstPersonCameraController;
 import com.engine.geometry.*;
 
 import com.engine.entity.Camera;
@@ -28,10 +29,11 @@ import java.util.LinkedList;
 public class Test implements GameLogic {
     LinkedList<Entity> entities = new LinkedList<Entity>();
     LinkedList<Panel> GUIEntities = new LinkedList<Panel>();
+    MeshRenderer pivot;
     MeshRenderer dragon1;
     MeshRenderer dragon2;
     MeshRenderer terrain;
-
+    FirstPersonCameraController cameraController;
     Entity parent;
     @Override
     public void init() {
@@ -39,7 +41,7 @@ public class Test implements GameLogic {
         GameOptions.PRINT_FPS=true;
 
         //Camera
-        Camera.setMainCamera(new FirstPersonCam(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), 90, 10, 3));
+        cameraController=new FirstPersonCameraController(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), Camera.main, 10);
 
         //GUI
         GUIEntities.add(new Panel(new Vector3f(-1,1,0),new Vector2f(0.7f,0.1f), Panel.PivotPoint.CENTER,new GUIMaterial().color(Color.RED)));
@@ -59,7 +61,8 @@ public class Test implements GameLogic {
         Mesh sphereMesh = ModelImporter.ImportModel("res/models/sphere.obj");
         Mesh walnutMesh= ModelImporter.ImportModel("res/models/walnut.obj");
         Mesh terrainMesh = Geometry.getPlane(100, 100);
-
+        pivot=new MeshRenderer(new Vector3f(),new Vector3f(),1f,cubeMesh);
+        EventManager.subscribeRender(pivot);
         terrain=new MeshRenderer(
                 new Vector3f(0,0,0)
                 ,Transform.ZERO,
@@ -109,6 +112,10 @@ public class Test implements GameLogic {
                     walnutMesh,
                     walnutMat));
         }
+        for (Entity e:entities)
+        {
+            e.transform.setParent(pivot.transform);
+        }
         Color[] cubeColors = new Color[cubeMesh.getVertices().length];
         for (int i = 0; i < cubeColors.length; i++) {
             cubeColors[i] = Color.RED;
@@ -123,6 +130,7 @@ public class Test implements GameLogic {
 
     @Override
     public void update(float delta) {
+        cameraController.update(delta);
         if(Input.IsKeyPressed(GLFW.GLFW_KEY_1))
         {
             Renderer.setWireframe(true);
@@ -131,9 +139,7 @@ public class Test implements GameLogic {
         {
             Renderer.setWireframe(false);
         }
-        //for (Entity e : entities) {
-        //    e.transform.rotate(Transform.UP);
-        //}
+        pivot.transform.rotate(new Vector3f(0,10*delta,0));
         if(Input.IsKeyPressed(GLFW.GLFW_KEY_RIGHT))
         {
             Vector2f add=new Vector2f(GUIEntities.get(1).getSize());

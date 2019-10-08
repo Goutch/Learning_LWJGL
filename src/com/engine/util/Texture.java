@@ -27,11 +27,14 @@ public class Texture implements DisposeListener {
         EventManager.subscribeDispose(this);
         texture = load(path);
     }
-    public Texture(int width,int height)
+    public int width()
     {
-
+        return width;
     }
-
+    public int height()
+    {
+        return height;
+    }
     private int load(String path) {
         int[] pixels = null;
         try {

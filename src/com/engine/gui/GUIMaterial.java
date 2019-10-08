@@ -49,6 +49,10 @@ public class GUIMaterial {
         hasTexture= texture != null;
         return this;
     }
+    public Texture texture()
+    {
+        return texture;
+    }
     public boolean hasTexture()
     {
         return hasTexture;

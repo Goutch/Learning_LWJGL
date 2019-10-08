@@ -14,6 +14,7 @@ import java.util.LinkedList;
 public class GuiTest implements GameLogic {
 
     LinkedList<Panel> GUIEntities = new LinkedList<Panel>();
+
     @Override
     public void init() {
         //GUI
@@ -29,6 +30,7 @@ public class GuiTest implements GameLogic {
                         )
                 )
         );
+        GUIEntities.get(0).fitTexture();
     }
 
     @Override

@@ -9,6 +9,7 @@ import com.engine.gui.GUIMaterial;
 import com.engine.rendering.GUIRenderer;
 import com.engine.rendering.Window;
 import com.engine.util.Color;
+import com.engine.util.Texture;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
@@ -63,7 +64,14 @@ public class Panel extends Entity implements WindowResizeListener {
         setPivot(pivot);
         updateMesh();
     }
-
+    public void fitTexture()
+    {
+        if(material.hasTexture())
+        {
+            Texture texture=material.texture();
+            this.setSize(new Vector2f(size.x,size.x*((float)texture.height()/texture.width())));
+        }
+    }
     public GUIMaterial getMaterial() {
         return material;
     }
@@ -71,8 +79,6 @@ public class Panel extends Entity implements WindowResizeListener {
     {
         this.material=material;
     }
-
-
 
     private void updateMesh() {
         int sizeX = 1;

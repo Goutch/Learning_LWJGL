@@ -28,8 +28,8 @@ public class Transform {
 
     public Transform(Vector3f position,Vector3f rotation,float scale)
     {
-        localPosition=position;
-        localRotation=rotation;
+        localPosition.set(position);
+        localRotation.set(rotation);
         localScale=scale;
         computeTransformMatrix();
     }
@@ -39,7 +39,7 @@ public class Transform {
     }
     public Vector3f getGlobalPosition()
     {
-        position=parent==null?localPosition:parent.getTransformMatrix().mul(transformMatrix).getTranslation(position);
+        position=parent==null?localPosition:parent.getGlobalPosition().add(localPosition);
         return new Vector3f().set(position);
     }
     public Vector3f getLocalRotation()
@@ -48,7 +48,7 @@ public class Transform {
     }
     public Quaternionf getGlobalRotation()
     {
-        rotation=parent==null?transformMatrix.getNormalizedRotation(rotation):parent.getTransformMatrix().mul(transformMatrix).getNormalizedRotation(rotation);
+        rotation=parent==null?transformMatrix.getUnnormalizedRotation(rotation):parent.getTransformMatrix().mul(transformMatrix).getUnnormalizedRotation(rotation);
         return new Quaternionf().set(rotation);
     }
     public float getLocalScale()
@@ -59,7 +59,7 @@ public class Transform {
     {
         return parent==null?localScale:parent.getTransformMatrix().mul(transformMatrix).getScale(new Vector3f()).x;
     }
-    private void computeTransformMatrix()
+    public void computeTransformMatrix()
     {
         transformMatrix.identity();
         transformMatrix.translate(localPosition);
@@ -70,7 +70,10 @@ public class Transform {
     }
     public Matrix4f getTransformMatrix()
     {
-        return parent==null?transformMatrix:parent.getTransformMatrix().mul(transformMatrix);
+        Matrix4f mat=parent==null?
+                new Matrix4f().set(transformMatrix):
+                new Matrix4f().set(parent.getTransformMatrix()).mul(transformMatrix);
+        return mat;
     }
 
     public void translate(Vector3f translation) {
@@ -96,6 +99,7 @@ public class Transform {
         computeTransformMatrix();
     }
     public void setParent(Transform parent) {
+
         this.parent = parent;
     }
 }
