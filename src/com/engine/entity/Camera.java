@@ -57,9 +57,8 @@ public class Camera extends Entity {
         position=transform.getGlobalPosition();
         viewMatrix=new Matrix4f();
         viewMatrix.identity();
-        viewMatrix.rotate(rotation);
-        Vector3f offset=new Vector3f(-position.x,-position.y,-position.z);
-        viewMatrix.translate(offset);
+        viewMatrix.rotate(rotation.invert());
+        viewMatrix.translate(position.mul(-1f));
     }
     private void createProjectionMatrix() {
         float aspectRatio = (float) Window.getWidth() / (float) Window.getHeight();

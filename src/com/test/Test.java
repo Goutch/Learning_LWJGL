@@ -38,7 +38,7 @@ public class Test implements GameLogic {
     @Override
     public void init() {
         Window.centerWindow();
-        GameOptions.PRINT_FPS=true;
+        //GameOptions.PRINT_FPS=true;
 
         //Camera
         cameraController=new FirstPersonCameraController(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), Camera.main, 10);
@@ -86,36 +86,36 @@ public class Test implements GameLogic {
         int amount=100;
 
         //
-        for (int i = 0; i < amount; i++) {
-            entities.add(new MeshRenderer(
-                    getRandomVector(-range,range,0,range,-range,range),
-                    getRandomVector(0,360,0,360,0,360),
-                    0.25f,
-                    sphereMesh,
-                    sphereMat));
-        }
-        //colored cubes mesh
-        for (int i = 0; i < amount; i++) {
-            entities.add(new MeshRenderer(
-                    getRandomVector(-range,range,0,range,-range,range),
-                    getRandomVector(0,360,0,360,0,360),
-                    1f,
-                    cubeMesh,
-                    cubeMat));
-        }
-        //textured mesh
-        for (int i = 0; i < amount; i++) {
-            entities.add(new MeshRenderer(
-                    getRandomVector(-range,range,0,range,-range,range),
-                    getRandomVector(0,360,0,360,0,360),
-                    1f,
-                    walnutMesh,
-                    walnutMat));
-        }
-        for (Entity e:entities)
-        {
-            e.transform.setParent(pivot.transform);
-        }
+        //for (int i = 0; i < amount; i++) {
+        //    entities.add(new MeshRenderer(
+        //            getRandomVector(-range,range,0,range,-range,range),
+        //            getRandomVector(0,360,0,360,0,360),
+        //            0.25f,
+        //            sphereMesh,
+        //            sphereMat));
+        //}
+        ////colored cubes mesh
+        //for (int i = 0; i < amount; i++) {
+        //    entities.add(new MeshRenderer(
+        //            getRandomVector(-range,range,0,range,-range,range),
+        //            getRandomVector(0,360,0,360,0,360),
+        //            1f,
+        //            cubeMesh,
+        //            cubeMat));
+        //}
+        ////textured mesh
+        //for (int i = 0; i < amount; i++) {
+        //    entities.add(new MeshRenderer(
+        //            getRandomVector(-range,range,0,range,-range,range),
+        //            getRandomVector(0,360,0,360,0,360),
+        //            1f,
+        //            walnutMesh,
+        //            walnutMat));
+        //}
+        //for (Entity e:entities)
+        //{
+        //    e.transform.setParent(pivot.transform);
+        //}
         Color[] cubeColors = new Color[cubeMesh.getVertices().length];
         for (int i = 0; i < cubeColors.length; i++) {
             cubeColors[i] = Color.RED;
@@ -157,9 +157,9 @@ public class Test implements GameLogic {
 
     @Override
     public void render() {
-        for (Entity e : entities) {
-            e.render();
-        }
+       // for (Entity e : entities) {
+       //     e.render();
+       // }
         for (Panel p:
              GUIEntities) {
             p.render();
