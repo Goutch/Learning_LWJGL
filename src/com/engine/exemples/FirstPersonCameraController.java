@@ -18,7 +18,6 @@ public class FirstPersonCameraController extends Entity implements UpdateListene
     float speed=2;
     Vector2f lastFrame;
     private Camera camera;
-    private MeshRenderer cube;
     private final float boderWidth=20;//pixels
     private final float borderHeight=20;//pixels
     public FirstPersonCameraController(Vector3f position, Vector3f rotation, Camera camera, float speed) {
@@ -27,9 +26,9 @@ public class FirstPersonCameraController extends Entity implements UpdateListene
         this.camera=camera;
         camera.transform.setParent(this.transform);
         lastFrame =new Vector2f(Window.getWidth()/2, Window.getHeight()/2);
-        cube=new MeshRenderer(new Vector3f(0,0,-2),new Vector3f(0,0,0),1, ModelImporter.ImportModel("res/models/cube.obj"));
+        MeshRenderer cube=new MeshRenderer(new Vector3f(0,0,0),new Vector3f(0,0,0),1,ModelImporter.ImportModel("res/models/cube.obj"));
         EventManager.subscribeRender(cube);
-        cube.transform.setParent(this.transform);
+        cube.transform.setParent(camera.transform);
     }
 
     @Override
@@ -45,11 +44,11 @@ public class FirstPersonCameraController extends Entity implements UpdateListene
         }
         if(Input.IsKeyPressed(GLFW.GLFW_KEY_A))
         {
-            dir.x-=1;
+            dir.x+=1;
         }
         if(Input.IsKeyPressed(GLFW.GLFW_KEY_D))
         {
-            dir.x+=1;
+            dir.x-=1;
         }
         if(Input.IsKeyPressed(GLFW.GLFW_KEY_SPACE))
         {
@@ -84,15 +83,14 @@ public class FirstPersonCameraController extends Entity implements UpdateListene
         rotation=this.transform.getLocalRotation();
         if(dir.x!=0)
         {
-            translation.x+=dir.x*speed*deltaTime*(float)Math.cos(Math.toRadians(rotation.y));
-            translation.z+=dir.x*speed*deltaTime*(float)Math.sin(Math.toRadians(rotation.y));
+            translation.x+=dir.x*speed*deltaTime*(float)Math.sin(Math.toRadians(rotation.y-90));
+            translation.z+=dir.x*speed*deltaTime*(float)Math.cos(Math.toRadians(rotation.y-90));
         }
         if(dir.z!=0)
         {
             translation.x+=dir.z*speed*deltaTime*(float)Math.sin(Math.toRadians(rotation.y));
             translation.z+=dir.z*speed*deltaTime*(float)Math.cos(Math.toRadians(rotation.y));
         }
-        System.out.println(rotation.y);
         if(dir.y!=0)
         {
             translation.y+=dir.y*speed*deltaTime;

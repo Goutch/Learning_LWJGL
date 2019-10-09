@@ -57,6 +57,7 @@ public class GUIMaterial {
     {
         return hasTexture;
     }
+
     public void bind()
     {
         shader.start();

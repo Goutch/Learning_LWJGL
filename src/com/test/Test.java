@@ -6,6 +6,7 @@ import com.engine.entity.Entity;
 import com.engine.entity.MeshRenderer;
 import com.engine.entity.Transform;
 import com.engine.entity.gui.Panel;
+import com.engine.entity.light.DirectionalLight;
 import com.engine.events.EventManager;
 import com.engine.exemples.FirstPersonCameraController;
 import com.engine.geometry.*;
@@ -29,7 +30,7 @@ import java.util.LinkedList;
 public class Test implements GameLogic {
     LinkedList<Entity> entities = new LinkedList<Entity>();
     LinkedList<Panel> GUIEntities = new LinkedList<Panel>();
-    MeshRenderer pivot;
+
     MeshRenderer dragon1;
     MeshRenderer dragon2;
     MeshRenderer terrain;
@@ -41,17 +42,17 @@ public class Test implements GameLogic {
         //GameOptions.PRINT_FPS=true;
 
         //Camera
-        cameraController=new FirstPersonCameraController(new Vector3f(0, 0, 0), new Vector3f(0, 0, 0), Camera.main, 10);
+        cameraController=new FirstPersonCameraController(new Vector3f(0, 1, 0), new Vector3f(0, 0, 0), Camera.main, 10);
 
         //GUI
-        GUIEntities.add(new Panel(new Vector3f(-1,1,0),new Vector2f(0.7f,0.1f), Panel.PivotPoint.CENTER,new GUIMaterial().color(Color.RED)));
-        GUIEntities.add(new Panel(new Vector3f(-1,1,0),new Vector2f(0.35f,0.1f), Panel.PivotPoint.CENTER,new GUIMaterial().color(Color.RED)));
-        GUIEntities.add(new Panel(new Vector3f(1,1,0),new Vector2f(0.1f,0.1f), Panel.PivotPoint.CENTER,new GUIMaterial().color(Color.RED)));
+        GUIEntities.add(new Panel(new Vector3f(-1,1,0),new Vector2f(0.7f,0.1f), Panel.PivotPoint.TOP_LEFT,new GUIMaterial().color(new Color(1,0,0,0.5f))));
+        GUIEntities.add(new Panel(new Vector3f(-1,1,0),new Vector2f(0.35f,0.1f), Panel.PivotPoint.TOP_LEFT,new GUIMaterial().color(Color.RED)));
+        GUIEntities.add(new Panel(new Vector3f(1,1,0),new Vector2f(0.1f,0.1f), Panel.PivotPoint.TOP_RIGHT,new GUIMaterial().texture(new Texture("res/textures/Untitled.png"))));
+        GUIEntities.get(2).fitTexture();
         //materials
-        Material daragonMat=new Material().color(new Color(0.8f,.2f,0f,0.5f)).shader(Shaders.DIFFUSE_LIGHT_SHADER).shineFactor(2f).dampFactor(20);
+        Material daragonMat=new Material().color(new Color(0.8f,.2f,0f,0.5f)).shader(Shaders.DIFFUSE_LIGHT_SHADER).shineFactor(10f).dampFactor(100);
         Material cubeMat=new Material().shader(Shaders.VERTEX_COLOR_SHADER);
-        Material sphereMat=new Material().shader(Shaders.DIFFUSE_LIGHT_SHADER);
-        Material walnutMat=new Material().texture(new Texture("res/models/walnut.jpg")).shader(Shaders.TEXTURE_SHADER).shineFactor(1f).dampFactor(30f);
+        Material sphereMat=new Material().shader(Shaders.BASE_SHADER);
         Material terrainMat=new Material().color(Color.GREEN).shader(Shaders.DIFFUSE_LIGHT_SHADER);
 
 
@@ -59,10 +60,8 @@ public class Test implements GameLogic {
         Mesh dragonMesh=ModelImporter.ImportModel("res/models/dragon.obj");
         Mesh cubeMesh = ModelImporter.ImportModel("res/models/cube.obj");
         Mesh sphereMesh = ModelImporter.ImportModel("res/models/sphere.obj");
-        Mesh walnutMesh= ModelImporter.ImportModel("res/models/walnut.obj");
         Mesh terrainMesh = Geometry.getPlane(100, 100);
-        pivot=new MeshRenderer(new Vector3f(),new Vector3f(),1f,cubeMesh);
-        EventManager.subscribeRender(pivot);
+
         terrain=new MeshRenderer(
                 new Vector3f(0,0,0)
                 ,Transform.ZERO,
@@ -85,37 +84,23 @@ public class Test implements GameLogic {
         float range=25;
         int amount=100;
 
-        //
-        //for (int i = 0; i < amount; i++) {
-        //    entities.add(new MeshRenderer(
-        //            getRandomVector(-range,range,0,range,-range,range),
-        //            getRandomVector(0,360,0,360,0,360),
-        //            0.25f,
-        //            sphereMesh,
-        //            sphereMat));
-        //}
-        ////colored cubes mesh
-        //for (int i = 0; i < amount; i++) {
-        //    entities.add(new MeshRenderer(
-        //            getRandomVector(-range,range,0,range,-range,range),
-        //            getRandomVector(0,360,0,360,0,360),
-        //            1f,
-        //            cubeMesh,
-        //            cubeMat));
-        //}
-        ////textured mesh
-        //for (int i = 0; i < amount; i++) {
-        //    entities.add(new MeshRenderer(
-        //            getRandomVector(-range,range,0,range,-range,range),
-        //            getRandomVector(0,360,0,360,0,360),
-        //            1f,
-        //            walnutMesh,
-        //            walnutMat));
-        //}
-        //for (Entity e:entities)
-        //{
-        //    e.transform.setParent(pivot.transform);
-        //}
+        Entity light=new MeshRenderer(
+                getRandomVector(-range,range,0,range,-range,range),
+                getRandomVector(0,360,0,360,0,360),
+                0.25f,
+                sphereMesh,
+                sphereMat);
+        entities.add(light);
+        //colored cubes mesh
+        for (int i = 0; i < amount; i++) {
+            entities.add(new MeshRenderer(
+                    getRandomVector(-range,range,0,range,-range,range),
+                    getRandomVector(0,360,0,360,0,360),
+                    1f,
+                    cubeMesh,
+                    cubeMat));
+        }
+
         Color[] cubeColors = new Color[cubeMesh.getVertices().length];
         for (int i = 0; i < cubeColors.length; i++) {
             cubeColors[i] = Color.RED;
@@ -126,6 +111,10 @@ public class Test implements GameLogic {
         }
         cubeMesh.colors(cubeColors);
         cubeMesh.build();
+
+
+        DirectionalLight.main.transform.setPosition(new Vector3f(0,10,0));
+        light.transform.setParent(DirectionalLight.main.transform);
     }
 
     @Override
@@ -139,7 +128,6 @@ public class Test implements GameLogic {
         {
             Renderer.setWireframe(false);
         }
-        pivot.transform.rotate(new Vector3f(0,10*delta,0));
         if(Input.IsKeyPressed(GLFW.GLFW_KEY_RIGHT))
         {
             Vector2f add=new Vector2f(GUIEntities.get(1).getSize());
@@ -157,9 +145,9 @@ public class Test implements GameLogic {
 
     @Override
     public void render() {
-       // for (Entity e : entities) {
-       //     e.render();
-       // }
+        for (Entity e : entities) {
+            e.render();
+        }
         for (Panel p:
              GUIEntities) {
             p.render();
