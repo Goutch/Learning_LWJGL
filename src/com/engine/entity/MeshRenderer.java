@@ -3,6 +3,7 @@ package com.engine.entity;
 import com.engine.geometry.Material;
 import com.engine.geometry.Mesh;
 import com.engine.rendering.Renderer;
+import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 public class MeshRenderer extends Entity{
@@ -18,12 +19,12 @@ public class MeshRenderer extends Entity{
      * @param mesh
      * @param material
      */
-    public MeshRenderer(Vector3f position, Vector3f rotation, float scale, Mesh mesh,Material material) {
+    public MeshRenderer(Vector3f position, Quaternionf rotation, float scale, Mesh mesh, Material material) {
         super(position, rotation, scale);
         this.mesh = mesh;
         this.material = material;
     }
-    public MeshRenderer(Vector3f position, Vector3f rotation, float scale, Mesh mesh) {
+    public MeshRenderer(Vector3f position, Quaternionf rotation, float scale, Mesh mesh) {
         super(position, rotation, scale);
         this.mesh = mesh;
         this.material = Material.DEFAULT;

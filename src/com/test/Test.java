@@ -20,6 +20,7 @@ import com.engine.geometry.Material;
 import com.engine.rendering.shaders.Shaders;
 import com.engine.util.Color;
 import com.engine.util.Texture;
+import org.joml.Quaternionf;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
@@ -42,7 +43,7 @@ public class Test implements GameLogic {
         //GameOptions.PRINT_FPS=true;
 
         //Camera
-        cameraController=new FirstPersonCameraController(new Vector3f(0, 1, 0), new Vector3f(0, 0, 0), Camera.main, 10);
+        cameraController=new FirstPersonCameraController(new Vector3f(0, 1, 0), new Quaternionf(), Camera.main, 10);
 
         //GUI
         GUIEntities.add(new Panel(new Vector3f(-1,1,0),new Vector2f(0.7f,0.1f), Panel.PivotPoint.TOP_LEFT,new GUIMaterial().color(new Color(1,0,0,0.5f))));
@@ -64,38 +65,43 @@ public class Test implements GameLogic {
 
         terrain=new MeshRenderer(
                 new Vector3f(0,0,0)
-                ,Transform.ZERO,
+                ,new Quaternionf(),
                 1f,
                 terrainMesh,
                 terrainMat);
         dragon1=new MeshRenderer(
                 new Vector3f(0,0,-10),
-                new Vector3f(0,0,0),
+                new Quaternionf(),
                 1f,
                 dragonMesh,
                 daragonMat);
         dragon2=new MeshRenderer(
                 new Vector3f(0,0,10),
-                new Vector3f(0,0,0),
+                new Quaternionf(),
                 1f,
                 dragonMesh,
                 daragonMat);
-        //Camera.main.setParent(dragon1);
+
         float range=25;
         int amount=100;
 
+
         Entity light=new MeshRenderer(
-                getRandomVector(-range,range,0,range,-range,range),
-                getRandomVector(0,360,0,360,0,360),
+                new Vector3f(0,0,0),
+                new Quaternionf(),
                 0.25f,
                 sphereMesh,
                 sphereMat);
+
+        DirectionalLight.main.transform.setPosition(new Vector3f(0,10,0));
+        light.transform.setParent(DirectionalLight.main.transform);
         entities.add(light);
-        //colored cubes mesh
+
+       // colored cubes mesh
         for (int i = 0; i < amount; i++) {
             entities.add(new MeshRenderer(
                     getRandomVector(-range,range,0,range,-range,range),
-                    getRandomVector(0,360,0,360,0,360),
+                    new Quaternionf(),
                     1f,
                     cubeMesh,
                     cubeMat));
@@ -111,10 +117,6 @@ public class Test implements GameLogic {
         }
         cubeMesh.colors(cubeColors);
         cubeMesh.build();
-
-
-        DirectionalLight.main.transform.setPosition(new Vector3f(0,10,0));
-        light.transform.setParent(DirectionalLight.main.transform);
     }
 
     @Override
@@ -140,7 +142,6 @@ public class Test implements GameLogic {
             add.x=add.x-delta;
             GUIEntities.get(1).setSize(add);
         }
-        //DirectionalLight.main.transform.position=Camera.main.transform.position;
     }
 
     @Override

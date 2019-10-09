@@ -13,7 +13,7 @@ public class Camera extends Entity {
     private float farPlane = 1000;
     private Matrix4f projectionMatrix;
     private Matrix4f viewMatrix;
-    public Camera(Vector3f position, Vector3f rotation, float fov, float viewDistance) {
+    public Camera(Vector3f position,Quaternionf rotation, float fov, float viewDistance) {
         super(position,rotation,1);
         createProjectionMatrix();
     }

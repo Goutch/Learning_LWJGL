@@ -20,15 +20,12 @@ public class FirstPersonCameraController extends Entity implements UpdateListene
     private Camera camera;
     private final float boderWidth=20;//pixels
     private final float borderHeight=20;//pixels
-    public FirstPersonCameraController(Vector3f position, Vector3f rotation, Camera camera, float speed) {
+    public FirstPersonCameraController(Vector3f position, Quaternionf rotation, Camera camera, float speed) {
         super(position, rotation,1f);
         this.speed=speed;
         this.camera=camera;
         camera.transform.setParent(this.transform);
         lastFrame =new Vector2f(Window.getWidth()/2, Window.getHeight()/2);
-        MeshRenderer cube=new MeshRenderer(new Vector3f(0,0,0),new Vector3f(0,0,0),1,ModelImporter.ImportModel("res/models/cube.obj"));
-        EventManager.subscribeRender(cube);
-        cube.transform.setParent(camera.transform);
     }
 
     @Override
@@ -44,11 +41,11 @@ public class FirstPersonCameraController extends Entity implements UpdateListene
         }
         if(Input.IsKeyPressed(GLFW.GLFW_KEY_A))
         {
-            dir.x+=1;
+            dir.x-=1;
         }
         if(Input.IsKeyPressed(GLFW.GLFW_KEY_D))
         {
-            dir.x-=1;
+            dir.x+=1;
         }
         if(Input.IsKeyPressed(GLFW.GLFW_KEY_SPACE))
         {
@@ -73,23 +70,21 @@ public class FirstPersonCameraController extends Entity implements UpdateListene
 
         change.y*=(Camera.main.getFov()* Window.getAspectRatio());
         change.x*=Camera.main.getFov();//degrees the mouse travelled
-        camera.transform.rotate(new Vector3f(change.y,0,0));
-        transform.rotate(new Vector3f(0,change.x,0));
-
-
+        this.transform.rotate((float)Math.toRadians(change.x),new Vector3f(0,1,0));
+        camera.transform.rotate((float)Math.toRadians(change.y),new Vector3f(1,0,0));
         //movement
         Vector3f translation=new Vector3f();
-        Vector3f rotation=new Vector3f();
-        rotation=this.transform.getLocalRotation();
+        Vector3f foward=camera.transform.foward();
+        Vector3f left=camera.transform.left();
         if(dir.x!=0)
         {
-            translation.x+=dir.x*speed*deltaTime*(float)Math.sin(Math.toRadians(rotation.y-90));
-            translation.z+=dir.x*speed*deltaTime*(float)Math.cos(Math.toRadians(rotation.y-90));
+            translation.x+=dir.x*speed*deltaTime*left.x;
+            translation.z+=dir.x*speed*deltaTime*left.z;
         }
         if(dir.z!=0)
         {
-            translation.x+=dir.z*speed*deltaTime*(float)Math.sin(Math.toRadians(rotation.y));
-            translation.z+=dir.z*speed*deltaTime*(float)Math.cos(Math.toRadians(rotation.y));
+            translation.x+=dir.z*speed*deltaTime*foward.x;
+            translation.z+=dir.z*speed*deltaTime*foward.z;
         }
         if(dir.y!=0)
         {

@@ -10,6 +10,7 @@ import com.engine.rendering.GUIRenderer;
 import com.engine.rendering.Window;
 import com.engine.util.Color;
 import com.engine.util.Texture;
+import org.joml.Quaternionf;
 import org.joml.Vector2f;
 import org.joml.Vector3f;
 
@@ -39,7 +40,7 @@ public class Panel extends Entity implements WindowResizeListener {
     protected float aspectRatio;
 
     public Panel(Vector3f position, Vector2f size, PivotPoint pivotPoint, GUIMaterial material) {
-        super(position, Transform.ZERO, 1f);
+        super(position, new Quaternionf(), 1f);
         EventManager.subcribeWindowResize(this);
         this.size = new Vector2f(size);
         this.aspectRatio = size.x / size.y;

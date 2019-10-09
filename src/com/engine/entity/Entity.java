@@ -3,6 +3,7 @@ package com.engine.entity;
 import com.engine.events.RenderListener;
 import com.engine.events.UpdateListener;
 import org.joml.Matrix4f;
+import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 public class Entity implements RenderListener, UpdateListener {
@@ -12,11 +13,11 @@ public class Entity implements RenderListener, UpdateListener {
     public boolean enabled = true;
     public Transform transform;
 
-    public Entity(Vector3f position, Vector3f rotation, float scale) {
+    public Entity(Vector3f position, Quaternionf rotation, float scale) {
         current_entities_id++;
         transform = new Transform(position, rotation, scale);
     }
-    public Entity(Vector3f position, Vector3f rotation, float scale,Transform parent) {
+    public Entity(Vector3f position, Quaternionf rotation, float scale,Transform parent) {
         current_entities_id++;
         transform = new Transform(position, rotation, scale);
         transform.setParent(parent);

@@ -3,11 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="5186e4fe-f434-4ecb-ab20-90d6f3767f00" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/models/walnut.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/models/walnut.obj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/core/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/core/GameLoop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/entity/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/entity/MeshRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/MeshRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/entity/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/Transform.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/entity/gui/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/gui/Panel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/engine/entity/light/DirectionalLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/light/DirectionalLight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/entity/light/Light.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/light/Light.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/entity/light/PointLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/light/PointLight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/engine/exemples/FirstPersonCameraController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/exemples/FirstPersonCameraController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/gui/GUIMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/gui/GUIMaterial.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/test/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/Test.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -144,6 +150,11 @@
           <url>file://$PROJECT_DIR$/src/com/test/GuiTest.java</url>
           <line>27</line>
           <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/engine/entity/light/Light.java</url>
+          <line>11</line>
+          <option name="timeStamp" value="70" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -3,13 +3,14 @@ package com.engine.entity.light;
 
 import com.engine.entity.Entity;
 import com.engine.util.Color;
+import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 public abstract class Light extends Entity {
     protected Color color=Color.WHITE;
-    public Light(Vector3f position, Vector3f rotation, Color color) {
+    public Light(Vector3f position, Quaternionf rotation, Color color) {
         super(position, rotation, 1f);
-        this.color=color;
+        this.color.set(color);
     }
     public Color getColor()
     {

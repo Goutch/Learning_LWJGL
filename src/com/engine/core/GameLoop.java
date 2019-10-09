@@ -6,6 +6,7 @@ import com.engine.entity.Camera;
 import com.engine.rendering.GUIRenderer;
 import com.engine.rendering.Window;
 import com.engine.rendering.Renderer;
+import org.joml.Quaternionf;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
@@ -63,7 +64,7 @@ public class GameLoop {
         Renderer.init();
         GUIRenderer.init();
         Input.init(Window.getWindow());
-        Camera.setMainCamera(new Camera(new Vector3f(0,0,0),new Vector3f(0,0,0),90,1000));
+        Camera.setMainCamera(new Camera(new Vector3f(0,0,0),new Quaternionf(),90,1000));
         gameLogic.init();
         EventManager.onInit();
     }

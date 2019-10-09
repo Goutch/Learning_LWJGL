@@ -18,7 +18,7 @@ public class Transform {
     public static final Vector3f LEFT=new Vector3f(-1,0,0);
     private Matrix4f transformMatrix=new Matrix4f();
     private Vector3f localPosition =new Vector3f();
-    private Vector3f localRotation =new Vector3f();
+    private Quaternionf localRotation =new Quaternionf();
     private float localScale=1f;
     private Quaternionf rotation=new Quaternionf();
     private Vector3f position=new Vector3f();
@@ -26,7 +26,7 @@ public class Transform {
     private Transform parent;
 
 
-    public Transform(Vector3f position,Vector3f rotation,float scale)
+    public Transform(Vector3f position,Quaternionf rotation,float scale)
     {
         localPosition.set(position);
         localRotation.set(rotation);
@@ -42,9 +42,9 @@ public class Transform {
         position=parent==null?localPosition:parent.getGlobalPosition().add(localPosition);
         return new Vector3f().set(position);
     }
-    public Vector3f getLocalRotation()
+    public Quaternionf getLocalRotation()
     {
-        return new Vector3f().set(localRotation);
+        return new Quaternionf().set(localRotation);
     }
     public Quaternionf getGlobalRotation()
     {
@@ -63,9 +63,7 @@ public class Transform {
     {
         transformMatrix.identity();
         transformMatrix.translate(localPosition);
-        transformMatrix.rotate((float) Math.toRadians(localRotation.x),RIGHT);
-        transformMatrix.rotate((float) Math.toRadians(localRotation.y),UP);
-        transformMatrix.rotate((float) Math.toRadians(localRotation.z),FOWARD);
+        transformMatrix.rotate(localRotation);
         transformMatrix.scale(localScale);
     }
     public Matrix4f getTransformMatrix()
@@ -80,15 +78,16 @@ public class Transform {
         localPosition.add(translation);
         computeTransformMatrix();
     }
-    public void rotate(Vector3f rotation){
-        localRotation.add(rotation);
+    public void rotate(float angle,Vector3f axis){
+        localRotation.rotateAxis(angle,axis);
         computeTransformMatrix();
     }
+
     public void setPosition(Vector3f position) {
         localPosition.set(position);
         computeTransformMatrix();
     }
-    public void setRotation(Vector3f rotation)
+    public void setRotation(Quaternionf rotation)
     {
         localRotation.set(rotation);
         computeTransformMatrix();
@@ -97,6 +96,21 @@ public class Transform {
     {
         transformMatrix.scale(scale);
         computeTransformMatrix();
+    }
+    public Vector3f foward()
+    {
+        Quaternionf q=getGlobalRotation();
+        return new Vector3f(2 * (q.x*q.z + q.w*q.y),2 * (q.y*q.z - q.w*q.x),1 - 2 * (q.x*q.x + q.y*q.y));
+    }
+    public Vector3f up()
+    {
+        Quaternionf q=getGlobalRotation();
+        return new Vector3f(2 * (q.x*q.y - q.w*q.z), 1 - 2 * (q.x*q.x + q.z*q.z),2 * (q.y*q.z + q.w*q.x));
+    }
+    public Vector3f left()
+    {
+        Quaternionf q=getGlobalRotation();
+        return new Vector3f(1 - 2 * (q.y*q.y + q.z*q.z),2 * (q.x*q.y + q.w*q.z),2 * (q.x*q.z - q.w*q.y));
     }
     public void setParent(Transform parent) {
 
