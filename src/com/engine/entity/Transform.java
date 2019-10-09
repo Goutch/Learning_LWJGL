@@ -48,7 +48,6 @@ public class Transform {
     }
     public Quaternionf getGlobalRotation()
     {
-        computeTransformMatrix();
         rotation=parent==null?transformMatrix.getNormalizedRotation(rotation):parent.getTransformMatrix().mul(transformMatrix).getNormalizedRotation(rotation);
         return new Quaternionf().set(rotation);
     }
