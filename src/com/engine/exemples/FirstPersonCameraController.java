@@ -1,10 +1,7 @@
 package com.engine.exemples;
 
 import com.engine.entity.Entity;
-import com.engine.entity.MeshRenderer;
-import com.engine.events.EventManager;
 import com.engine.events.UpdateListener;
-import com.engine.geometry.ModelImporter;
 import com.engine.inputs.Input;
 import com.engine.entity.Camera;
 import com.engine.rendering.Window;
@@ -16,7 +13,6 @@ import org.lwjgl.glfw.GLFW;
 
 public class FirstPersonCameraController extends Entity implements UpdateListener {
     float speed=2;
-    Vector2f lastFrame;
     private Camera camera;
     private final float boderWidth=20;//pixels
     private final float borderHeight=20;//pixels
@@ -25,7 +21,7 @@ public class FirstPersonCameraController extends Entity implements UpdateListene
         this.speed=speed;
         this.camera=camera;
         camera.transform.setParent(this.transform);
-        lastFrame =new Vector2f(Window.getWidth()/2, Window.getHeight()/2);
+        Window.showCursor(false);
     }
 
     @Override
@@ -58,7 +54,7 @@ public class FirstPersonCameraController extends Entity implements UpdateListene
 
         //rotation
         Vector2f mousePos=new Vector2f((float) Input.getMouseX(),(float) Input.getMouseY());
-        Vector2f change=new Vector2f((lastFrame.x-mousePos.x)/ Window.getWidth(),(lastFrame.y-mousePos.y)/ Window.getHeight());//% of screen the mouse travelled
+        Vector2f change=new Vector2f((((float)Window.getWidth()/2)-mousePos.x)/ Window.getWidth(),(((float) Window.getHeight()/2)-mousePos.y)/ Window.getHeight());//% of screen the mouse travelled
         if (mousePos.x<0+boderWidth)
         {
             change.x=1f*deltaTime;
@@ -71,10 +67,13 @@ public class FirstPersonCameraController extends Entity implements UpdateListene
         change.y*=(Camera.main.getFov()* Window.getAspectRatio());
         change.x*=Camera.main.getFov();//degrees the mouse travelled
         this.transform.rotate((float)Math.toRadians(change.x),new Vector3f(0,1,0));
-        camera.transform.rotate((float)Math.toRadians(change.y),new Vector3f(1,0,0));
+        Vector3f currentRot=camera.transform.getLocalRotation().getEulerAnglesXYZ(new Vector3f());
+        System.out.println(currentRot.x);
+        if(currentRot.x+Math.toRadians(change.y)<Math.PI/2&&currentRot.x+Math.toRadians(change.y)>-Math.PI/2)
+            camera.transform.rotate((float)Math.toRadians(change.y),new Vector3f(1,0,0));
         //movement
         Vector3f translation=new Vector3f();
-        Vector3f foward=camera.transform.foward();
+        Vector3f forward=camera.transform.forward();
         Vector3f left=camera.transform.left();
         if(dir.x!=0)
         {
@@ -83,14 +82,14 @@ public class FirstPersonCameraController extends Entity implements UpdateListene
         }
         if(dir.z!=0)
         {
-            translation.x+=dir.z*speed*deltaTime*foward.x;
-            translation.z+=dir.z*speed*deltaTime*foward.z;
+            translation.x+=dir.z*speed*deltaTime*forward.x;
+            translation.z+=dir.z*speed*deltaTime*forward.z;
         }
         if(dir.y!=0)
         {
             translation.y+=dir.y*speed*deltaTime;
         }
         transform.translate(translation);
-        lastFrame =mousePos;
+        Window.centerMouse();
     }
 }

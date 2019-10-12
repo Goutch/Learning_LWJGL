@@ -3,18 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="5186e4fe-f434-4ecb-ab20-90d6f3767f00" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameLoop.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/core/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/core/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/entity/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/entity/MeshRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/MeshRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameOptions.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/core/GameOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/core/GameOptions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/engine/entity/Transform.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/Transform.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/entity/gui/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/gui/Panel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/entity/light/DirectionalLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/light/DirectionalLight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/entity/light/Light.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/light/Light.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/entity/light/PointLight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/light/PointLight.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/engine/exemples/FirstPersonCameraController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/exemples/FirstPersonCameraController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/test/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/Window.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/Window.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -118,6 +111,8 @@
       <workItem from="1570200336511" duration="70798000" />
       <workItem from="1570475741996" duration="10388000" />
       <workItem from="1570572288537" duration="9103000" />
+      <workItem from="1570829032036" duration="1795000" />
+      <workItem from="1570888605230" duration="2147000" />
     </task>
     <servers />
   </component>
@@ -151,17 +146,12 @@
           <line>27</line>
           <option name="timeStamp" value="66" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/engine/entity/light/Light.java</url>
-          <line>11</line>
-          <option name="timeStamp" value="70" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/LWJGL_Engine$Main.ic" NAME="Main Coverage Results" MODIFIED="1569377188097" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>com.test.*</FILTER>
+    <SUITE FILE_PATH="coverage/LWJGL_Engine$Main.ic" NAME="Main Coverage Results" MODIFIED="1570889327423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.engine.exemples.*</FILTER>
     </SUITE>
   </component>
 </project>

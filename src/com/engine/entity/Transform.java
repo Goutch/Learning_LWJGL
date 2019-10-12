@@ -97,7 +97,7 @@ public class Transform {
         transformMatrix.scale(scale);
         computeTransformMatrix();
     }
-    public Vector3f foward()
+    public Vector3f forward()
     {
         Quaternionf q=getGlobalRotation();
         return new Vector3f(2 * (q.x*q.z + q.w*q.y),2 * (q.y*q.z - q.w*q.x),1 - 2 * (q.x*q.x + q.y*q.y));

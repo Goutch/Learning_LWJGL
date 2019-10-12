@@ -123,4 +123,18 @@ public class Window {
         GLFW.glfwDestroyWindow(window);
         GLFW.glfwTerminate();
     }
+    public static void centerMouse()
+    {
+        glfwSetCursorPos(window, width / 2, height / 2);
+    }
+    public static void showCursor(boolean show)
+    {
+        if(show)
+        {
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+        }
+        else {
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+        }
+    }
 }
