@@ -46,9 +46,10 @@ public class Test implements GameLogic {
         cameraController=new FirstPersonCameraController(new Vector3f(0, 1, 0), new Quaternionf(), Camera.main, 10);
 
         //GUI
+        GUIEntities.add(new Panel(new Vector3f(-1,1,0),new Vector2f(0.35f,0.1f), Panel.PivotPoint.TOP_LEFT,new GUIMaterial().color(Color.RED).borderColor(Color.WHITE).borderWidth(0.01f)));
         GUIEntities.add(new Panel(new Vector3f(-1,1,0),new Vector2f(0.7f,0.1f), Panel.PivotPoint.TOP_LEFT,new GUIMaterial().color(new Color(1,0,0,0.5f))));
-        GUIEntities.add(new Panel(new Vector3f(-1,1,0),new Vector2f(0.35f,0.1f), Panel.PivotPoint.TOP_LEFT,new GUIMaterial().color(Color.RED)));
-        GUIEntities.add(new Panel(new Vector3f(1,1,0),new Vector2f(0.1f,0.1f), Panel.PivotPoint.TOP_RIGHT,new GUIMaterial().texture(new Texture("res/textures/Untitled.png"))));
+
+        GUIEntities.add(new Panel(new Vector3f(1,1,0),new Vector2f(0.5f,0.5f), Panel.PivotPoint.TOP_RIGHT,new GUIMaterial().texture(new Texture("res/textures/colors.png"))));
         GUIEntities.get(2).fitTexture();
         //materials
         Material daragonMat=new Material().color(new Color(0.8f,.2f,0f,0.5f)).shader(Shaders.DIFFUSE_LIGHT_SHADER).shineFactor(10f).dampFactor(100);
@@ -116,7 +117,6 @@ public class Test implements GameLogic {
             cubeColors[i] = Color.BLUE;
         }
         cubeMesh.colors(cubeColors);
-        cubeMesh.build();
     }
 
     @Override
@@ -132,15 +132,15 @@ public class Test implements GameLogic {
         }
         if(Input.IsKeyPressed(GLFW.GLFW_KEY_RIGHT))
         {
-            Vector2f add=new Vector2f(GUIEntities.get(1).getSize());
+            Vector2f add=new Vector2f(GUIEntities.get(0).getSize());
             add.x=add.x+delta;
-            GUIEntities.get(1).setSize(add);
+            GUIEntities.get(0).setSize(add);
         }
         if(Input.IsKeyPressed(GLFW.GLFW_KEY_LEFT))
         {
-            Vector2f add=new Vector2f(GUIEntities.get(1).getSize());
+            Vector2f add=new Vector2f(GUIEntities.get(0).getSize());
             add.x=add.x-delta;
-            GUIEntities.get(1).setSize(add);
+            GUIEntities.get(0).setSize(add);
         }
     }
 

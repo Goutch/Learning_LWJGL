@@ -128,7 +128,7 @@ public class ModelImporter {
                     .vertices(verticesArray)
                     .indices(indicesArray)
                     .normals(normalsArray)
-                    .uvs(uvsArray).build();
+                    .uvs(uvsArray);
 
         } catch (IOException e) {
             e.printStackTrace();

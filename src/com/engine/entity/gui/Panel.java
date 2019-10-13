@@ -1,14 +1,12 @@
 package com.engine.entity.gui;
 
 import com.engine.entity.Entity;
-import com.engine.entity.Transform;
 import com.engine.events.EventManager;
 import com.engine.events.WindowResizeListener;
 import com.engine.geometry.Mesh;
 import com.engine.gui.GUIMaterial;
 import com.engine.rendering.GUIRenderer;
 import com.engine.rendering.Window;
-import com.engine.util.Color;
 import com.engine.util.Texture;
 import org.joml.Quaternionf;
 import org.joml.Vector2f;
@@ -32,27 +30,38 @@ public class Panel extends Entity implements WindowResizeListener {
         CENTER_LEFT,
     }
 
-    private PivotPoint pivot = PivotPoint.CENTER;
-    private Vector3f pivotOffSet;
-    private Vector2f size;
-    private GUIMaterial material;
+    protected PivotPoint pivot = PivotPoint.CENTER;
+    protected Vector3f pivotOffSet=new Vector3f();
+    protected Vector2f size=new Vector2f();
+    protected GUIMaterial material;
     protected Mesh mesh;
     protected float aspectRatio;
+    protected int numRows=1;
+    protected int numColumns=1;
+
+    protected void init() {
+        createMesh(numRows,numColumns);
+    }
 
     public Panel(Vector3f position, Vector2f size, PivotPoint pivotPoint, GUIMaterial material) {
         super(position, new Quaternionf(), 1f);
         EventManager.subcribeWindowResize(this);
-        this.size = new Vector2f(size);
+        this.size.set(size);
         this.aspectRatio = size.x / size.y;
-        this.material = material;
         setPivot(pivotPoint);
-        createMesh();
+        this.material = material;
+        init();
     }
+
     public Panel(Vector3f position, Vector2f size, PivotPoint pivotPoint) {
-        this(position,size,pivotPoint,GUIMaterial.DEFAULT);
+        this(position, size, pivotPoint, GUIMaterial.DEFAULT);
     }
+    public Panel(Vector3f position, Vector2f size, GUIMaterial material) {
+        this(position, size, PivotPoint.CENTER, material);
+    }
+
     public Panel(Vector3f position, Vector2f size) {
-        this(position,size,PivotPoint.CENTER,GUIMaterial.DEFAULT);
+        this(position, size, PivotPoint.CENTER, GUIMaterial.DEFAULT);
     }
 
     public Vector2f getSize() {
@@ -62,76 +71,73 @@ public class Panel extends Entity implements WindowResizeListener {
     public void setSize(Vector2f size) {
         this.size.set(size);
         this.aspectRatio = size.x / size.y;
-        setPivot(pivot);
-        updateMesh();
+        updateVertices(numRows,numColumns);
     }
-    public void fitTexture()
-    {
-        if(material.hasTexture())
-        {
-            Texture texture=material.texture();
-            this.setSize(new Vector2f(size.x,size.x*((float)texture.height()/texture.width())));
+
+    public void fitTexture() {
+        if (material.hasTexture()) {
+            Texture texture = material.texture();
+            this.setSize(new Vector2f(size.x, size.x * ((float) texture.height() / texture.width())));
         }
     }
+
     public GUIMaterial getMaterial() {
         return material;
     }
-    public void setMaterial(GUIMaterial material)
-    {
-        this.material=material;
-    }
 
-    private void updateMesh() {
-        int sizeX = 1;
-        int sizeY = 1;
-        float[] vertices = new float[(sizeY + 1) * (sizeX + 1) * 3];
-        for (int x = 0; x < (sizeX + 1); x++) {
-            for (int y = 0; y < (sizeY + 1); y++) {
-                int index = (x * (sizeY + 1) + y);
-                vertices[index * 3] = x * size.x + pivotOffSet.x;
-                vertices[index * 3 + 1] = (y * size.y + pivotOffSet.y) * Window.getAspectRatio();
-                vertices[index * 3 + 2] = 0;
-            }
-        }
-        mesh.vertices(vertices);
-        mesh.buildVertices();
+    public void setMaterial(GUIMaterial material) {
+        this.material = material;
     }
 
     public float getAspectRatio() {
         return aspectRatio;
     }
 
-    private void createMesh() {
-        int quadsPerRow = 1;
-        int quadsPerColumn = 1;
-
-        float[] vertices = new float[(quadsPerColumn + 1) * (quadsPerRow + 1) * 3];
-        float[] uvs=new float[(quadsPerColumn + 1) * (quadsPerRow + 1)*2];
-        for (int x = 0; x < (quadsPerRow + 1); x++) {
-            for (int y = 0; y < (quadsPerColumn + 1); y++) {
-                int index = (x * (quadsPerColumn + 1) + y);
-                vertices[index * 3] = x * size.x + pivotOffSet.x;
-                uvs[index*2]=(float) x/quadsPerRow;
-                vertices[index * 3 + 1] = (y * size.y + pivotOffSet.y) * Window.getAspectRatio();
-                uvs[index*2+1]=1f-((float) y/quadsPerColumn);
+    protected void updateVertices(int row,int column) {
+        float[] vertices = new float[(column + 1) * (row + 1) * 3];
+        for (int y = 0; y < (row + 1); y++) {
+            for (int x = 0; x < (column + 1); x++) {
+                int index = (y * (column + 1) + x);
+                vertices[index * 3] = x * (size.x/numColumns) + pivotOffSet.x;
+                vertices[index * 3 + 1] = (y * (size.y/numRows) + pivotOffSet.y) * Window.getAspectRatio();
                 vertices[index * 3 + 2] = 0;
             }
         }
-        int[] indices = new int[quadsPerColumn * quadsPerRow * 6];
-        for (int x = 0; x < quadsPerRow; x++) {
-            for (int y = 0; y < quadsPerColumn; y++) {
-                int index = (x * quadsPerColumn + y);
-                indices[index * 6] = index + x + quadsPerColumn + 1;
-                indices[index * 6 + 1] = index + x + 1;
-                indices[index * 6 + 2] = index + x;
-                indices[index * 6 + 3] = index + x + quadsPerColumn + 2;
-                indices[index * 6 + 4] = index + x + 1;
-                indices[index * 6 + 5] = index + x + quadsPerColumn + 1;
+        mesh.vertices(vertices);
+    }
+    protected void updateUVS(int row,int column) {
+        float[] uvs = new float[(column + 1) * (row + 1) * 2];
+        for (int y = 0; y < (row + 1); y++) {
+            for (int x = 0; x < (column + 1); x++) {
+                int index = (y * (column + 1) + x);
+                uvs[index * 2] = (float) x /column;
+                uvs[index * 2 + 1] = 1f - ((float)y/row);
             }
         }
+        mesh.uvs(uvs);
+    }
+    protected void updateIndices(int row, int column)
+    {
+        int[] indices = new int[column * row * 6];
+        for (int y = 0; y < row; y++) {
+            for (int x = 0; x < column; x++) {
+                int index = (y * column + x);
+                indices[index * 6] = index + y + column + 1;
+                indices[index * 6 + 1] = index + y + 1;
+                indices[index * 6 + 2] = index + y;
+                indices[index * 6 + 3] = index + y + column + 2;
+                indices[index * 6 + 4] = index + y + 1;
+                indices[index * 6 + 5] = index + y + column + 1;
+            }
+        }
+        mesh.indices(indices);
+    }
+    protected void createMesh(int row, int column) {
+        mesh=new Mesh();
+        updateVertices(row,column);
+        updateIndices(row,column);
+        updateUVS(row,column);
 
-        mesh = new Mesh().vertices(vertices).indices(indices).uvs(uvs);
-        mesh.build();
     }
 
     public Mesh getMesh() {
@@ -180,8 +186,9 @@ public class Panel extends Entity implements WindowResizeListener {
                 break;
         }
     }
+
     @Override
     public void onWindowResize(int width, int height) {
-        updateMesh();
+        updateVertices(1,1);
     }
 }

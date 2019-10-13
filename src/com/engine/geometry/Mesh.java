@@ -27,33 +27,39 @@ public class Mesh implements DisposeListener {
     public Mesh vertices(float[] vertices)
     {
         this.vertices=vertices;
+        vao.put(vertices,VBO.VERTICES_ATTRIBUTE_ID,VBO.VERTICES_ATTRIBUTE_SIZE);
         return this;
     }
     public Mesh indices(int[] indices)
     {
         this.indices= indices;
+        vao.setIndices(indices);
         return this;
     }
     public Mesh normals(float[] normals)
     {
         this.normals=normals;
+        vao.put(normals,VBO.NORMALS_ATTRIBUTE_ID,VBO.NORMALS_ATTRIBUTE_SIZE);
         return this;
     }
 
     public Mesh uvs(float[] uvs)
     {
         this.uvs=uvs;
+        vao.put(uvs,VBO.UVS_ATTRIBUTE_ID,VBO.UVS_ATTRIBUTE_SIZE);
         return this;
     }
 
     public Mesh colors(Color[] colors)
     {
         setColors(colors);
+        vao.put(this.colors,VBO.COLORS_ATTRIBUTE_ID,VBO.COLORS_ATTRIBUTE_SIZE);
         return this;
     }
     public Mesh colors(float[] colors)
     {
         setColors(colors);
+        vao.put(colors,VBO.COLORS_ATTRIBUTE_ID,VBO.COLORS_ATTRIBUTE_SIZE);
         return this;
     }
 
@@ -65,26 +71,7 @@ public class Mesh implements DisposeListener {
     {
         vao.unbind();
     }
-    public void buildVertices()
-    {
-        vao.put(vertices,VBO.VERTICES_ATTRIBUTE_ID,VBO.VERTICES_ATTRIBUTE_SIZE);
-    }
 
-    /*
-     * bind the vertices,indices,normals,etc to the vao
-     */
-    public Mesh build() {
-        if (vao!=null&&vertices != null && indices != null) {
-            vao.setIndices(indices);
-            vao.put(vertices,VBO.VERTICES_ATTRIBUTE_ID,VBO.VERTICES_ATTRIBUTE_SIZE);
-            if(normals!=null)vao.put(normals,VBO.NORMALS_ATTRIBUTE_ID,VBO.NORMALS_ATTRIBUTE_SIZE);
-            if(uvs!=null)vao.put(uvs,VBO.UVS_ATTRIBUTE_ID,VBO.UVS_ATTRIBUTE_SIZE);
-            if(colors!=null)vao.put(colors,VBO.COLORS_ATTRIBUTE_ID,VBO.COLORS_ATTRIBUTE_SIZE);
-        } else {
-            System.err.println("Cant build mesh,you must initialize the mesh and the minimum requirement is a vertices and indices array");
-        }
-        return this;
-    }
 
     public int getVertexCount() {
         if (indices != null) {

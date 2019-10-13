@@ -1,12 +1,13 @@
 package com.engine.entity;
 
+import com.engine.events.InitListener;
 import com.engine.events.RenderListener;
 import com.engine.events.UpdateListener;
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
-public class Entity implements RenderListener, UpdateListener {
+public class Entity implements RenderListener, UpdateListener  {
     private static long current_entities_id = 0;
     public final long id = current_entities_id;
     public String name;
@@ -20,7 +21,6 @@ public class Entity implements RenderListener, UpdateListener {
     public Entity(Vector3f position, Quaternionf rotation, float scale,Transform parent) {
         current_entities_id++;
         transform = new Transform(position, rotation, scale);
-        transform.setParent(parent);
     }
 
     @Override
@@ -36,5 +36,4 @@ public class Entity implements RenderListener, UpdateListener {
             return;
         }
     }
-
 }

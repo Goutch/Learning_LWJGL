@@ -11,13 +11,13 @@ void main()
 {
     float maxX = 1.0 - borderWidth;
     float minX = borderWidth;
-    float maxY = 1-(borderWidth* aspectRatio);
+    float maxY = 1.0-(borderWidth* aspectRatio);
     float minY = borderWidth*aspectRatio;
 
-    if (uv.x < maxX &&
-    uv.x > minX &&
-    uv.y < maxY &&
-    uv.y > minY) {
+    if (uv.x <= maxX &&
+    uv.x >= minX &&
+    uv.y <= maxY &&
+    uv.y >= minY) {
         if(hasTexture==0)
         {
             fragColor = color;

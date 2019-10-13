@@ -68,7 +68,6 @@ public class FirstPersonCameraController extends Entity implements UpdateListene
         change.x*=Camera.main.getFov();//degrees the mouse travelled
         this.transform.rotate((float)Math.toRadians(change.x),new Vector3f(0,1,0));
         Vector3f currentRot=camera.transform.getLocalRotation().getEulerAnglesXYZ(new Vector3f());
-        System.out.println(currentRot.x);
         if(currentRot.x+Math.toRadians(change.y)<Math.PI/2&&currentRot.x+Math.toRadians(change.y)>-Math.PI/2)
             camera.transform.rotate((float)Math.toRadians(change.y),new Vector3f(1,0,0));
         //movement

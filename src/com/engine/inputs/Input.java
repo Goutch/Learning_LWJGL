@@ -1,11 +1,6 @@
 package com.engine.inputs;
 
-import com.engine.events.DisposeListener;
-import com.engine.events.EventManager;
-import org.lwjgl.glfw.GLFW;
-import org.lwjgl.glfw.GLFWCursorPosCallback;
-import org.lwjgl.glfw.GLFWKeyCallback;
-import org.lwjgl.glfw.GLFWMouseButtonCallback;
+import org.lwjgl.glfw.*;
 
 /**
  * GLFW window inputs handler of mouse and keyboard
@@ -15,10 +10,11 @@ public class Input {
     private static boolean[] isMouseButtonPressed = new boolean[GLFW.GLFW_MOUSE_BUTTON_LAST];
     private static double mouseX;
     private static double mouseY;
-
+    private static double scroll;
     private static GLFWCursorPosCallback cursorCallback;
     private static GLFWKeyCallback keyCallback;
     private static GLFWMouseButtonCallback mouseButtonCallback;
+    private static GLFWScrollCallback mouseScrollCallback;
 
     public static void init(long window) {
 
@@ -41,6 +37,13 @@ public class Input {
                 isMouseButtonPressed[button] = (action != GLFW.GLFW_RELEASE);
             }
         };
+        mouseScrollCallback = new GLFWScrollCallback() {
+            @Override
+            public void invoke(long window, double xoffset, double yoffset) {
+                scroll += yoffset;
+            }
+        };
+        GLFW.glfwSetScrollCallback(window, mouseScrollCallback);
         GLFW.glfwSetKeyCallback(window, keyCallback);
         GLFW.glfwSetMouseButtonCallback(window, mouseButtonCallback);
         GLFW.glfwSetCursorPosCallback(window, cursorCallback);
@@ -58,24 +61,24 @@ public class Input {
         return isMouseButtonPressed;
     }
 
-    /**
-     *
-     * @return
-     */
+
     public static double getMouseX() {
         return mouseX;
     }
-    /**
-     *
-     * @return
-     */
+
     public static double getMouseY() {
         return mouseY;
     }
+
+    public static double getScroll() {
+        return scroll;
+    }
+
 
     public static void dispose() {
         cursorCallback.free();
         keyCallback.free();
         mouseButtonCallback.free();
+        mouseScrollCallback.free();
     }
 }

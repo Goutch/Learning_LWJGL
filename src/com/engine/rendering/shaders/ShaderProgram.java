@@ -3,6 +3,7 @@ package com.engine.rendering.shaders;
 import com.engine.events.DisposeListener;
 import com.engine.events.EventManager;
 import org.joml.Matrix4f;
+import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 import org.lwjgl.BufferUtils;
@@ -72,6 +73,9 @@ public abstract class ShaderProgram implements DisposeListener {
     protected void loadFloatUniform(int location,float value)
     {
         GL20.glUniform1f(location,value);
+    }
+    protected void loadVectorUniform(int location, Vector2f vector) {
+        GL20.glUniform2f(location,vector.x,vector.y);
     }
     protected void loadVectorUniform(int location, Vector3f vector)
     {

@@ -27,6 +27,17 @@ public class Texture implements DisposeListener {
         EventManager.subscribeDispose(this);
         texture = load(path);
     }
+    public Texture(Color[] colors,int width,int height)
+    {
+        EventManager.subscribeDispose(this);
+        this.width=width;
+        this.height=height;
+        int[] data=new int[width*height];
+        for (int i = 0; i < colors.length; i++) {
+            data[i] = (int)(colors[i].a*255) << 24 | (int)(colors[i].r*255) << 16 | (int)(colors[i].g*255) << 8 |(int)(colors[i].b*255);
+        }
+        texture=createTexture(data);
+    }
     public int width()
     {
         return width;
@@ -46,7 +57,6 @@ public class Texture implements DisposeListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         int[] data = new int[width * height];
         for (int i = 0; i < width * height; i++) {
             int a = (pixels[i] & 0xff000000) >> 24;
@@ -60,6 +70,7 @@ public class Texture implements DisposeListener {
     }
     private int createTexture(int[] data)
     {
+
         int result = glGenTextures();
         glBindTexture(GL_TEXTURE_2D, result);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
