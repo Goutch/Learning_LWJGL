@@ -84,6 +84,7 @@ public abstract class ShaderProgram implements DisposeListener {
     protected void loadVectorUniform(int location,Vector4f vector) {
         GL20.glUniform4f(location,vector.x,vector.y,vector.z,vector.w);
     }
+
     protected void loadBooleanUniform(int location, boolean value)
     {
         GL20.glUniform1i(location, (value) ? 1 : 0);

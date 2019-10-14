@@ -6,8 +6,15 @@ uniform vec3 materialColor;
 uniform vec3 lightColor;
 uniform float ambientLight;
 in vec3 normal;
-in vec3 toLightDirection;
-
+//directionnal
+uniform int directionalLightsCount;
+uniform vec3 directionalLightsColors[2] ;
+uniform vec3 directionalLightsDirections[2];
+//point
+uniform int pointLightsCount;
+uniform vec3 pointLightsRadius[4];
+uniform vec3 pointLightsColors[4];
+in vec3 toPointlightDirections[4];
 //Specular
 uniform float shineFactor; //
 uniform float dampFactor; //
@@ -24,23 +31,51 @@ void main(){
     vec4 textureColor=texture(textureSampler, uv);
     //diffuse
     vec3 normalizedNormal=normalize(normal);
-    vec3 normalizedToLightDirection=normalize(toLightDirection);
-
-    float lightValue=dot(normalizedNormal,normalizedToLightDirection);
-    lightValue=max(lightValue,0.);
-    vec3 diffuseLight=lightColor*lightValue;
-    //specular
+    vec3 diffuseLight=vec3(0.,0.,0.);
     vec3 specularLight=vec3(0.,0.,0.);
-    if(shineFactor>0.0001)
+    //directionnalsLights
+    for(int i=0;i<directionalLightsCount;i++)
     {
-        vec3 normalizedToCameraDirection=normalize(toCameraDirection);
-        vec3 lightDirection=-normalizedToLightDirection;
-        vec3 reflectedLightDirection=reflect(lightDirection,normalizedNormal);
+        vec3 normalizedLightDirection=normalize(directionalLightsDirections[i]);
 
-        float specularReflection=dot(reflectedLightDirection,normalizedToCameraDirection);
-        specularReflection=max(specularReflection,0.);
-        float dampedReflection=pow(specularReflection,dampFactor);
-        specularLight=dampedReflection*shineFactor*lightColor;
+        float lightValue=dot(normalizedNormal,-normalizedLightDirection);
+        lightValue=max(lightValue,0.);
+        diffuseLight=directionalLightsColors[i]*lightValue;
+        //specular
+
+        if(shineFactor>0.0001)
+        {
+            vec3 normalizedToCameraDirection=normalize(toCameraDirection);
+
+            vec3 reflectedLightDirection=reflect(normalizedLightDirection,normalizedNormal);
+
+            float specularReflection=dot(reflectedLightDirection,normalizedToCameraDirection);
+            specularReflection=max(specularReflection,0.);
+            float dampedReflection=pow(specularReflection,dampFactor);
+            specularLight=dampedReflection*shineFactor*directionalLightsColors[i];
+        }
+    }
+    //pointLights
+    for(int i=0;i<pointLightsCount;i++)
+    {
+        vec3 normalizedToLightDirection=normalize(toPointlightDirections[i]);
+
+        float lightValue=dot(normalizedNormal,normalizedToLightDirection);
+        lightValue=max(lightValue,0.);
+        diffuseLight+=pointLightsColors[i]*lightValue;
+        //specular
+
+        if(shineFactor>0.0001)
+        {
+            vec3 normalizedToCameraDirection=normalize(toCameraDirection);
+            vec3 lightDirection=-normalizedToLightDirection;
+            vec3 reflectedLightDirection=reflect(lightDirection,normalizedNormal);
+
+            float specularReflection=dot(reflectedLightDirection,normalizedToCameraDirection);
+            specularReflection=max(specularReflection,0.);
+            float dampedReflection=pow(specularReflection,dampFactor);
+            specularLight+=dampedReflection*shineFactor* pointLightsColors[i];
+        }
     }
     vec4 light=vec4(ambientLight+diffuseLight+specularLight,1.);
     if(hasTexture==1)

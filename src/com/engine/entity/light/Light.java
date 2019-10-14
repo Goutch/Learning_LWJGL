@@ -7,7 +7,7 @@ import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 public abstract class Light extends Entity {
-    protected Color color=Color.WHITE;
+    protected Color color=new Color(Color.WHITE);
     public Light(Vector3f position, Quaternionf rotation, Color color) {
         super(position, rotation, 1f);
         this.color.set(color);

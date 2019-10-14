@@ -5,6 +5,7 @@ import com.engine.core.GameOptions;
 import com.engine.entity.Camera;
 import com.engine.entity.MeshRenderer;
 import com.engine.entity.light.DirectionalLight;
+import com.engine.entity.light.PointLight;
 import com.engine.exemples.FirstPersonCameraController;
 import com.engine.materials.Material;
 import com.engine.inputs.Input;
@@ -29,7 +30,7 @@ public class VoxelTest implements GameLogic {
     public void init() {
         GameOptions.PRINT_FPS=true;
         GameOptions.AMBIENT_LIGHT=.2f;
-        DirectionalLight.main.transform.setPosition(new Vector3f(0,20,0));
+        PointLight.Lights.add(new PointLight(new Vector3f(0,1,0),Color.YELLOW,10));
         Renderer.setClearColor(Color.GRAY);
         cameraController=new FirstPersonCameraController(new Vector3f(),new Quaternionf(), Camera.main,10);
         noise=new OpenSimplexNoise();
