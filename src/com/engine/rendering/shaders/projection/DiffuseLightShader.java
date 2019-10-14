@@ -58,7 +58,7 @@ public class DiffuseLightShader extends BaseShader {
     public void loadPreRenderGeneralUniforms()
     {
         super.loadPreRenderGeneralUniforms();
-        loadDirecitonalsLight();
+        loadDirectionalsLight();
         loadAmbientLight();
     }
 
@@ -86,7 +86,7 @@ public class DiffuseLightShader extends BaseShader {
         directionalLightCountLocation=getUniformLocation("directionalLightsCount");
         for (int i = 0; i < MAX_DIRECTIONAL_LIGHTS; i++) {
             directionalLightsDirectionsLocations[i]=getUniformLocation("directionalLightsDirections["+i+"]");
-            directionalLightsColorsLocations[i]=getUniformLocation(" directionalLightsColors["+i+"]");
+            directionalLightsColorsLocations[i]=getUniformLocation("directionalLightsColors["+i+"]");
         }
 
         ambientLightLocation=getUniformLocation("ambientLight");
@@ -119,8 +119,7 @@ public class DiffuseLightShader extends BaseShader {
         }
         loadIntUniform(pointLightsCountLocation,pointCount);
     }
-    private void loadDirecitonalsLight(){
-
+    private void loadDirectionalsLight(){
 
         int directionalCount=0;
         for(DirectionalLight l:DirectionalLight.Lights)
