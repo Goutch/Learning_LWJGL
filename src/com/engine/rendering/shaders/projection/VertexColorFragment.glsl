@@ -15,10 +15,16 @@ in vec3 toCameraDirection; //
 //vertexColor
 in vec4 color;
 
+//texture
+uniform sampler2D textureSampler;
+uniform int hasTexture;
+in vec2 uv;
 
 out vec4 fragColor;
 void main()
 {
+    //texture
+    vec4 textureColor=texture(textureSampler, uv);
     //diffuse
     vec3 normalizedNormal=normalize(normal);
     vec3 normalizedToLightDirection=normalize(toLightDirection);
@@ -41,5 +47,11 @@ void main()
     }
     vec4 light=vec4(ambientLight+diffuseLight+specularLight,1.);
 
-    fragColor=color*vec4(materialColor,1.)*light;
+    if(hasTexture==1)
+    {
+        fragColor=color*textureColor*vec4(materialColor,1.)*light;
+    }
+    else{
+        fragColor=color*vec4(materialColor,1.)*light;
+    }
 }

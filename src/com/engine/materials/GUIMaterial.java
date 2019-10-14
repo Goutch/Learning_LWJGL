@@ -1,11 +1,12 @@
-package com.engine.gui;
+package com.engine.materials;
+
 
 import com.engine.entity.gui.Panel;
+
 import com.engine.rendering.shaders.gui.GUIShader;
 import com.engine.rendering.shaders.Shaders;
 import com.engine.util.Color;
 import com.engine.util.Texture;
-import com.sun.deploy.security.SelectableSecurityManager;
 
 
 public class GUIMaterial {

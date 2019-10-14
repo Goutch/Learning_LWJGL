@@ -1,7 +1,6 @@
 package com.engine.geometry;
 
 public class Geometry {
-
     public static Mesh getPlane(int sizeX, int sizeZ) {
         float[] vertices = new float[(sizeX + 1) * (sizeZ + 1) * 3];
         int[] indices = new int[sizeX * sizeZ * 6];

@@ -1,22 +1,19 @@
 package com.test;
 
 import com.engine.core.GameLogic;
-import com.engine.core.GameOptions;
 import com.engine.entity.Entity;
 import com.engine.entity.MeshRenderer;
-import com.engine.entity.Transform;
 import com.engine.entity.gui.Panel;
 import com.engine.entity.light.DirectionalLight;
-import com.engine.events.EventManager;
 import com.engine.exemples.FirstPersonCameraController;
 import com.engine.geometry.*;
 
 import com.engine.entity.Camera;
-import com.engine.gui.GUIMaterial;
+import com.engine.materials.GUIMaterial;
 import com.engine.inputs.Input;
 import com.engine.rendering.Renderer;
 import com.engine.rendering.Window;
-import com.engine.geometry.Material;
+import com.engine.materials.Material;
 import com.engine.rendering.shaders.Shaders;
 import com.engine.util.Color;
 import com.engine.util.Texture;

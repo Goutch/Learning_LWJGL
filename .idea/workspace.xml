@@ -2,35 +2,42 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5186e4fe-f434-4ecb-ab20-90d6f3767f00" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/res/fonts/Consolas.bff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/fonts/ConsolasFont.bmp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/fonts/consolas.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/textures/colors.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/engine/entity/gui/Label.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/engine/util/AtlasTexture.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/engine/util/noise/OpenSimplexNoise.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/test/NoiseTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/voxelEngine/VoxelChunk.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/voxelEngine/VoxelTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameOptions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/core/GameOptions.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/geometry/Geometry.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/inputs/Input$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/inputs/Input$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/inputs/Input$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/inputs/Input$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/inputs/Input$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/inputs/Input$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/inputs/Input.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/inputs/Input.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Renderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/rendering/Renderer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/util/Color.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/engine/util/Color.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LWJGL_Engine/com/test/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/entity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/core/GameOptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/core/GameOptions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/entity/MeshRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/MeshRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/entity/gui/Label.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/gui/Label.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/engine/entity/gui/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/entity/gui/Panel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/exemples/FirstPersonCameraController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/exemples/FirstPersonCameraController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/Geometry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/Geometry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/Mesh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/Mesh.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/ModelImporter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/geometry/ModelImporter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/inputs/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/inputs/Input.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/ShaderProgram.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shaders/ShaderProgram.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/gui/GUIFragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shaders/gui/GUIFragment.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/gui/GUIVertex.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shaders/gui/GUIVertex.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/geometry/Material.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/materials/Material.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/gui/GUIMaterial.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/materials/GUIMaterial.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/GUIRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/GUIRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/Renderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/Renderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/Shaders.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shaders/Shaders.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/gui/GUIShader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shaders/gui/GUIShader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/projection/BaseFragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shaders/BaseFragment.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/projection/BaseShader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shaders/BaseShader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/projection/BaseVertex.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shaders/BaseVertex.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/projection/DiffuseLightFragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shaders/projection/DiffuseLightFragment.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/projection/DiffuseLightShader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shaders/projection/DiffuseLightShader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/projection/DiffuseLightVertex.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shaders/projection/DiffuseLightVertex.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/projection/TextureFragment.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/projection/TextureShader.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/projection/TextureVertex.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/projection/VertexColorFragment.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shaders/projection/VertexColorFragment.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/rendering/shaders/projection/VertexColorVertex.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/rendering/shaders/projection/VertexColorVertex.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/engine/util/Color.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/util/Color.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/engine/util/Texture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/engine/util/Texture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/test/GuiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/GuiTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/test/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/test/NoiseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/NoiseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/test/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/test/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/voxelEngine/VoxelChunk.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/voxelEngine/VoxelChunk.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +65,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/joml-1.9.17.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TilePlanner" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -67,11 +74,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Documents\GitHub\LWJGL_Engine\src\com\engine\rendering\shaders" />
       <recent name="C:\Users\User\Documents\GitHub\LWJGL_Engine\src\com\engine\rendering\shaders\gui" />
       <recent name="C:\Users\User\Documents\GitHub\LWJGL_Engine\src\com\engine\rendering\shaders\projection" />
       <recent name="C:\Users\User\Documents\GitHub\LWJGL_Engine\src\com\engine\rendering\shader" />
       <recent name="C:\Users\User\Documents\GitHub\LWJGL_Engine\lib" />
-      <recent name="C:\Users\User\Documents\GitHub\LWJGL_Engine\lib\LWJGL" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -135,7 +142,8 @@
       <workItem from="1570475741996" duration="10388000" />
       <workItem from="1570572288537" duration="9103000" />
       <workItem from="1570829032036" duration="1795000" />
-      <workItem from="1570888605230" duration="29785000" />
+      <workItem from="1570888605230" duration="30764000" />
+      <workItem from="1570980777033" duration="26220000" />
     </task>
     <servers />
   </component>
@@ -173,6 +181,21 @@
           <url>file://$PROJECT_DIR$/src/com/engine/inputs/Input.java</url>
           <line>42</line>
           <option name="timeStamp" value="113" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/engine/entity/gui/Panel.java</url>
+          <line>149</line>
+          <option name="timeStamp" value="115" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/test/Test.java</url>
+          <line>107</line>
+          <option name="timeStamp" value="117" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/test/Test.java</url>
+          <line>146</line>
+          <option name="timeStamp" value="118" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

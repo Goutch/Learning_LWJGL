@@ -3,7 +3,7 @@ package com.test;
 import com.engine.core.GameLogic;
 import com.engine.core.GameOptions;
 import com.engine.entity.gui.Panel;
-import com.engine.gui.GUIMaterial;
+import com.engine.materials.GUIMaterial;
 import com.engine.inputs.Input;
 import com.engine.rendering.Window;
 import com.engine.util.Color;

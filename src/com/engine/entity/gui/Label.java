@@ -1,7 +1,6 @@
 package com.engine.entity.gui;
 
-import com.engine.gui.GUIMaterial;
-import com.engine.rendering.Window;
+import com.engine.materials.GUIMaterial;
 import com.engine.util.AtlasTexture;
 import org.joml.Vector2f;
 import org.joml.Vector3f;

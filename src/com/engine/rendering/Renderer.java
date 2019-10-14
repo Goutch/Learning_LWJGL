@@ -1,12 +1,10 @@
 package com.engine.rendering;
 
 
-import com.engine.core.GameOptions;
 import com.engine.entity.MeshRenderer;
-
-import com.engine.geometry.Material;
+import com.engine.materials.Material;
 import com.engine.geometry.Mesh;
-import org.lwjgl.opengl.GL;
+import com.engine.util.Color;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -14,22 +12,27 @@ import java.util.HashMap;
 import java.util.List;
 
 
+
 public class Renderer {
     private static HashMap<Mesh, HashMap<Material,List<MeshRenderer>>> renderQueue=new HashMap<Mesh, HashMap<Material,List<MeshRenderer>>>();
     public static void init() {
 
         GL11.glCullFace(GL11.GL_BACK);
-        GL11.glClearColor(GameOptions.CLEAR_COLOR.r, GameOptions.CLEAR_COLOR.b, GameOptions.CLEAR_COLOR.g, GameOptions.CLEAR_COLOR.a);
+        setClearColor(Color.BLACK);
         clear();
 
     }
+    public static void setClearColor(Color color)
+    {
+        GL11.glClearColor(color.r, color.b, color.g, color.a);
+    }
     public static void addToRenderQueue(MeshRenderer meshRenderer)
     {
-        Mesh mesh=meshRenderer.getMesh();
+        Mesh mesh= meshRenderer.getMesh();
         HashMap<Material,List<MeshRenderer>> materialBatch=renderQueue.get(mesh);
         if(materialBatch!=null)
         {
-            Material material=meshRenderer.getMaterial();
+            Material material = meshRenderer.getMaterial();
             List<MeshRenderer> batch=materialBatch.get(material);
             if(batch!=null)
             {
@@ -37,7 +40,7 @@ public class Renderer {
             }
             else
             {
-                List<MeshRenderer> newBatch=new ArrayList<MeshRenderer>();
+                List<MeshRenderer> newBatch= new ArrayList<>();
                 newBatch.add(meshRenderer);
                 materialBatch.put(material,newBatch);
             }
@@ -45,7 +48,7 @@ public class Renderer {
         else
         {
             materialBatch=new  HashMap<Material,List<MeshRenderer>>();
-            List<MeshRenderer> newBatch=new ArrayList<MeshRenderer>();
+            List<MeshRenderer> newBatch=new ArrayList<>();
             newBatch.add(meshRenderer);
             materialBatch.put(meshRenderer.getMaterial(),newBatch);
             renderQueue.put(mesh,materialBatch);
@@ -64,13 +67,13 @@ public class Renderer {
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         for (Mesh mesh:renderQueue.keySet()) {
             mesh.bind();
-            for (Material material: renderQueue.get(mesh).keySet()) {
+            for (Material material : renderQueue.get(mesh).keySet()) {
                 material.bind();
                 List<MeshRenderer> batch=renderQueue.get(mesh).get(material);
 
-                for (MeshRenderer entity:batch)
+                for (MeshRenderer meshRenderer :batch)
                 {
-                    material.bindEntity(entity);
+                    material.bindEntity(meshRenderer);
                     GL11.glDrawElements(GL11.GL_TRIANGLES, mesh.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
                 }
                 material.unBind();
@@ -100,7 +103,7 @@ public class Renderer {
      * @deprecated  use {@link #addToRenderQueue(MeshRenderer)} instead.
      */
     @Deprecated
-    public static void render(MeshRenderer meshRenderer) {
+    public static void render(com.engine.entity.MeshRenderer meshRenderer) {
         Material material = meshRenderer.getMaterial();
         Mesh mesh = meshRenderer.getMesh();
         material.bind();
@@ -110,7 +113,4 @@ public class Renderer {
         mesh.unBind();
         material.unBind();
     }
-
-
-
 }

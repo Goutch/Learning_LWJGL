@@ -3,7 +3,7 @@ package com.test;
 import com.engine.core.GameLogic;
 import com.engine.entity.Entity;
 import com.engine.entity.gui.Panel;
-import com.engine.gui.GUIMaterial;
+import com.engine.materials.GUIMaterial;
 import com.engine.util.Color;
 import com.engine.util.Texture;
 import org.joml.Vector2f;

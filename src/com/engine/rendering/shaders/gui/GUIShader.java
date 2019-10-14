@@ -1,14 +1,13 @@
 package com.engine.rendering.shaders.gui;
 
-import com.engine.entity.Entity;
 import com.engine.entity.gui.Panel;
-import com.engine.geometry.Material;
+
 import com.engine.geometry.VBO;
 
-import com.engine.gui.GUIMaterial;
-import com.engine.rendering.Window;
+import com.engine.materials.GUIMaterial;
+
 import com.engine.rendering.shaders.ShaderProgram;
-import com.engine.util.Color;
+
 import org.joml.Matrix4f;
 
 

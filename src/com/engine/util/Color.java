@@ -38,6 +38,11 @@ public class Color {
         this.b=Math.max(0,Math.min(1,color.b));
         this.a=Math.max(0,Math.min(1,color.a));
     }
+
+    public int toInt()
+    {
+        return (int)(a*255) << 24 | (int)(r*255) << 16 | (int)(g*255) << 8 |(int)(b*255);
+    }
     public Vector3f toVector3f()
     {
         return new Vector3f(r,g,b);

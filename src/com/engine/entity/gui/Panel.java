@@ -4,7 +4,7 @@ import com.engine.entity.Entity;
 import com.engine.events.EventManager;
 import com.engine.events.WindowResizeListener;
 import com.engine.geometry.Mesh;
-import com.engine.gui.GUIMaterial;
+import com.engine.materials.GUIMaterial;
 import com.engine.rendering.GUIRenderer;
 import com.engine.rendering.Window;
 import com.engine.util.Texture;

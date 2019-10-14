@@ -21,9 +21,13 @@ out vec3 toCameraDirection;
 in vec4 vertexColor;
 out vec4 color;
 
-
+//texture
+in vec2 textureCoord;
+out vec2 uv;
 void main()
 {
+    //texture
+    uv=textureCoord;
     //vertexColor
     color=vertexColor;
 

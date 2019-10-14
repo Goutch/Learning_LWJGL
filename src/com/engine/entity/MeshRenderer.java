@@ -1,6 +1,6 @@
 package com.engine.entity;
 
-import com.engine.geometry.Material;
+import com.engine.materials.Material;
 import com.engine.geometry.Mesh;
 import com.engine.rendering.Renderer;
 import org.joml.Quaternionf;
@@ -30,13 +30,24 @@ public class MeshRenderer extends Entity{
         this.material = Material.DEFAULT;
     }
 
+    public void setMesh(Mesh mesh){
+        this.mesh=mesh;
+    }
+
+
+    public Material getMaterial() {
+        return material;
+    }
 
     public Mesh getMesh() {
         return mesh;
     }
-    public Material getMaterial(){return material;}
 
-    @Override
+
+    public Entity getEntity() {
+        return this;
+    }
+
     public void render() {
         super.render();
         Renderer.addToRenderQueue(this);

@@ -4,7 +4,7 @@ package com.engine.rendering;
 import com.engine.entity.gui.Panel;
 
 import com.engine.geometry.Mesh;
-import com.engine.gui.GUIMaterial;
+import com.engine.materials.GUIMaterial;
 import org.lwjgl.opengl.GL11;
 
 

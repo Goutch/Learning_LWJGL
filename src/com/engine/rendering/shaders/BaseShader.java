@@ -1,12 +1,11 @@
-package com.engine.rendering.shaders.projection;
+package com.engine.rendering.shaders;
 
 import com.engine.entity.Entity;
 import com.engine.events.EventManager;
 import com.engine.events.ProjectionMatrixChangeListener;
 import com.engine.entity.Camera;
+import com.engine.materials.Material;
 import com.engine.geometry.VBO;
-import com.engine.geometry.Material;
-import com.engine.rendering.shaders.ShaderProgram;
 import org.joml.Matrix4f;
 
 /**
@@ -20,14 +19,13 @@ import org.joml.Matrix4f;
  */
 public class BaseShader extends ShaderProgram implements ProjectionMatrixChangeListener {
 
-    private static final String VERTEX_FILE="src/com/engine/rendering/shaders/projection/BaseVertex.glsl";
-    private static final String FRAMGMENT_FILE="src/com/engine/rendering/shaders/projection/BaseFragment.glsl";
+    private static final String VERTEX_FILE="src/com/engine/rendering/shaders/BaseVertex.glsl";
+    private static final String FRAMGMENT_FILE="src/com/engine/rendering/shaders/BaseFragment.glsl";
     private int transformMatrixLocation;
     private int projectionMatrixLocation;
     private int viewMatrixLocation;
 
-    private int shineFactorLocation;
-    private int dampFactorLocation;
+
     private int materialColorLocation;
     public BaseShader() {
         super(VERTEX_FILE, FRAMGMENT_FILE);
@@ -63,9 +61,6 @@ public class BaseShader extends ShaderProgram implements ProjectionMatrixChangeL
         transformMatrixLocation =getUniformLocation("transformMatrix");
         projectionMatrixLocation=getUniformLocation("projectionMatrix");
         viewMatrixLocation=getUniformLocation("viewMatrix");
-
-        shineFactorLocation=getUniformLocation("shineFactor");
-        dampFactorLocation=getUniformLocation("dampFactor");
         materialColorLocation=getUniformLocation("materialColor");
     }
 
@@ -97,11 +92,9 @@ public class BaseShader extends ShaderProgram implements ProjectionMatrixChangeL
     {
         loadMatrixUniform(viewMatrixLocation,viewMatrix);
     }
-    private void loadMaterial(Material material)
+    protected void loadMaterial(Material material)
     {
-        loadFloatUniform(shineFactorLocation,material.getShineFactor());
-        loadFloatUniform(dampFactorLocation,material.getDampFactor());
-        loadVectorUniform(materialColorLocation,(material.getColor().toVector3f()));
+        loadVectorUniform(materialColorLocation,(material.color().toVector3f()));
     }
     @Override
     public void onProjectionMatrixChanged(Matrix4f projectionMatrix) {

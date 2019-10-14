@@ -34,7 +34,7 @@ public class Texture implements DisposeListener {
         this.height=height;
         int[] data=new int[width*height];
         for (int i = 0; i < colors.length; i++) {
-            data[i] = (int)(colors[i].a*255) << 24 | (int)(colors[i].r*255) << 16 | (int)(colors[i].g*255) << 8 |(int)(colors[i].b*255);
+            data[i] = colors[i].toInt();
         }
         texture=createTexture(data);
     }

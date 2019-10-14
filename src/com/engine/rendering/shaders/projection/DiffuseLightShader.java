@@ -3,6 +3,8 @@ package com.engine.rendering.shaders.projection;
 import com.engine.core.GameOptions;
 import com.engine.entity.light.DirectionalLight;
 import com.engine.geometry.VBO;
+import com.engine.materials.Material;
+import com.engine.rendering.shaders.BaseShader;
 import org.joml.Vector3f;
 /**
  * Inputs:
@@ -26,7 +28,9 @@ public class DiffuseLightShader extends BaseShader {
     private int lightPositionLocation;
     private int lightColorLocation;
     private int ambientLightLocation;
-
+    private int shineFactorLocation;
+    private int dampFactorLocation;
+    private int hasTextureLocation;
 
     public DiffuseLightShader(String vertex,String frag)
     {
@@ -45,6 +49,7 @@ public class DiffuseLightShader extends BaseShader {
     {
         super.loadPreRenderGeneralUniforms();
         loadLight();
+
     }
     @Override
     protected void getAllUniformLocations() {
@@ -52,7 +57,17 @@ public class DiffuseLightShader extends BaseShader {
         lightPositionLocation=getUniformLocation("lightPosition");
         lightColorLocation=getUniformLocation("lightColor");
         ambientLightLocation=getUniformLocation("ambientLight");
+        shineFactorLocation=getUniformLocation("shineFactor");
+        dampFactorLocation=getUniformLocation("dampFactor");
+        hasTextureLocation=getUniformLocation("hasTexture");
 
+    }
+
+    protected void loadMaterial(Material material) {
+        super.loadMaterial(material);
+        loadFloatUniform(shineFactorLocation, material.getShineFactor());
+        loadFloatUniform(dampFactorLocation, material.getDampFactor());
+        loadBooleanUniform(hasTextureLocation, material.hasTexture());
     }
 
     private void loadLight(){
