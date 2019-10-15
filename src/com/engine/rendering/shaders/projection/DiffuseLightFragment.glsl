@@ -40,7 +40,7 @@ void main(){
 
         float lightValue=dot(normalizedNormal,-normalizedLightDirection);
         lightValue=max(lightValue,0.);
-        diffuseLight=directionalLightsColors[i]*lightValue;
+        diffuseLight+=directionalLightsColors[i]*lightValue;
         //specular
 
         if(shineFactor>0.0001)
@@ -52,7 +52,7 @@ void main(){
             float specularReflection=dot(reflectedLightDirection,normalizedToCameraDirection);
             specularReflection=max(specularReflection,0.);
             float dampedReflection=pow(specularReflection,dampFactor);
-            specularLight=dampedReflection*shineFactor*directionalLightsColors[i];
+            specularLight+=dampedReflection*shineFactor*directionalLightsColors[i];
         }
     }
     //pointLights
