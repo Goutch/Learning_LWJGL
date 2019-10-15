@@ -1,5 +1,6 @@
 #version 400 core
 
+in vec4 position;
 //Material
 uniform vec3 materialColor;
 //Diffuse
@@ -12,8 +13,9 @@ uniform vec3 directionalLightsColors[2] ;
 uniform vec3 directionalLightsDirections[2];
 //point
 uniform int pointLightsCount;
-uniform vec3 pointLightsRadius[4];
+uniform float pointLightsRadius[4];
 uniform vec3 pointLightsColors[4];
+uniform vec3 pointLightsPositions[4] ;
 in vec3 toPointlightDirections[4];
 //Specular
 uniform float shineFactor; //
@@ -58,23 +60,29 @@ void main(){
     //pointLights
     for(int i=0;i<pointLightsCount;i++)
     {
-        vec3 normalizedToLightDirection=normalize(toPointlightDirections[i]);
+        float dist=distance(pointLightsPositions[i],position.xyz);
 
-        float lightValue=dot(normalizedNormal,normalizedToLightDirection);
-        lightValue=max(lightValue,0.);
-        diffuseLight+=pointLightsColors[i]*lightValue;
-        //specular
-
-        if(shineFactor>0.0001)
+        if(dist<pointLightsRadius[i])
         {
-            vec3 normalizedToCameraDirection=normalize(toCameraDirection);
-            vec3 lightDirection=-normalizedToLightDirection;
-            vec3 reflectedLightDirection=reflect(lightDirection,normalizedNormal);
+            float intensity=1-dist/pointLightsRadius[i];
+            vec3 normalizedToLightDirection=normalize(toPointlightDirections[i]);
 
-            float specularReflection=dot(reflectedLightDirection,normalizedToCameraDirection);
-            specularReflection=max(specularReflection,0.);
-            float dampedReflection=pow(specularReflection,dampFactor);
-            specularLight+=dampedReflection*shineFactor* pointLightsColors[i];
+            float lightValue=dot(normalizedNormal,normalizedToLightDirection);
+            lightValue=max(lightValue,0.);
+            diffuseLight+=pointLightsColors[i]*lightValue*intensity;
+            //specular
+
+            if(shineFactor>0.0001)
+            {
+                vec3 normalizedToCameraDirection=normalize(toCameraDirection);
+                vec3 lightDirection=-normalizedToLightDirection;
+                vec3 reflectedLightDirection=reflect(lightDirection,normalizedNormal);
+
+                float specularReflection=dot(reflectedLightDirection,normalizedToCameraDirection);
+                specularReflection=max(specularReflection,0.);
+                float dampedReflection=pow(specularReflection,dampFactor);
+                specularLight+=dampedReflection*shineFactor* pointLightsColors[i]*intensity;
+            }
         }
     }
     vec4 light=vec4(ambientLight+diffuseLight+specularLight,1.);

@@ -93,8 +93,8 @@ public class Test implements GameLogic {
         //    cubeColors[i] = Color.BLUE;
         //}
         //cubeMesh.colors(cubeColors);
-        DirectionalLight.Lights.add(new DirectionalLight(new Vector3f(0,1,0),new Quaternionf().rotateXYZ(0,(float) Math.PI/2,0),Color.WHITE));
-        DirectionalLight.Lights.add(new DirectionalLight(new Vector3f(0,1,0),new Quaternionf().rotateXYZ(0,(float) Math.PI/4,0),Color.RED));
+        //DirectionalLight.Lights.add(new DirectionalLight(new Vector3f(0,1,0),new Quaternionf().rotateXYZ(0,(float) Math.PI/2,0),Color.WHITE));
+        //DirectionalLight.Lights.add(new DirectionalLight(new Vector3f(0,1,0),new Quaternionf().rotateXYZ(0,(float) Math.PI/4,0),Color.RED));
         for (DirectionalLight d: DirectionalLight.Lights) {
             Entity light=new MeshRenderer(
                     new Vector3f(0,0,0),
@@ -105,8 +105,8 @@ public class Test implements GameLogic {
             light.transform.setParent(d.transform);
             entities.add(light);
         }
-        // PointLight.Lights.add(new PointLight(new Vector3f(0,10,0),Color.WHITE,10));
-        //PointLight.Lights.add(new PointLight(new Vector3f(20,10,0),Color.YELLOW,10));
+        PointLight.Lights.add(new PointLight(new Vector3f(0,10,0),Color.WHITE,10));
+        PointLight.Lights.add(new PointLight(new Vector3f(20,10,0),Color.YELLOW,10));
         for (PointLight p: PointLight.Lights) {
             Entity light=new MeshRenderer(
                     new Vector3f(0,0,0),

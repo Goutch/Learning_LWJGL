@@ -5,7 +5,7 @@ uniform mat4 transformMatrix;
 uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
 in vec3 vertexPosition;
-
+out vec4 position;
 //diffuselight
 in vec3 vertexNormal;
 out vec3 normal;
@@ -28,7 +28,7 @@ void main(){
     //texture
     uv=textureCoord;
     //Diffuselight
-    vec4 position=transformMatrix*vec4(vertexPosition.xyz,1.);
+    position=transformMatrix*vec4(vertexPosition.xyz,1.);
     normal=(transformMatrix*vec4(vertexNormal,0.)).xyz;
 
     for(int i=0;i<pointLightsCount;i++)
