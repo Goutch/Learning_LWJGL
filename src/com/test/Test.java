@@ -45,7 +45,7 @@ public class Test implements GameLogic {
         //materials
         Material daragonMat=new Material().color(new Color(0.8f,.2f,0f,0.5f)).shader(Shaders.DIFFUSE_LIGHT_SHADER).shineFactor(10f).dampFactor(100);
         Material cubeMat=new Material().shader(Shaders.DIFFUSE_LIGHT_SHADER);
-        Material terrainMat=new Material().color(Color.GREEN).shader(Shaders.DIFFUSE_LIGHT_SHADER);
+        Material terrainMat=new Material().color(new Color(0.2f,0.7f,0.2f,1)).shader(Shaders.DIFFUSE_LIGHT_SHADER);
 
         //meshes
         Mesh dragonMesh=ModelImporter.ImportModel("res/models/dragon.obj");
@@ -93,20 +93,9 @@ public class Test implements GameLogic {
         //    cubeColors[i] = Color.BLUE;
         //}
         //cubeMesh.colors(cubeColors);
-        //DirectionalLight.Lights.add(new DirectionalLight(new Vector3f(0,1,0),new Quaternionf().rotateXYZ(0,(float) Math.PI/2,0),Color.WHITE));
-        //DirectionalLight.Lights.add(new DirectionalLight(new Vector3f(0,1,0),new Quaternionf().rotateXYZ(0,(float) Math.PI/4,0),Color.RED));
-        for (DirectionalLight d: DirectionalLight.Lights) {
-            Entity light=new MeshRenderer(
-                    new Vector3f(0,0,0),
-                    new Quaternionf(),
-                    1f,
-                    cubeMesh,
-                    new Material().color(d.getColor()).shader(Shaders.BASE_SHADER));
-            light.transform.setParent(d.transform);
-            entities.add(light);
-        }
+        DirectionalLight.Lights.add(new DirectionalLight(new Vector3f(0,1,0),new Quaternionf().rotateXYZ((float) Math.PI/3,(float) Math.PI/3,0),new Color(1f,1f,0.7f,1f)));
+
         PointLight.Lights.add(new PointLight(new Vector3f(0,10,0),Color.WHITE,10));
-        PointLight.Lights.add(new PointLight(new Vector3f(20,10,0),Color.YELLOW,10));
         for (PointLight p: PointLight.Lights) {
             Entity light=new MeshRenderer(
                     new Vector3f(0,0,0),
