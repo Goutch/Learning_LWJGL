@@ -103,6 +103,7 @@ public class DiffuseLightShader extends BaseShader {
         loadBooleanUniform(hasTextureLocation, material.hasTexture());
     }
     private void loadPointsLights(Entity entity){
+        //todo: load closest lights
         Vector3f pos=entity.transform.getGlobalPosition();
         int pointCount=0;
         for(PointLight l:PointLight.Lights)

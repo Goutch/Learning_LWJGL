@@ -43,8 +43,8 @@ public class Test implements GameLogic {
         cameraController=new FirstPersonCameraController(new Vector3f(0, 1, 0), new Quaternionf(), Camera.main, 10);
 
         //materials
-        Material daragonMat=new Material().color(new Color(0.8f,.2f,0f,0.5f)).shader(Shaders.DIFFUSE_LIGHT_SHADER).shineFactor(10f).dampFactor(100);
-        Material cubeMat=new Material().shader(Shaders.DIFFUSE_LIGHT_SHADER);
+        Material daragonMat=new Material().color(new Color(0.8f,.2f,0f,0.5f)).shader(Shaders.DIFFUSE_LIGHT_SHADER).shineFactor(2f).dampFactor(20);
+        Material cubeMat=new Material().shader(Shaders.VERTEX_COLOR_SHADER);
         Material terrainMat=new Material().color(new Color(0.2f,0.7f,0.2f,1)).shader(Shaders.DIFFUSE_LIGHT_SHADER);
 
         //meshes
@@ -84,15 +84,15 @@ public class Test implements GameLogic {
                     cubeMat));
         }
 
-        //Color[] cubeColors = new Color[cubeMesh.getVertices().length];
-        //for (int i = 0; i < cubeColors.length; i++) {
-        //    cubeColors[i] = Color.RED;
-        //    i++;
-        //    cubeColors[i] = Color.GREEN;
-        //    i++;
-        //    cubeColors[i] = Color.BLUE;
-        //}
-        //cubeMesh.colors(cubeColors);
+        Color[] cubeColors = new Color[cubeMesh.getVertices().length];
+        for (int i = 0; i < cubeColors.length; i++) {
+            cubeColors[i] = Color.RED;
+            i++;
+            cubeColors[i] = Color.GREEN;
+            i++;
+            cubeColors[i] = Color.BLUE;
+        }
+        cubeMesh.colors(cubeColors);
         DirectionalLight.Lights.add(new DirectionalLight(new Vector3f(0,1,0),new Quaternionf().rotateXYZ((float) Math.PI/3,(float) Math.PI/3,0),new Color(1f,1f,0.7f,1f)));
 
         PointLight.Lights.add(new PointLight(new Vector3f(0,10,0),Color.WHITE,10));
@@ -106,7 +106,6 @@ public class Test implements GameLogic {
             light.transform.setParent(p.transform);
             entities.add(light);
         }
-
     }
 
     @Override
@@ -120,18 +119,7 @@ public class Test implements GameLogic {
         {
             Renderer.setWireframe(false);
         }
-        if(Input.IsKeyPressed(GLFW.GLFW_KEY_RIGHT))
-        {
-            Vector2f add=new Vector2f(GUIEntities.get(0).getSize());
-            add.x=add.x+delta;
-            GUIEntities.get(0).setSize(add);
-        }
-        if(Input.IsKeyPressed(GLFW.GLFW_KEY_LEFT))
-        {
-            Vector2f add=new Vector2f(GUIEntities.get(0).getSize());
-            add.x=add.x-delta;
-            GUIEntities.get(0).setSize(add);
-        }
+
     }
 
     @Override

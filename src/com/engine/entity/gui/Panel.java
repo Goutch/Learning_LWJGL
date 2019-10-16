@@ -70,15 +70,17 @@ public class Panel extends Entity implements WindowResizeListener {
 
     public void setSize(Vector2f size) {
         this.size.set(size);
+        setPivot(pivot);
         this.aspectRatio = size.x / size.y;
         updateVertices(numRows,numColumns);
     }
 
-    public void fitTexture() {
+    public Panel fitTexture() {
         if (material.hasTexture()) {
             Texture texture = material.texture();
             this.setSize(new Vector2f(size.x, size.x * ((float) texture.height() / texture.width())));
         }
+        return this;
     }
 
     public GUIMaterial getMaterial() {

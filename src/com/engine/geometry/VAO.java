@@ -26,7 +26,6 @@ public class VAO implements DisposeListener {
         {
             vbo.bind();
         }
-
     }
     public void unbind()
     {
@@ -63,7 +62,6 @@ public class VAO implements DisposeListener {
             indices.dispose();
             indices=null;
         }
-
         vbos.clear();
     }
     public void remove(int position)
@@ -73,7 +71,6 @@ public class VAO implements DisposeListener {
             vbos.get(position).dispose();
             vbos.remove(position);
         }
-
     }
     @Override
     public void dispose() {
