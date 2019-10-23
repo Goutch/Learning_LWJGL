@@ -1,6 +1,10 @@
 package com.engine.inputs;
 
+import com.engine.rendering.Window;
 import org.lwjgl.glfw.*;
+
+import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.glfw.GLFW.GLFW_CURSOR_HIDDEN;
 
 /**
  * GLFW window inputs handler of mouse and keyboard
@@ -11,13 +15,14 @@ public class Input {
     private static double mouseX;
     private static double mouseY;
     private static double scroll;
+    private static long window;
     private static GLFWCursorPosCallback cursorCallback;
     private static GLFWKeyCallback keyCallback;
     private static GLFWMouseButtonCallback mouseButtonCallback;
     private static GLFWScrollCallback mouseScrollCallback;
 
     public static void init(long window) {
-
+        Input.window=window;
         keyCallback = new GLFWKeyCallback() {
             @Override
             public void invoke(long window, int key, int scancode, int action, int mods) {
@@ -74,7 +79,16 @@ public class Input {
         return scroll;
     }
 
-
+    public static void showCursor(boolean show)
+    {
+        if(show)
+        {
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+        }
+        else {
+            glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+        }
+    }
     public static void dispose() {
         cursorCallback.free();
         keyCallback.free();

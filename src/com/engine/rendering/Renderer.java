@@ -103,7 +103,7 @@ public class Renderer {
      * @deprecated  use {@link #addToRenderQueue(MeshRenderer)} instead.
      */
     @Deprecated
-    public static void render(com.engine.entity.MeshRenderer meshRenderer) {
+    public static void render(MeshRenderer meshRenderer) {
         Material material = meshRenderer.getMaterial();
         Mesh mesh = meshRenderer.getMesh();
         material.bind();

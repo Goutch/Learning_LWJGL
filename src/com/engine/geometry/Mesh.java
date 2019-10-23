@@ -24,6 +24,16 @@ public class Mesh implements DisposeListener {
         EventManager.subscribeDispose(this);
         vao=new VAO();
     }
+    public Mesh(Mesh mesh)
+    {
+        EventManager.subscribeDispose(this);
+        vao=new VAO();
+        vertices(mesh.getVertices());
+        indices(mesh.getIndices());
+        uvs(mesh.getUVS());
+        normals(mesh.getNormals());
+        colors(mesh.getColors());
+    }
     public Mesh vertices(float[] vertices)
     {
         this.vertices=vertices;
@@ -79,8 +89,12 @@ public class Mesh implements DisposeListener {
         } else {
             return vertices.length;
         }
-
     }
+    public float[] getColors()
+    {
+        return colors;
+    }
+
 
     public float[] getNormals() {
         return normals;
@@ -98,6 +112,10 @@ public class Mesh implements DisposeListener {
         this.colors = colors;
     }
 
+    public float[] getUVS()
+    {
+        return uvs;
+    }
     private void setColors(Color color) {
         if (color != null) {
             colors = new float[(getVertexCount() / 3) * 4];

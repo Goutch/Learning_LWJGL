@@ -14,14 +14,12 @@ import org.lwjgl.glfw.GLFW;
 public class FirstPersonCameraController extends Entity implements UpdateListener {
     float speed=2;
     private Camera camera;
-    private final float boderWidth=20;//pixels
-    private final float borderHeight=20;//pixels
     public FirstPersonCameraController(Vector3f position, Quaternionf rotation, Camera camera, float speed) {
         super(position, rotation,1f);
         this.speed=speed;
         this.camera=camera;
         camera.transform.setParent(this.transform);
-        Window.showCursor(false);
+        Input.showCursor(false);
     }
 
     @Override
@@ -55,14 +53,6 @@ public class FirstPersonCameraController extends Entity implements UpdateListene
         //rotation
         Vector2f mousePos=new Vector2f((float) Input.getMouseX(),(float) Input.getMouseY());
         Vector2f change=new Vector2f((((float)Window.getWidth()/2)-mousePos.x)/ Window.getWidth(),(((float) Window.getHeight()/2)-mousePos.y)/ Window.getHeight());//% of screen the mouse travelled
-        if (mousePos.x<0+boderWidth)
-        {
-            change.x=1f*deltaTime;
-        }
-        else if (mousePos.x> Window.getWidth()-boderWidth)
-        {
-            change.x=-1f*deltaTime;
-        }
 
         change.y*=(Camera.main.getFov()* Window.getAspectRatio());
         change.x*=Camera.main.getFov();//degrees the mouse travelled

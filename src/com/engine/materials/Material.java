@@ -8,7 +8,7 @@ import com.engine.rendering.shaders.Shaders;
 import com.engine.util.Color;
 import com.engine.util.Texture;
 
-public class Material  {
+public class Material {
     public static Material DEFAULT=new Material();
     private BaseShader shader= Shaders.DIFFUSE_LIGHT_SHADER;
     private float shineFactor =0;

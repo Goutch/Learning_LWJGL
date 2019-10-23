@@ -5,6 +5,7 @@ import com.engine.entity.Entity;
 import com.engine.entity.gui.Panel;
 import com.engine.inputs.Input;
 import com.engine.materials.GUIMaterial;
+import com.engine.rendering.Renderer;
 import com.engine.util.Color;
 import com.engine.util.Texture;
 import org.joml.Vector2f;
@@ -21,6 +22,15 @@ public class GuiTest implements GameLogic {
     public void init() {
         //GUI
         GUIEntities.add(new Panel(
+                new Vector3f(-1,1,0),
+                new Vector2f(0.1f,0.1f),
+                Panel.PivotPoint.TOP_LEFT,
+                new GUIMaterial()
+                        .borderColor(Color.WHITE)
+                        .borderWidth(0.01f)
+                        .color(Color.RED)
+        ));
+        GUIEntities.add(new Panel(
                 new Vector3f(0,0,0),
                 new Vector2f(0.5f,1f),
                 Panel.PivotPoint.CENTER,
@@ -32,32 +42,31 @@ public class GuiTest implements GameLogic {
                         )
                 ).fitTexture()
         );
-        GUIEntities.add(new Panel(
-                new Vector3f(-1,1,0),
-                new Vector2f(0.4f,0.1f),
-                Panel.PivotPoint.TOP_LEFT,
-                new GUIMaterial()
-                        .borderColor(Color.WHITE)
-                        .borderWidth(0.01f)
-                        .color(Color.RED)
-        ));
-
     }
 
     @Override
     public void update(float delta) {
         if(Input.IsKeyPressed(GLFW.GLFW_KEY_RIGHT))
         {
-            Vector2f add=new Vector2f(GUIEntities.get(1).getSize());
+            Vector2f add=new Vector2f(GUIEntities.get(0).getSize());
             add.x=add.x+delta;
-            GUIEntities.get(1).setSize(add);
+            GUIEntities.get(0).setSize(add);
         }
         if(Input.IsKeyPressed(GLFW.GLFW_KEY_LEFT))
         {
-            Vector2f add=new Vector2f(GUIEntities.get(1).getSize());
+            Vector2f add=new Vector2f(GUIEntities.get(0).getSize());
             add.x=add.x-delta;
-            GUIEntities.get(1).setSize(add);
+            GUIEntities.get(0).setSize(add);
         }
+        if(Input.IsKeyPressed(GLFW.GLFW_KEY_1))
+        {
+            Renderer.setWireframe(true);
+        }
+        else
+        {
+            Renderer.setWireframe(false);
+        }
+
     }
 
     @Override

@@ -26,7 +26,7 @@ import org.lwjgl.glfw.GLFW;
 import java.util.LinkedList;
 
 
-public class Test implements GameLogic {
+public class Test3D implements GameLogic {
     LinkedList<Entity> entities = new LinkedList<Entity>();
     LinkedList<Panel> GUIEntities = new LinkedList<Panel>();
 

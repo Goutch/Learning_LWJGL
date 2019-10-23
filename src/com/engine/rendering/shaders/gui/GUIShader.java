@@ -17,9 +17,11 @@ public class GUIShader extends ShaderProgram {
     private int panelColorLocation;
     private int panelBorderColorLocation;
     private int panelBorderWidthLocation;
+    private int rectSizeLocation;
     private int transformMatrixLocation;
     private int aspectRatioLocation;
     private int hasTextureLocation;
+    private int pivotOffsetLocation;
     public GUIShader(String vertexFile, String fragmentFile) {
         super(vertexFile, fragmentFile);
     }
@@ -38,7 +40,9 @@ public class GUIShader extends ShaderProgram {
     public void loadPreRenderPanelUniforms(Panel panel)
     {
         loadTransformMatrix(panel.transform.getTransformMatrix());
+        loadVectorUniform(rectSizeLocation,panel.getSize());
         loadFloatUniform(aspectRatioLocation,panel.getAspectRatio());
+        loadVectorUniform(pivotOffsetLocation,panel.getPivotOffSet());
     }
     @Override
     protected void bindAttributes() {
@@ -54,6 +58,8 @@ public class GUIShader extends ShaderProgram {
         panelBorderWidthLocation=getUniformLocation("borderWidth");
         aspectRatioLocation=getUniformLocation("aspectRatio");
         hasTextureLocation=getUniformLocation("hasTexture");
+        rectSizeLocation=getUniformLocation("size");
+        pivotOffsetLocation=getUniformLocation("pivot");
     }
     private void loadTransformMatrix(Matrix4f transformMatrix)
     {
