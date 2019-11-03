@@ -62,7 +62,7 @@ public class FirstPersonCameraController extends Entity implements UpdateListene
             camera.transform.rotate((float)Math.toRadians(change.y),new Vector3f(1,0,0));
         //movement
         Vector3f translation=new Vector3f();
-        Vector3f forward=camera.transform.forward();
+        Vector3f forward=transform.forward();
         Vector3f left=camera.transform.left();
         if(dir.x!=0)
         {

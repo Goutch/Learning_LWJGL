@@ -93,7 +93,6 @@ public class DiffuseLightShader extends BaseShader {
         shineFactorLocation=getUniformLocation("shineFactor");
         dampFactorLocation=getUniformLocation("dampFactor");
         hasTextureLocation=getUniformLocation("hasTexture");
-
     }
 
     protected void loadMaterial(Material material) {
