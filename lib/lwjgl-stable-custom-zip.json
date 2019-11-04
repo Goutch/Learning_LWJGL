@@ -1,0 +1,26 @@
+{
+  "build": "stable",
+  "mode": "zip",
+  "selectedAddons": [
+    "joml"
+  ],
+  "platform": [
+    "windows",
+    "windows-x86"
+  ],
+  "descriptions": true,
+  "compact": false,
+  "hardcoded": false,
+  "javadoc": true,
+  "includeJSON": true,
+  "source": true,
+  "osgi": false,
+  "language": "groovy",
+  "contents": [
+    "lwjgl",
+    "lwjgl-opengl",
+    "lwjgl-glfw",
+    "lwjgl-openal",
+    "lwjgl-vulkan"
+  ]
+}
