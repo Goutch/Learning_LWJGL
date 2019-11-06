@@ -4,7 +4,7 @@ package com.engine.rendering.shaders;
 import com.engine.rendering.shaders.gui.GUIShader;
 import com.engine.rendering.shaders.projection.DiffuseLightShader;
 import com.engine.rendering.shaders.projection.VertexColorShader;
-import com.voxelEngine.voxelShader.VoxelShader;
+import com.engine.examples.voxelEngine.voxelShader.VoxelShader;
 
 public class Shaders {
     public static final BaseShader BASE_SHADER =new BaseShader();

@@ -1,4 +1,4 @@
-package com.voxelEngine;
+package com.engine.examples.voxelEngine;
 
 import org.joml.Vector3i;
 

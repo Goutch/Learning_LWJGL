@@ -1,26 +1,26 @@
-package com.voxelEngine;
+package com.engine.examples.voxelEngine;
 
 import com.engine.core.GameLogic;
 import com.engine.core.GameOptions;
 import com.engine.entity.Camera;
-import com.engine.entity.MeshRenderer;
-import com.engine.entity.light.DirectionalLight;
+
+import com.engine.entity.light.Light;
 import com.engine.entity.light.PointLight;
-import com.engine.exemples.FirstPersonCameraController;
-import com.engine.materials.Material;
+import com.engine.examples.FirstPersonCameraController;
+
 import com.engine.inputs.Input;
 import com.engine.rendering.Renderer;
-import com.engine.rendering.shaders.Shaders;
-import com.engine.util.Color;
-import com.engine.util.noise.OpenSimplexNoise;
 
-import com.test.Test;
+import com.engine.util.Color;
+
+
 import org.joml.Quaternionf;
 import org.joml.Vector3f;
-import org.joml.Vector3i;
+
 import org.lwjgl.glfw.GLFW;
 
-import java.util.Random;
+import java.util.Collection;
+
 
 public class VoxelTest implements GameLogic {
     FirstPersonCameraController cameraController;
@@ -28,12 +28,12 @@ public class VoxelTest implements GameLogic {
     @Override
     public void init() {
         GameOptions.PRINT_FPS=true;
-        GameOptions.AMBIENT_LIGHT=1f;
-        Renderer.setClearColor(Color.GRAY);
+        GameOptions.AMBIENT_LIGHT=0.5f;
+        Renderer.setClearColor(new Color(.1f,.4f,1f,1f));
         voxelWorld=new VoxelWorld(new TestGenerator());
-        voxelWorld.init();
-        cameraController=new FirstPersonCameraController(new Vector3f(),new Quaternionf(), Camera.main,10);
-
+        cameraController=new FirstPersonCameraController(new Vector3f(),new Quaternionf(), Camera.main,20);
+       voxelWorld.chunkLoader=cameraController;
+        PointLight.Lights.add(new PointLight(new Vector3f(0,50,0), Color.WHITE,150 ));
     }
 
     @Override
@@ -51,6 +51,7 @@ public class VoxelTest implements GameLogic {
         if(Input.IsKeyPressed(GLFW.GLFW_KEY_R))
         {
             voxelWorld=new VoxelWorld(new TestGenerator());
+            voxelWorld.chunkLoader=cameraController;
         }
     }
 

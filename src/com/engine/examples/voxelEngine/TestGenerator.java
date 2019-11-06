@@ -1,4 +1,4 @@
-package com.voxelEngine;
+package com.engine.examples.voxelEngine;
 
 import com.engine.util.noise.OpenSimplexNoise;
 import org.joml.Vector3i;

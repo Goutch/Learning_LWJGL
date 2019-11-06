@@ -24,7 +24,7 @@ public class Renderer {
     }
     public static void setClearColor(Color color)
     {
-        GL11.glClearColor(color.r, color.b, color.g, color.a);
+        GL11.glClearColor(color.r, color.g, color.b, color.a);
     }
     public static void addToRenderQueue(MeshRenderer meshRenderer)
     {

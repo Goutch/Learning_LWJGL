@@ -1,10 +1,9 @@
-package com.voxelEngine.voxelShader;
+package com.engine.examples.voxelEngine.voxelShader;
 
 
 import com.engine.geometry.VBO;
 import com.engine.materials.Material;
 import com.engine.rendering.shaders.BaseShader;
-import com.engine.rendering.shaders.projection.DiffuseLightShader;
 
 /**
  * Inputs:
@@ -24,8 +23,8 @@ import com.engine.rendering.shaders.projection.DiffuseLightShader;
  *
  */
 public class VoxelShader extends BaseShader {
-    private static final String VERTEX_FILE="src/com/voxelEngine/voxelShader/VoxelVertex.glsl";
-    private static final String FRAMGMENT_FILE="src/com/voxelEngine/voxelShader/VoxelFragment.glsl";
+    private static final String VERTEX_FILE="src/com/engine/examples/voxelEngine/voxelShader/VoxelVertex.glsl";
+    private static final String FRAMGMENT_FILE="src/com/engine/examples/voxelEngine/voxelShader/VoxelFragment.glsl";
 
     public VoxelShader() {
         super(VERTEX_FILE, FRAMGMENT_FILE);

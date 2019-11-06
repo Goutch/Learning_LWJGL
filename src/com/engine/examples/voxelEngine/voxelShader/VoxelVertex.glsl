@@ -1,7 +1,5 @@
 #version 400 core
 
-
-
 //base
 uniform mat4 transformMatrix;
 uniform mat4 projectionMatrix;

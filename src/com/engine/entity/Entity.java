@@ -1,5 +1,6 @@
 package com.engine.entity;
 
+import com.engine.events.DisposeListener;
 import com.engine.events.InitListener;
 import com.engine.events.RenderListener;
 import com.engine.events.UpdateListener;

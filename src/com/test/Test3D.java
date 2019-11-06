@@ -6,20 +6,17 @@ import com.engine.entity.MeshRenderer;
 import com.engine.entity.gui.Panel;
 import com.engine.entity.light.DirectionalLight;
 import com.engine.entity.light.PointLight;
-import com.engine.exemples.FirstPersonCameraController;
+import com.engine.examples.FirstPersonCameraController;
 import com.engine.geometry.*;
 
 import com.engine.entity.Camera;
-import com.engine.materials.GUIMaterial;
 import com.engine.inputs.Input;
 import com.engine.rendering.Renderer;
 import com.engine.rendering.Window;
 import com.engine.materials.Material;
 import com.engine.rendering.shaders.Shaders;
 import com.engine.util.Color;
-import com.engine.util.Texture;
 import org.joml.Quaternionf;
-import org.joml.Vector2f;
 import org.joml.Vector3f;
 import org.lwjgl.glfw.GLFW;
 
