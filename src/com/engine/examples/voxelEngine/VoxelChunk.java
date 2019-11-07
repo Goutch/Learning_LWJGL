@@ -29,7 +29,7 @@ public class VoxelChunk extends Mesh {
     }
 
     public void setData(Vector3i chunkPos) {
-        boolean[][][] data = world.getChunk(chunkPos);
+        Block[][][] data = world.getChunk(chunkPos);
         LinkedList<Float> vertices = new LinkedList<>();
         LinkedList<Integer> indices = new LinkedList<>();
         LinkedList<Color> colors = new LinkedList<>();
@@ -38,8 +38,8 @@ public class VoxelChunk extends Mesh {
         for (int y = 0; y < VoxelWorld.CHUNK_SIZE.y; y++) {
             for (int x = 0; x < VoxelWorld.CHUNK_SIZE.x; x++) {
                 for (int z = 0; z < VoxelWorld.CHUNK_SIZE.z; z++) {
-                    if (data[y][x][z]) {
-                        makeCube(vertices, indices, normals, colors, x, y, z, data,new Color(0.2f,0.8f,0.2f,1f));
+                    if (data[y][x][z]!=null) {
+                        makeCube(vertices, indices, normals, colors, x, y, z, data,data[y][x][z].color);
                     }
                 }
             }
@@ -76,49 +76,49 @@ public class VoxelChunk extends Mesh {
         vertices(vertArray).indices(indicesArray).colors(colorArray).normals(normalsArray);
     }
 
-    private void makeCube(LinkedList<Float> vertices, LinkedList<Integer> indices, LinkedList<Vector3f> normals, LinkedList<Color> colors, int x, int y, int z, boolean[][][] data,Color color) {
+    private void makeCube(LinkedList<Float> vertices, LinkedList<Integer> indices, LinkedList<Vector3f> normals, LinkedList<Color> colors, int x, int y, int z, Block[][][] data,Color color) {
         Vector3i offSet = new Vector3i(x, y, z);
 
         //front
         if ((z + 1 >= VoxelWorld.CHUNK_SIZE.z
-                && !world.getVoxel(new Vector3i(x, y, z + 1).add(chunkOffset))
+                && world.getVoxel(new Vector3i(x, y, z + 1).add(chunkOffset))==null
         ) ||
-                (z + 1 < VoxelWorld.CHUNK_SIZE.z && !data[y][x][z + 1])) {
+                (z + 1 < VoxelWorld.CHUNK_SIZE.z && data[y][x][z + 1]==null)) {
             makeQuad(vertices, indices, normals, colors, BOTTOM_LEFT_FRONT, TOP_LEFT_FRONT, BOTTOM_RIGHT_FRONT, TOP_RIGHT_FRONT, offSet, Transform.FOWARD, color);
         }
         //back
         if ((z - 1 < 0
-                && !world.getVoxel(new Vector3i(x, y, z - 1).add(chunkOffset))
+                && world.getVoxel(new Vector3i(x, y, z - 1).add(chunkOffset))==null
         ) ||
-                (z - 1 >= 0 && !data[y][x][z - 1])) {
+                (z - 1 >= 0 && data[y][x][z - 1]==null)) {
             makeQuad(vertices, indices, normals, colors, BOTTOM_RIGHT_BACK, TOP_RIGHT_BACK, BOTTOM_LEFT_BACK, TOP_LEFT_BACK, offSet, Transform.BACKWARD,color);
         }
         //left
         if ((x - 1 < 0
-                && !world.getVoxel(new Vector3i(x - 1, y, z).add(chunkOffset))
+                && world.getVoxel(new Vector3i(x - 1, y, z).add(chunkOffset))==null
         ) ||
-                (x - 1 >= 0 && !data[y][x - 1][z])) {
+                (x - 1 >= 0 && data[y][x - 1][z]==null)) {
             makeQuad(vertices, indices, normals, colors, BOTTOM_LEFT_BACK, TOP_LEFT_BACK, BOTTOM_LEFT_FRONT, TOP_LEFT_FRONT, offSet, Transform.LEFT, color);
         }
         //right
         if ((x + 1 >= VoxelWorld.CHUNK_SIZE.x
-                && !world.getVoxel(new Vector3i(x + 1, y, z).add(chunkOffset))
+                && world.getVoxel(new Vector3i(x + 1, y, z).add(chunkOffset))==null
         ) ||
-                (x + 1 < VoxelWorld.CHUNK_SIZE.x && !data[y][x + 1][z])) {
+                (x + 1 < VoxelWorld.CHUNK_SIZE.x && data[y][x + 1][z]==null)) {
             makeQuad(vertices, indices, normals, colors, BOTTOM_RIGHT_FRONT, TOP_RIGHT_FRONT, BOTTOM_RIGHT_BACK, TOP_RIGHT_BACK, offSet, Transform.RIGHT, color);
         }
         //top
         if ((y + 1 >= VoxelWorld.CHUNK_SIZE.y
-                // && !world.getVoxel(new Vector3i(x, y + 1, z).add(chunkOffset))
+                // && world.getVoxel(new Vector3i(x, y + 1, z).add(chunkOffset))==null
         ) ||
-                (y + 1 < VoxelWorld.CHUNK_SIZE.y && !data[y + 1][x][z])) {
+                (y + 1 < VoxelWorld.CHUNK_SIZE.y && data[y + 1][x][z]==null)) {
             makeQuad(vertices, indices, normals, colors, TOP_LEFT_FRONT, TOP_LEFT_BACK, TOP_RIGHT_FRONT, TOP_RIGHT_BACK, offSet, Transform.UP, color);
         }
         //bottom
         if ((y - 1 < 0
-                && !world.getVoxel(new Vector3i(x, y - 1, z).add(chunkOffset))
+                && world.getVoxel(new Vector3i(x, y - 1, z).add(chunkOffset))==null
         ) ||
-                (y - 1 >= 0 && !data[y - 1][x][z])) {
+                (y - 1 >= 0 && data[y - 1][x][z]==null)) {
             makeQuad(vertices, indices, normals, colors, BOTTOM_LEFT_BACK, BOTTOM_LEFT_FRONT, BOTTOM_RIGHT_BACK, BOTTOM_RIGHT_FRONT, offSet, Transform.DOWN, color);
         }
     }

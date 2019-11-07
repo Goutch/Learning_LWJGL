@@ -4,6 +4,7 @@ import com.engine.core.GameLogic;
 import com.engine.core.GameOptions;
 import com.engine.entity.Camera;
 
+import com.engine.entity.light.DirectionalLight;
 import com.engine.entity.light.Light;
 import com.engine.entity.light.PointLight;
 import com.engine.examples.FirstPersonCameraController;
@@ -11,6 +12,7 @@ import com.engine.examples.FirstPersonCameraController;
 import com.engine.inputs.Input;
 import com.engine.rendering.Renderer;
 
+import com.engine.rendering.Window;
 import com.engine.util.Color;
 
 
@@ -32,8 +34,8 @@ public class VoxelTest implements GameLogic {
         Renderer.setClearColor(new Color(.1f,.4f,1f,1f));
         voxelWorld=new VoxelWorld(new TestGenerator());
         cameraController=new FirstPersonCameraController(new Vector3f(),new Quaternionf(), Camera.main,20);
-       voxelWorld.chunkLoader=cameraController;
-        PointLight.Lights.add(new PointLight(new Vector3f(0,50,0), Color.WHITE,150 ));
+        voxelWorld.chunkLoader=cameraController;
+        DirectionalLight.Lights.add(new DirectionalLight(new Vector3f(),new Quaternionf().rotateXYZ(45,45,0f), Color.WHITE ));
     }
 
     @Override

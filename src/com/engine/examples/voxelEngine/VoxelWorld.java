@@ -17,10 +17,10 @@ import java.util.HashMap;
 
 public class VoxelWorld implements UpdateListener, RenderListener, DisposeListener {
     public static final Vector3i CHUNK_SIZE = new Vector3i(16, 32, 16);
-    private HashMap<Vector3i, boolean[][][]> chunksData = new HashMap<>();
+    private HashMap<Vector3i, Block[][][]> chunksData = new HashMap<>();
     private HashMap<Vector3i, MeshRenderer> meshRenderersPool = new HashMap<>();
     public Entity chunkLoader;
-    private int range = 7;
+    private int range = 16;
     private VoxelGenerator generator;
 
     public VoxelWorld(VoxelGenerator generator) {
@@ -53,12 +53,14 @@ public class VoxelWorld implements UpdateListener, RenderListener, DisposeListen
     }
 
     private void createChunkMesh(Vector3i chunkPos) {
+        long time=System.currentTimeMillis();
         meshRenderersPool.put(chunkPos, new MeshRenderer(new Vector3f(chunkPos.x * CHUNK_SIZE.x, chunkPos.y * CHUNK_SIZE.y, chunkPos.z * CHUNK_SIZE.z),
                 new Quaternionf(),
                 1,
                 new VoxelChunk(this, chunkPos),
                 new Material()
                         .shader(Shaders.VERTEX_COLOR_SHADER)));
+        System.out.println((System.currentTimeMillis()-time)+"ms ("+chunkPos.x+","+chunkPos.y+","+chunkPos.z+")");
     }
 
     public Vector3i getChunkPosition(Vector3f pos) {
@@ -77,24 +79,24 @@ public class VoxelWorld implements UpdateListener, RenderListener, DisposeListen
         return chunkPos;
     }
 
-    public boolean[][][] getChunk(Vector3i chunkPos) {
+    public Block[][][] getChunk(Vector3i chunkPos) {
 
         if (chunksData.containsKey(chunkPos)) {
             return chunksData.get(chunkPos);
         } else {
-            boolean[][][] data = generator.generate(chunkPos);
+            Block[][][] data = generator.generate(chunkPos);
             chunksData.put(chunkPos, data);
             return data;
         }
     }
 
-    public boolean getVoxel(Vector3i pos) {
+    public Block getVoxel(Vector3i pos) {
         Vector3i chunkPos = getChunkPosition(pos);
         Vector3i chunkOffSet = new Vector3i().set(chunkPos).mul(CHUNK_SIZE);
         if (chunksData.containsKey(chunkPos)) {
             return chunksData.get(chunkPos)[pos.y - chunkOffSet.y][pos.x - chunkOffSet.x][pos.z - chunkOffSet.z];
         } else {
-            boolean[][][] data = generator.generate(chunkPos);
+            Block[][][] data = generator.generate(chunkPos);
             chunksData.put(chunkPos, data);
             int x, y, z;
             y = pos.y - chunkOffSet.y;

@@ -25,6 +25,12 @@ public class Color {
     public Color(Color color){
         set(color);
     }
+    public Color(float r,float g,float b){
+        this.r=Math.max(0,Math.min(1,r));
+        this.g=Math.max(0,Math.min(1,g));
+        this.b=Math.max(0,Math.min(1,b));
+        this.a=1;
+    }
     public Color(float r,float g,float b,float a){
         this.r=Math.max(0,Math.min(1,r));
         this.g=Math.max(0,Math.min(1,g));
