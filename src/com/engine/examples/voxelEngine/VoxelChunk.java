@@ -38,8 +38,8 @@ public class VoxelChunk extends Mesh {
         for (int y = 0; y < VoxelWorld.CHUNK_SIZE.y; y++) {
             for (int x = 0; x < VoxelWorld.CHUNK_SIZE.x; x++) {
                 for (int z = 0; z < VoxelWorld.CHUNK_SIZE.z; z++) {
-                    if (data[y][x][z]!=null) {
-                        makeCube(vertices, indices, normals, colors, x, y, z, data,data[y][x][z].color);
+                    if (data[y][x][z] != null) {
+                        makeCube(vertices, indices, normals, colors, x, y, z, data, data[y][x][z].color);
                     }
                 }
             }
@@ -76,78 +76,177 @@ public class VoxelChunk extends Mesh {
         vertices(vertArray).indices(indicesArray).colors(colorArray).normals(normalsArray);
     }
 
-    private void makeCube(LinkedList<Float> vertices, LinkedList<Integer> indices, LinkedList<Vector3f> normals, LinkedList<Color> colors, int x, int y, int z, Block[][][] data,Color color) {
+    private void makeCube(LinkedList<Float> vertices, LinkedList<Integer> indices, LinkedList<Vector3f> normals, LinkedList<Color> colors, int x, int y, int z, Block[][][] data, Color color) {
         Vector3i offSet = new Vector3i(x, y, z);
-
+        boolean hasTopFront=world.getVoxel(new Vector3i(x, y + 1, z + 1)) != null;
+        boolean hasBottomFront=world.getVoxel(new Vector3i(x, y - 1, z + 1)) != null;
+        boolean hasRightFront = world.getVoxel(new Vector3i(x + 1, y, z + 1)) != null;
+        boolean hasLeftFront = world.getVoxel(new Vector3i(x - 1, y, z + 1)) != null;
+        boolean hasTopBack=world.getVoxel(new Vector3i(x, y + 1, z - 1)) != null;
+        boolean hasBottomBack=world.getVoxel(new Vector3i(x, y - 1, z - 1)) != null;
+        boolean hasRightBack = world.getVoxel(new Vector3i(x + 1, y, z - 1)) != null;
+        boolean hasLeftBack = world.getVoxel(new Vector3i(x - 1, y, z - 1)) != null;
+        boolean hasRightTop= world.getVoxel(new Vector3i(x + 1, y + 1, z)) == null;
+        boolean hasRightBottom = world.getVoxel(new Vector3i(x + 1, y - 1, z)) != null;
+        boolean hasLeftTop = world.getVoxel(new Vector3i(x - 1, y + 1, z)) == null;
+        boolean hasLeftBottom = world.getVoxel(new Vector3i(x - 1, y - 1, z)) != null;
         //front
-        if ((z + 1 >= VoxelWorld.CHUNK_SIZE.z
-                && world.getVoxel(new Vector3i(x, y, z + 1).add(chunkOffset))==null
-        ) ||
-                (z + 1 < VoxelWorld.CHUNK_SIZE.z && data[y][x][z + 1]==null)) {
-            makeQuad(vertices, indices, normals, colors, BOTTOM_LEFT_FRONT, TOP_LEFT_FRONT, BOTTOM_RIGHT_FRONT, TOP_RIGHT_FRONT, offSet, Transform.FOWARD, color);
+        if ((z + 1 >= VoxelWorld.CHUNK_SIZE.z && world.getVoxel(new Vector3i(x, y, z + 1).add(chunkOffset)) == null) || (z + 1 < VoxelWorld.CHUNK_SIZE.z && data[y][x][z + 1] == null)) {
+            makeQuad(vertices,
+                    indices,
+                    normals,
+                    colors,
+                    BOTTOM_LEFT_FRONT,
+                    TOP_LEFT_FRONT,
+                    BOTTOM_RIGHT_FRONT,
+                    TOP_RIGHT_FRONT,
+                    Transform.FOWARD,
+                    Transform.FOWARD,
+                    Transform.FOWARD,
+                    Transform.FOWARD,
+                    offSet,
+                    color);
+
         }
         //back
-        if ((z - 1 < 0
-                && world.getVoxel(new Vector3i(x, y, z - 1).add(chunkOffset))==null
-        ) ||
-                (z - 1 >= 0 && data[y][x][z - 1]==null)) {
-            makeQuad(vertices, indices, normals, colors, BOTTOM_RIGHT_BACK, TOP_RIGHT_BACK, BOTTOM_LEFT_BACK, TOP_LEFT_BACK, offSet, Transform.BACKWARD,color);
+        if ((z - 1 < 0 && world.getVoxel(new Vector3i(x, y, z - 1).add(chunkOffset)) == null) || (z - 1 >= 0 && data[y][x][z - 1] == null)) {
+            makeQuad(vertices,
+                    indices,
+                    normals,
+                    colors,
+                    BOTTOM_RIGHT_BACK,
+                    TOP_RIGHT_BACK,
+                    BOTTOM_LEFT_BACK,
+                    TOP_LEFT_BACK,
+                    Transform.BACKWARD,
+                    Transform.BACKWARD,
+                    Transform.BACKWARD,
+                    Transform.BACKWARD,
+                    offSet,
+                    color);
         }
         //left
-        if ((x - 1 < 0
-                && world.getVoxel(new Vector3i(x - 1, y, z).add(chunkOffset))==null
-        ) ||
-                (x - 1 >= 0 && data[y][x - 1][z]==null)) {
-            makeQuad(vertices, indices, normals, colors, BOTTOM_LEFT_BACK, TOP_LEFT_BACK, BOTTOM_LEFT_FRONT, TOP_LEFT_FRONT, offSet, Transform.LEFT, color);
+        if ((x - 1 < 0 && world.getVoxel(new Vector3i(x - 1, y, z).add(chunkOffset)) == null) || (x - 1 >= 0 && data[y][x - 1][z] == null)) {
+
+            makeQuad(vertices,
+                    indices,
+                    normals,
+                    colors,
+                    BOTTOM_LEFT_BACK,
+                    TOP_LEFT_BACK,
+                    BOTTOM_LEFT_FRONT,
+                    TOP_LEFT_FRONT,
+                    Transform.LEFT,
+                    Transform.LEFT,
+                    Transform.LEFT,
+                    Transform.LEFT,
+                    offSet,
+                    color);
         }
         //right
-        if ((x + 1 >= VoxelWorld.CHUNK_SIZE.x
-                && world.getVoxel(new Vector3i(x + 1, y, z).add(chunkOffset))==null
-        ) ||
-                (x + 1 < VoxelWorld.CHUNK_SIZE.x && data[y][x + 1][z]==null)) {
-            makeQuad(vertices, indices, normals, colors, BOTTOM_RIGHT_FRONT, TOP_RIGHT_FRONT, BOTTOM_RIGHT_BACK, TOP_RIGHT_BACK, offSet, Transform.RIGHT, color);
+        if ((x + 1 >= VoxelWorld.CHUNK_SIZE.x && world.getVoxel(new Vector3i(x + 1, y, z).add(chunkOffset)) == null) || (x + 1 < VoxelWorld.CHUNK_SIZE.x && data[y][x + 1][z] == null)) {
+
+            makeQuad(vertices,
+                    indices,
+                    normals,
+                    colors,
+                    BOTTOM_RIGHT_FRONT,
+                    TOP_RIGHT_FRONT,
+                    BOTTOM_RIGHT_BACK,
+                    TOP_RIGHT_BACK,
+                    Transform.RIGHT,
+                    Transform.RIGHT,
+                    Transform.RIGHT,
+                    Transform.RIGHT,
+                    offSet,
+                    color);
         }
         //top
         if ((y + 1 >= VoxelWorld.CHUNK_SIZE.y
                 // && world.getVoxel(new Vector3i(x, y + 1, z).add(chunkOffset))==null
-        ) ||
-                (y + 1 < VoxelWorld.CHUNK_SIZE.y && data[y + 1][x][z]==null)) {
-            makeQuad(vertices, indices, normals, colors, TOP_LEFT_FRONT, TOP_LEFT_BACK, TOP_RIGHT_FRONT, TOP_RIGHT_BACK, offSet, Transform.UP, color);
+        ) || (y + 1 < VoxelWorld.CHUNK_SIZE.y && data[y + 1][x][z] == null)) {
+
+            makeQuad(vertices,
+                    indices,
+                    normals,
+                    colors,
+                    TOP_LEFT_FRONT,
+                    TOP_LEFT_BACK,
+                    TOP_RIGHT_FRONT,
+                    TOP_RIGHT_BACK,
+                    Transform.UP,
+                    Transform.UP,
+                    Transform.UP,
+                    Transform.UP,
+                    offSet,
+                    color);
         }
         //bottom
-        if ((y - 1 < 0
-                && world.getVoxel(new Vector3i(x, y - 1, z).add(chunkOffset))==null
-        ) ||
-                (y - 1 >= 0 && data[y - 1][x][z]==null)) {
-            makeQuad(vertices, indices, normals, colors, BOTTOM_LEFT_BACK, BOTTOM_LEFT_FRONT, BOTTOM_RIGHT_BACK, BOTTOM_RIGHT_FRONT, offSet, Transform.DOWN, color);
+        if ((y - 1 < 0 && world.getVoxel(new Vector3i(x, y - 1, z).add(chunkOffset)) == null) || (y - 1 >= 0 && data[y - 1][x][z] == null)) {
+
+            makeQuad(vertices,
+                    indices,
+                    normals,
+                    colors,
+                    BOTTOM_LEFT_BACK,
+                    BOTTOM_LEFT_FRONT,
+                    BOTTOM_RIGHT_BACK,
+                    BOTTOM_RIGHT_FRONT,
+                    Transform.DOWN,
+                    Transform.DOWN,
+                    Transform.DOWN,
+                    Transform.DOWN,
+                    offSet,
+                    color);
         }
     }
 
-    private static void makeQuad(LinkedList<Float> vertices, LinkedList<Integer> indices, LinkedList<Vector3f> normals, LinkedList<Color> colors, Vector3f v1, Vector3f v2, Vector3f v3, Vector3f v4, Vector3i offSet, Vector3f normal, Color color) {
+    private static void makeQuad(LinkedList<Float> vertices,
+                                 LinkedList<Integer> indices,
+                                 LinkedList<Vector3f> normals,
+                                 LinkedList<Color> colors,
+                                 Vector3f v1,
+                                 Vector3f v2,
+                                 Vector3f v3,
+                                 Vector3f v4,
+                                 Vector3f n1,
+                                 Vector3f n2,
+                                 Vector3f n3,
+                                 Vector3f n4,
+                                 Vector3i offSet,
+                                 Color color) {
+
         //2---4
         //| / |
         //1---3
+
         int i = vertices.size() / 3;
+        //1
         vertices.add(v1.x + offSet.x);
         vertices.add(v1.y + offSet.y);
         vertices.add(v1.z + offSet.z);
         colors.add(color);
-        normals.add(normal);
+        normals.add(n1);
+        //2
         vertices.add(v2.x + offSet.x);
         vertices.add(v2.y + offSet.y);
         vertices.add(v2.z + offSet.z);
         colors.add(color);
-        normals.add(normal);
+        normals.add(n2);
+
+        //3
         vertices.add(v3.x + offSet.x);
         vertices.add(v3.y + offSet.y);
         vertices.add(v3.z + offSet.z);
         colors.add(color);
-        normals.add(normal);
+        normals.add(n3);
+
+        //4
         vertices.add(v4.x + offSet.x);
         vertices.add(v4.y + offSet.y);
         vertices.add(v4.z + offSet.z);
         colors.add(color);
-        normals.add(normal);
+        normals.add(n4);
 
         indices.add(i + 3);
         indices.add(i + 1);

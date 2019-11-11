@@ -30,12 +30,14 @@ public class VoxelTest implements GameLogic {
     @Override
     public void init() {
         GameOptions.PRINT_FPS=true;
-        GameOptions.AMBIENT_LIGHT=0.5f;
+        GameOptions.AMBIENT_LIGHT=0.2f;
         Renderer.setClearColor(new Color(.1f,.4f,1f,1f));
         voxelWorld=new VoxelWorld(new TestGenerator());
         cameraController=new FirstPersonCameraController(new Vector3f(),new Quaternionf(), Camera.main,20);
         voxelWorld.chunkLoader=cameraController;
-        DirectionalLight.Lights.add(new DirectionalLight(new Vector3f(),new Quaternionf().rotateXYZ(45,45,0f), Color.WHITE ));
+        DirectionalLight.Lights.add(new DirectionalLight(new Vector3f(),new Quaternionf().rotateXYZ((float) Math.toRadians(90),0,0), Color.WHITE ));
+        Vector3f f=DirectionalLight.Lights.get(0).transform.forward();
+
     }
 
     @Override
