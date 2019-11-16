@@ -20,7 +20,7 @@ public class VoxelWorld implements UpdateListener, RenderListener, DisposeListen
     private HashMap<Vector3i, Block[][][]> chunksData = new HashMap<>();
     private HashMap<Vector3i, MeshRenderer> meshRenderersPool = new HashMap<>();
     public Entity chunkLoader;
-    private int range = 16;
+    private int range = 1;
     private VoxelGenerator generator;
 
     public VoxelWorld(VoxelGenerator generator) {
@@ -59,7 +59,7 @@ public class VoxelWorld implements UpdateListener, RenderListener, DisposeListen
                 1,
                 new VoxelChunk(this, chunkPos),
                 new Material()
-                        .shader(Shaders.VERTEX_COLOR_SHADER)));
+                        .shader(Shaders.VOXEL_SHADER)));
         System.out.println((System.currentTimeMillis()-time)+"ms ("+chunkPos.x+","+chunkPos.y+","+chunkPos.z+")");
     }
 

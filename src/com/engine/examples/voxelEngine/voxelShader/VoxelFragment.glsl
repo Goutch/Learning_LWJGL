@@ -11,17 +11,19 @@ in vec2 uv;
 //vertexColor
 in vec4 color;
 
+in vec2 ao;
+
 out vec4 fragColor;
 void main(){
-
 
     if(hasTexture==1)
     {
         //texture
         vec4 textureColor=texture(textureSampler, uv);
-        fragColor=color*textureColor*vec4(materialColor,1.);
+        fragColor=color*textureColor*vec4(materialColor,1.)*length(ao);
     }
     else{
-        fragColor=color*vec4(materialColor,1.);
+        fragColor =color*ao.x;
+
     }
 }

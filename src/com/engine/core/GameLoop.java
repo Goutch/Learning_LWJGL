@@ -16,7 +16,6 @@ import static org.lwjgl.glfw.GLFW.glfwWindowShouldClose;
 public class GameLoop {
     private static Thread gameLoopThread;
     private static boolean running = false;
-    private static Window window;
     private final static boolean PRINT_FPS = true;
     private static long lastFramePrint = 0;
     private static GameLogic gameLogic;
@@ -39,7 +38,7 @@ public class GameLoop {
 
                 long current = System.currentTimeMillis();
                 long previous = System.currentTimeMillis();
-                while (!glfwWindowShouldClose(window.getWindow())) {
+                while (!glfwWindowShouldClose(Window.getWindow())) {
                     previous = current;
                     current = System.currentTimeMillis();
                     getInputs();
@@ -74,9 +73,9 @@ public class GameLoop {
     }
 
     private static void getInputs() {
-        window.getInputs();
+        Window.getInputs();
         if (Input.IsKeyPressed(GLFW.GLFW_KEY_ESCAPE)) {
-            window.close();
+            Window.close();
         }
     }
 
@@ -101,7 +100,7 @@ public class GameLoop {
         EventManager.onRender();
         Renderer.render();
         GUIRenderer.render();
-        window.swapBuffers();
+        Window.swapBuffers();
     }
 
     private static void dispose() {

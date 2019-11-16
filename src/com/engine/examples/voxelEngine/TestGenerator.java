@@ -32,26 +32,21 @@ public class TestGenerator implements VoxelGenerator {
     public Block[][][] generate(Vector3i position) {
         Vector3i pos = new Vector3i(position).mul(VoxelWorld.CHUNK_SIZE);
         Block[][][] data = new Block[VoxelWorld.CHUNK_SIZE.y][VoxelWorld.CHUNK_SIZE.x][VoxelWorld.CHUNK_SIZE.z];
+
         int[][] heightMap = getHeightMap(pos);
         for (int x = 0; x < VoxelWorld.CHUNK_SIZE.x; x++) {
             for (int z = 0; z < VoxelWorld.CHUNK_SIZE.z; z++) {
                 for (int y = 0; y < VoxelWorld.CHUNK_SIZE.y; y++) {
                     if (y > heightMap[x][z]) {
                         break;
-                    }
-                    else{
-                        boolean isHole=noise.eval((pos.x + caveOffset.x + x) * caveScale,(pos.y + caveOffset.y + y) * caveScale, (pos.z + caveOffset.z + z) * caveScale)<=-0.3f;
-                        if(!isHole)
-                        {
+                    } else {
+                        boolean isHole = noise.eval((pos.x + caveOffset.x + x) * caveScale, (pos.y + caveOffset.y + y) * caveScale, (pos.z + caveOffset.z + z) * caveScale) <= -0.3f;
+                        if (!isHole) {
                             if (y < heightMap[x][z] - 3) {
-                                data[y][x][z] =Block.STONE;
-                            }
-                            else if(y < heightMap[x][z])
-                            {
-                                data[y][x][z] =Block.DIRT;
-                            }
-                            else if (y == heightMap[x][z])
-                            {
+                                data[y][x][z] = Block.STONE;
+                            } else if (y < heightMap[x][z]) {
+                                data[y][x][z] = Block.DIRT;
+                            } else if (y == heightMap[x][z]) {
                                 data[y][x][z] = Block.GRASS;
                             }
                         }
@@ -60,6 +55,8 @@ public class TestGenerator implements VoxelGenerator {
                 }
             }
         }
+
+
         return data;
     }
 

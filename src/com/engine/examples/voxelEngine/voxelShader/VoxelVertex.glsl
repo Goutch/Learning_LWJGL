@@ -8,16 +8,23 @@ in vec3 vertexPosition;
 out vec4 position;
 
 //texture
-in vec2 textureCoord;
+in vec2 textureCoords;
 out vec2 uv;
 
 //vertexColor
 in vec4 vertexColor;
 out vec4 color;
+
+in vec2 ambientOcclusion;
+out vec2 ao;
 void main(){
+
+    ao=ambientOcclusion;
     color=vertexColor;
     //texture
-    uv=textureCoord;
+    uv=textureCoords;
     //position
     gl_Position=projectionMatrix*viewMatrix*transformMatrix*vec4(vertexPosition.xyz,1.);
+
+
 }

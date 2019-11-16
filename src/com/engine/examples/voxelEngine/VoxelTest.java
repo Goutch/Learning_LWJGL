@@ -57,6 +57,11 @@ public class VoxelTest implements GameLogic {
             voxelWorld=new VoxelWorld(new TestGenerator());
             voxelWorld.chunkLoader=cameraController;
         }
+        if (Input.IsKeyPressed(GLFW.GLFW_KEY_Q))
+        {
+           Vector3f f= cameraController.transform.forward();
+            System.out.println("("+f.x+","+f.y+","+f.z+")");
+        }
     }
 
     @Override

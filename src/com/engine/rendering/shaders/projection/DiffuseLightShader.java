@@ -52,6 +52,7 @@ public class DiffuseLightShader extends BaseShader {
     @Override
     protected void bindAttributes() {
         super.bindAttributes();
+        super.bindAttribute(VBO.UVS_ATTRIBUTE_ID,"textureCoords");
         super.bindAttribute(VBO.NORMALS_ATTRIBUTE_ID,"vertexNormal");
     }
     @Override

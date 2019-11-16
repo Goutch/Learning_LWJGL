@@ -20,6 +20,7 @@ public class Mesh implements DisposeListener {
     protected float[] colors = null;
     protected float[] uvs = null;
 
+
     public Mesh() {
         EventManager.subscribeDispose(this);
         vao=new VAO();
@@ -72,6 +73,7 @@ public class Mesh implements DisposeListener {
         vao.put(colors,VBO.COLORS_ATTRIBUTE_ID,VBO.COLORS_ATTRIBUTE_SIZE);
         return this;
     }
+
 
     public void bind()
     {

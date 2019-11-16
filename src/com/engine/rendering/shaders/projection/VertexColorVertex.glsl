@@ -24,7 +24,7 @@ out vec3 toPointsLightsDirections[4] ;
 out vec3 toCameraDirection;
 
 //texture
-in vec2 textureCoord;
+in vec2 textureCoords;
 out vec2 uv;
 
 //vertexColor
@@ -33,7 +33,7 @@ out vec4 color;
 void main(){
     color=vertexColor;
     //texture
-    uv=textureCoord;
+    uv=textureCoords;
     //Diffuselight
     position=transformMatrix*vec4(vertexPosition.xyz,1.);
     normal=(transformMatrix*vec4(vertexNormal,0.)).xyz;
