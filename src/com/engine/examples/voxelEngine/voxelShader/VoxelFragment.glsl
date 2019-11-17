@@ -11,7 +11,7 @@ in vec2 uv;
 //vertexColor
 in vec4 color;
 
-in vec2 ao;
+in vec3 ao;
 
 out vec4 fragColor;
 void main(){
@@ -23,7 +23,7 @@ void main(){
         fragColor=color*textureColor*vec4(materialColor,1.)*length(ao);
     }
     else{
-        fragColor =color*ao.x;
+        fragColor =color*mix(mix(ao.x,ao.y,1.),ao.z,1.);//color*length(ao);
 
     }
 }

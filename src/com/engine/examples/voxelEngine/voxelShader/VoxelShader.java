@@ -26,7 +26,7 @@ import javax.print.DocFlavor;
  */
 public class VoxelShader extends BaseShader {
     public static final int AMBIENT_OCCLUSION_ID =4;
-    public static final int AMBIENT_UCCLUSION_SIZE =2;
+    public static final int AMBIENT_UCCLUSION_SIZE =3;
     private static final String VERTEX_FILE="src/com/engine/examples/voxelEngine/voxelShader/VoxelVertex.glsl";
     private static final String FRAMGMENT_FILE="src/com/engine/examples/voxelEngine/voxelShader/VoxelFragment.glsl";
 

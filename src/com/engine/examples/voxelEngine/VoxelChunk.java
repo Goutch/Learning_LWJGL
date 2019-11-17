@@ -91,11 +91,9 @@ public class VoxelChunk extends Mesh {
             uvsArray[count]=uv.y;
             count++;
         }
-        float[] ambienOcclusionArray = new float[ambientOcclusion.size()*2];
+        float[] ambienOcclusionArray = new float[ambientOcclusion.size()];
         count = 0;
         for (Float ao : ambientOcclusion) {
-            ambienOcclusionArray[count] = ao;
-            count++;
             ambienOcclusionArray[count] = ao;
             count++;
         }
@@ -284,7 +282,7 @@ public class VoxelChunk extends Mesh {
         uvs.add(uv4);
         colors.add(color);
 
-        float ao1 = 1f, ao2 = 1f, ao3 = 1f, ao4 = 1f;
+        float ao1x = 1f,ao1y=1f,ao1xy=1f, ao2x = 1f,ao2y=1f,ao2xy=1f, ao3x = 1f,ao3y=1f,ao3xy=1f, ao4x = 1f,ao4y=1f,ao4xy=1f;
         float aoFactor = 0.5f;
         switch (dir) {
             case UP:
@@ -293,18 +291,18 @@ public class VoxelChunk extends Mesh {
                 normals.add(Transform.UP);
                 normals.add(Transform.UP);
 
-                ao1 -= neigboors[2][1][2] ? aoFactor : 0f;
-                ao1 -= neigboors[2][0][1] ? aoFactor : 0f;
-                ao1 -= neigboors[2][0][2] ? aoFactor : 0f;
-                ao2 -= neigboors[2][0][1] ? aoFactor : 0f;
-                ao2 -= neigboors[2][1][0] ? aoFactor : 0f;
-                ao2 -= neigboors[2][0][0] ? aoFactor : 0f;
-                ao3 -= neigboors[2][1][2] ? aoFactor : 0f;
-                ao3 -= neigboors[2][2][1] ? aoFactor : 0f;
-                ao3 -= neigboors[2][2][2] ? aoFactor : 0f;
-                ao4 -= neigboors[2][1][0] ? aoFactor : 0f;
-                ao4 -= neigboors[2][2][1] ? aoFactor : 0f;
-                ao4 -= neigboors[2][2][0] ? aoFactor : 0f;
+                ao1y -= neigboors[2][1][2] ? aoFactor : 0f;
+                ao1x -= neigboors[2][0][1] ? aoFactor : 0f;
+                ao1xy -= neigboors[2][0][2] ? aoFactor : 0f;
+                ao2x -= neigboors[2][0][1] ? aoFactor : 0f;
+                ao2y -= neigboors[2][1][0] ? aoFactor : 0f;
+                ao2xy -= neigboors[2][0][0] ? aoFactor : 0f;
+                ao3y -= neigboors[2][1][2] ? aoFactor : 0f;
+                ao3x -= neigboors[2][2][1] ? aoFactor : 0f;
+                ao3xy -= neigboors[2][2][2] ? aoFactor : 0f;
+                ao4y -= neigboors[2][1][0] ? aoFactor : 0f;
+                ao4x -= neigboors[2][2][1] ? aoFactor : 0f;
+                ao4xy -= neigboors[2][2][0] ? aoFactor : 0f;
 
                 break;
             case DOWN:
@@ -312,96 +310,106 @@ public class VoxelChunk extends Mesh {
                     normals.add(Transform.DOWN);
                 }
 
-                ao1 -= neigboors[0][0][1] ? aoFactor : 0f;
-                ao1 -= neigboors[0][1][0] ? aoFactor : 0f;
-                ao1 -= neigboors[0][0][0] ? aoFactor : 0f;
-                ao2 -= neigboors[0][1][2] ? aoFactor : 0f;
-                ao2 -= neigboors[0][0][1] ? aoFactor : 0f;
-                ao2 -= neigboors[0][0][2] ? aoFactor : 0f;
-                ao3 -= neigboors[0][1][0] ? aoFactor : 0f;
-                ao3 -= neigboors[0][2][1] ? aoFactor : 0f;
-                ao3 -= neigboors[0][2][0] ? aoFactor : 0f;
-                ao4 -= neigboors[0][1][2] ? aoFactor : 0f;
-                ao4 -= neigboors[0][2][1] ? aoFactor : 0f;
-                ao4 -= neigboors[0][2][2] ? aoFactor : 0f;
+                ao1y  -= neigboors[0][0][1] ? aoFactor : 0f;
+                ao1x  -= neigboors[0][1][0] ? aoFactor : 0f;
+                ao1xy -= neigboors[0][0][0] ? aoFactor : 0f;
+                ao2x  -= neigboors[0][1][2] ? aoFactor : 0f;
+                ao2y  -= neigboors[0][0][1] ? aoFactor : 0f;
+                ao2xy -= neigboors[0][0][2] ? aoFactor : 0f;
+                ao3y  -= neigboors[0][1][0] ? aoFactor : 0f;
+                ao3x  -= neigboors[0][2][1] ? aoFactor : 0f;
+                ao3xy -= neigboors[0][2][0] ? aoFactor : 0f;
+                ao4y  -= neigboors[0][1][2] ? aoFactor : 0f;
+                ao4x  -= neigboors[0][2][1] ? aoFactor : 0f;
+                ao4xy -= neigboors[0][2][2] ? aoFactor : 0f;
                 break;
             case BACKWARD:
                 for (int j = 0; j < 4; j++) {
                     normals.add(Transform.BACKWARD);
                 }
-                ao3 -= neigboors[1][0][0] ? aoFactor : 0f;
-                ao3 -= neigboors[0][1][0] ? aoFactor : 0f;
-                ao3 -= neigboors[0][0][0] ? aoFactor : 0f;
-                ao4 -= neigboors[2][1][0] ? aoFactor : 0f;
-                ao4 -= neigboors[1][0][0] ? aoFactor : 0f;
-                ao4 -= neigboors[2][0][0] ? aoFactor : 0f;
-                ao1 -= neigboors[0][1][0] ? aoFactor : 0f;
-                ao1 -= neigboors[1][2][0] ? aoFactor : 0f;
-                ao1 -= neigboors[0][2][0] ? aoFactor : 0f;
-                ao2 -= neigboors[2][1][0] ? aoFactor : 0f;
-                ao2 -= neigboors[1][2][0] ? aoFactor : 0f;
-                ao2 -= neigboors[2][2][0] ? aoFactor : 0f;
+                ao1y  -= neigboors[1][0][0] ? aoFactor : 0f;
+                ao1x  -= neigboors[0][1][0] ? aoFactor : 0f;
+                ao1xy -= neigboors[0][0][0] ? aoFactor : 0f;
+                ao2x  -= neigboors[2][1][0] ? aoFactor : 0f;
+                ao2y  -= neigboors[1][0][0] ? aoFactor : 0f;
+                ao2xy -= neigboors[2][0][0] ? aoFactor : 0f;
+                ao3y  -= neigboors[0][1][0] ? aoFactor : 0f;
+                ao3x  -= neigboors[1][2][0] ? aoFactor : 0f;
+                ao3xy -= neigboors[0][2][0] ? aoFactor : 0f;
+                ao4y  -= neigboors[2][1][0] ? aoFactor : 0f;
+                ao4x  -= neigboors[1][2][0] ? aoFactor : 0f;
+                ao4xy -= neigboors[2][2][0] ? aoFactor : 0f;
                 break;
             case FOWARD:
                 for (int j = 0; j < 4; j++) {
                     normals.add(Transform.FOWARD);
                 }
-                ao1 -= neigboors[1][0][2] ? aoFactor : 0f;
-                ao1 -= neigboors[0][1][2] ? aoFactor : 0f;
-                ao1 -= neigboors[0][0][2] ? aoFactor : 0f;
-                ao2 -= neigboors[2][1][2] ? aoFactor : 0f;
-                ao2 -= neigboors[1][0][2] ? aoFactor : 0f;
-                ao2 -= neigboors[2][0][2] ? aoFactor : 0f;
-                ao3 -= neigboors[0][1][2] ? aoFactor : 0f;
-                ao3 -= neigboors[1][2][2] ? aoFactor : 0f;
-                ao3 -= neigboors[0][2][2] ? aoFactor : 0f;
-                ao4 -= neigboors[2][1][2] ? aoFactor : 0f;
-                ao4 -= neigboors[1][2][2] ? aoFactor : 0f;
-                ao4 -= neigboors[2][2][2] ? aoFactor : 0f;
+                ao1y  -= neigboors[1][0][2] ? aoFactor : 0f;
+                ao1x  -= neigboors[0][1][2] ? aoFactor : 0f;
+                ao1xy -= neigboors[0][0][2] ? aoFactor : 0f;
+                ao2x  -= neigboors[2][1][2] ? aoFactor : 0f;
+                ao2y  -= neigboors[1][0][2] ? aoFactor : 0f;
+                ao2xy -= neigboors[2][0][2] ? aoFactor : 0f;
+                ao3y  -= neigboors[0][1][2] ? aoFactor : 0f;
+                ao3x  -= neigboors[1][2][2] ? aoFactor : 0f;
+                ao3xy -= neigboors[0][2][2] ? aoFactor : 0f;
+                ao4y  -= neigboors[2][1][2] ? aoFactor : 0f;
+                ao4x  -= neigboors[1][2][2] ? aoFactor : 0f;
+                ao4xy -= neigboors[2][2][2] ? aoFactor : 0f;
 
                 break;
             case RIGHT:
                 for (int j = 0; j < 4; j++) {
                     normals.add(Transform.RIGHT);
                 }
-                ao3 -= neigboors[1][2][0] ? aoFactor : 0f;
-                ao3 -= neigboors[0][2][1] ? aoFactor : 0f;
-                ao3 -= neigboors[0][2][0] ? aoFactor : 0f;
-                ao4 -= neigboors[2][2][1] ? aoFactor : 0f;
-                ao4 -= neigboors[1][2][0] ? aoFactor : 0f;
-                ao4 -= neigboors[2][2][0] ? aoFactor : 0f;
-                ao1 -= neigboors[0][2][1] ? aoFactor : 0f;
-                ao1 -= neigboors[1][2][2] ? aoFactor : 0f;
-                ao1 -= neigboors[0][2][2] ? aoFactor : 0f;
-                ao2 -= neigboors[2][2][1] ? aoFactor : 0f;
-                ao2 -= neigboors[1][2][2] ? aoFactor : 0f;
-                ao2 -= neigboors[2][2][2] ? aoFactor : 0f;
+                ao1y  -= neigboors[1][2][0] ? aoFactor : 0f;
+                ao1x  -= neigboors[0][2][1] ? aoFactor : 0f;
+                ao1xy -= neigboors[0][2][0] ? aoFactor : 0f;
+                ao2x  -= neigboors[2][2][1] ? aoFactor : 0f;
+                ao2y  -= neigboors[1][2][0] ? aoFactor : 0f;
+                ao2xy -= neigboors[2][2][0] ? aoFactor : 0f;
+                ao3y  -= neigboors[0][2][1] ? aoFactor : 0f;
+                ao3x  -= neigboors[1][2][2] ? aoFactor : 0f;
+                ao3xy -= neigboors[0][2][2] ? aoFactor : 0f;
+                ao4y  -= neigboors[2][2][1] ? aoFactor : 0f;
+                ao4x  -= neigboors[1][2][2] ? aoFactor : 0f;
+                ao4xy -= neigboors[2][2][2] ? aoFactor : 0f;
                 break;
             case LEFT:
                 for (int j = 0; j < 4; j++) {
                     normals.add(Transform.LEFT);
                 }
-                ao1 -= neigboors[1][0][0] ? aoFactor : 0f;
-                ao1 -= neigboors[0][0][1] ? aoFactor : 0f;
-                ao1 -= neigboors[0][0][0] ? aoFactor : 0f;
-                ao2 -= neigboors[2][0][1] ? aoFactor : 0f;
-                ao2 -= neigboors[1][0][0] ? aoFactor : 0f;
-                ao2 -= neigboors[2][0][0] ? aoFactor : 0f;
-                ao3 -= neigboors[0][0][1] ? aoFactor : 0f;
-                ao3 -= neigboors[1][0][2] ? aoFactor : 0f;
-                ao3 -= neigboors[0][0][2] ? aoFactor : 0f;
-                ao4 -= neigboors[2][0][1] ? aoFactor : 0f;
-                ao4 -= neigboors[1][0][2] ? aoFactor : 0f;
-                ao4 -= neigboors[2][0][2] ? aoFactor : 0f;
+                ao1y  -= neigboors[1][0][0] ? aoFactor : 0f;
+                ao1x  -= neigboors[0][0][1] ? aoFactor : 0f;
+                ao1xy -= neigboors[0][0][0] ? aoFactor : 0f;
+                ao2x  -= neigboors[2][0][1] ? aoFactor : 0f;
+                ao2y  -= neigboors[1][0][0] ? aoFactor : 0f;
+                ao2xy -= neigboors[2][0][0] ? aoFactor : 0f;
+                ao3y  -= neigboors[0][0][1] ? aoFactor : 0f;
+                ao3x  -= neigboors[1][0][2] ? aoFactor : 0f;
+                ao3xy -= neigboors[0][0][2] ? aoFactor : 0f;
+                ao4y  -= neigboors[2][0][1] ? aoFactor : 0f;
+                ao4x  -= neigboors[1][0][2] ? aoFactor : 0f;
+                ao4xy -= neigboors[2][0][2] ? aoFactor : 0f;
                 break;
 
         }
-        ambientOcclusion.add(Math.max(0,ao1));
-        ambientOcclusion.add(Math.max(0,ao2));
-        ambientOcclusion.add(Math.max(0,ao3));
-        ambientOcclusion.add(Math.max(0,ao4));
-
-
+        ambientOcclusion.add(Math.max(0,ao1x));
+        ambientOcclusion.add(Math.max(0,ao1y));
+        ambientOcclusion.add(Math.max(0,ao1xy));
+        ambientOcclusion.add(Math.max(0,ao2x));
+        ambientOcclusion.add(Math.max(0,ao2y));
+        ambientOcclusion.add(Math.max(0,ao2xy));
+        ambientOcclusion.add(Math.max(0,ao3x));
+        ambientOcclusion.add(Math.max(0,ao3y));
+        ambientOcclusion.add(Math.max(0,ao3xy));
+        ambientOcclusion.add(Math.max(0,ao4x));
+        ambientOcclusion.add(Math.max(0,ao4y));
+        ambientOcclusion.add(Math.max(0,ao4xy));
+        //indices.add(i+2);
+        //indices.add(i+3);
+        //indices.add(i+1);
+        //indices.add(i);
         indices.add(i + 3);
         indices.add(i + 1);
         indices.add(i);

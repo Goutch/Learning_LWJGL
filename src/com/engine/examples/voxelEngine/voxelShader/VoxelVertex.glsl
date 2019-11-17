@@ -15,12 +15,12 @@ out vec2 uv;
 in vec4 vertexColor;
 out vec4 color;
 
-in vec2 ambientOcclusion;
-out vec2 ao;
+in vec3 ambientOcclusion;
+out vec3 ao;
 void main(){
 
     ao=ambientOcclusion;
-    color=vertexColor;
+    color=vertexColor*ambientOcclusion.x;
     //texture
     uv=textureCoords;
     //position
